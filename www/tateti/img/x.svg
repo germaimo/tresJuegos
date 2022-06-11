@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="92" height="92" viewBox="0 0 92 92">
+  <defs>
+    <style>
+      .cls-1 {
+        clip-path: url(#clip-x);
+      }
+
+      .cls-2 {
+        fill: #f876f9;
+      }
+
+      .cls-3 {
+        fill: #f808f8;
+      }
+    </style>
+    <clipPath id="clip-x">
+      <rect width="92" height="92"/>
+    </clipPath>
+  </defs>
+  <g id="x" class="cls-1">
+    <g id="Grupo_635" data-name="Grupo 635" transform="translate(-137.511 -345.504)">
+      <g id="Layer_1_1_" transform="translate(138.508 353.518)">
+        <g id="Grupo_3" data-name="Grupo 3" transform="translate(0.003 -0.018)">
+          <g id="Grupo_1" data-name="Grupo 1" transform="translate(0.01 0)">
+            <rect id="Rectángulo_1" data-name="Rectángulo 1" class="cls-2" width="90.962" height="27.561" transform="matrix(0.707, -0.707, 0.707, 0.707, 0, 64.332)"/>
+          </g>
+          <g id="Grupo_2" data-name="Grupo 2" transform="translate(0 0.019)">
+            <rect id="Rectángulo_2" data-name="Rectángulo 2" class="cls-2" width="27.564" height="90.95" transform="translate(0 19.487) rotate(-45)"/>
+          </g>
+        </g>
+      </g>
+      <g id="Layer_1_1_2" data-name="Layer_1_1_" transform="translate(145.508 346.518)">
+        <g id="Grupo_3-2" data-name="Grupo 3" transform="translate(0.003 -0.018)">
+          <g id="Grupo_1-2" data-name="Grupo 1" transform="translate(0.01 0)">
+            <rect id="Rectángulo_1-2" data-name="Rectángulo 1" class="cls-3" width="90.962" height="27.561" transform="matrix(0.707, -0.707, 0.707, 0.707, 0, 64.332)"/>
+          </g>
+          <g id="Grupo_2-2" data-name="Grupo 2" transform="translate(0 0.019)">
+            <rect id="Rectángulo_2-2" data-name="Rectángulo 2" class="cls-3" width="27.564" height="90.95" transform="translate(0 19.487) rotate(-45)"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,128 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.3.6,
+* Autoprefixer: v10.3.1
+* Browsers: last 4 version
+*/
+
+body{
+	background-color: #084CD4;
+	font-family: futura-pt,sans-serif;
+	background-position: inherit;
+	color: white;
+	font-weight: 300;
+	font-style: normal;
+	display: -ms-grid;
+	display: grid;
+	width: 50%;
+	margin: 0 auto;
+}
+
+table{
+	margin: 2em 0 auto;
+	background-color: #1169D3;
+	font-weight: 700;
+	font-style: normal;
+	padding: .5em;
+	table-layout:fixed;
+	border-collapse: collapse;
+	background-position: center;
+	background-repeat: no-repeat;
+	width: 100%;
+	border-radius: 5px;
+}
+
+td{
+	border-bottom: 1px solid #084CD4;
+    border-right: 1px solid #084CD4;
+    padding-left: 0.5em;
+}
+
+h1{
+	font-family: itc-avant-garde-gothic-pro,sans-serif;
+}
+
+h1, #tirar, #turno, #tiros {
+	display: inline-block;
+}
+
+#juego{
+	background-color: #133A87;
+	padding: .5em;
+	border-radius: 5px;
+}
+
+#container{
+	text-align: center;
+}
+
+#tituloBoton, #turnoTiros{
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+
+#turno{
+	margin-right: 1em;
+}
+
+button, input{
+	background-color: #f76206;
+    color: #fdfff7;
+    font-size: 1.3em;
+    border-radius: 5px;
+    padding: .3em;
+    border: none;
+    cursor: pointer;
+}
+
+#gameOver{
+	display: none;
+}
+
+#confirm, #gameOver{
+	position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    background-color: white;
+    width: 50%;
+    font-size: 1.5em;
+    text-align: center;
+    padding: 1em;
+    border-radius: 5px;
+    color: #133a87;
+}
+
+p{
+	display: block;
+    -webkit-margin-before: 0;
+            margin-block-start: 0;
+    -webkit-margin-after: 0;
+            margin-block-end: 0;
+    -webkit-margin-start: 0;
+            margin-inline-start: 0;
+    -webkit-margin-end: 0;
+            margin-inline-end: 0;
+}
+
+.backColor1{
+    background-color: #f808f8;
+}
+
+.backColor2{
+    background: #f808f8;
+}
+
+.seleccionado{
+    border: 1px solid white;
+    opacity: 0.5;
+}

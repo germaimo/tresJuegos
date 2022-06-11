@@ -1,0 +1,194 @@
+body{
+	background-color: #084CD4;
+	background-image: url('img/pattern.svg');
+	background-repeat: repeat repeat;
+    background-size: 37.5px;
+	color: white;
+	font-weight: 300;
+	font-style: normal;
+	display: grid;
+	justify-content: space-around;
+	width: 50%;
+	margin: 0 auto;
+}
+
+#cartel{
+	margin-top: 1em;
+	background-color: white;
+	color: black;
+	font-size: 1.5em;
+	border-radius: 9px;
+	font-family: futura-pt-bold,sans-serif;
+	font-weight: 700;
+	font-style: normal;
+}
+
+a{
+	color: white;
+    text-decoration: none;
+    font-family: futura-pt-bold,sans-serif;
+    padding: 1em;
+    position: absolute;
+    background-color: #1169d3;
+    border-radius: 9px;
+    bottom: 3.5em;
+}
+
+h1{
+	margin-block-start: 0em;
+	margin-block-end: 0em;
+	margin-left: .5em;
+}
+
+table{
+	margin-top: 1em;
+	padding: 1em;
+	margin: 2em 0 auto;
+	background-color: #1169D3;
+	font-family: itc-avant-garde-gothic-pro,sans-serif;
+	font-weight: 700;
+	font-style: normal;
+	table-layout:fixed;
+	border-collapse: collapse;
+	background-position: center;
+	background-repeat: no-repeat;
+	width: 420px;
+	height: 420px;
+	border-radius: 9px;
+	
+	box-shadow: 5px 10px #0f09b238;
+
+	animation: animarShadow 2s, animarTabla 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+	animation-direction: alternate;
+}
+
+
+.choose{
+	background-image: url(img/choose.svg);
+	animation: animatedBackground 1s, animarShadow 1s,  animarTabla 2s;
+	animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-direction: alternate;
+}
+
+.choose td{
+	pointer-events: none;
+}
+
+.x-win{
+	background-image: url(img/x-win.svg);
+}
+
+
+.o-win{
+	background-image: url(img/o-win.svg);
+}
+
+
+td{
+	padding: 1.5em;
+	cursor: pointer;
+	width: calc(100% / 3);
+		height: calc(100% / 3);
+		text-align: center;
+		color: #fa4197;
+}
+
+.bordes{
+	border-bottom: 1px solid #084CD4;
+	border-right: 1px solid #084CD4; 
+}
+
+#info{
+	font-family: futura-pt,sans-serif;
+	font-weight: 500;
+	font-style: normal;
+	margin-block-start: 0em;
+	margin-block-end: 0em;
+	margin-inline-start: 0px;
+	margin-inline-end: 0px;
+	background-color: #1169D3;
+	border-radius: 9px;
+	font-size: 2em;
+	padding: .5em;
+	width: 5.6em;
+	text-align: center;
+	cursor: pointer;
+	border: 1px solid #ffffff40;
+	box-shadow: 5px 10px #0f09b236;
+	
+	animation: animarShadow 2s;
+	animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-direction: alternate;
+}
+
+
+.j1{
+	color: red;
+}
+
+.j2{
+	color:  yellow;
+}
+
+#signoExclamacion{
+	animation-name: flotar;
+	animation-duration: 3s;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease-in-out;
+}
+
+
+#signoReset{
+	display: none;
+	animation-name: girar;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+
+@media (pointer: coarse){
+	body{
+		zoom: 2;
+	}
+}
+
+@keyframes animarTabla{
+	0% { 
+		width: 420px;
+		height: 420px;
+	 }
+    100%  { 
+		width: 415px;
+		height: 415px;
+	}
+}
+
+@keyframes animarShadow{
+	0% { box-shadow: 5px 10px #0f09b238; }
+    100%  { box-shadow: 10px 15px #0f09b238; }
+}
+
+@keyframes girar {
+    0% { transform: rotate(0deg); }
+    100%  { transform: rotate(180deg);}
+}
+
+@keyframes flotar {
+    0% { transform: translate(0,  0px); }
+    50%  { transform: translate(0, 30px); }
+    100%   { transform: translate(0, -0px); }   
+}
+
+@keyframes animatedBackground {
+  from {
+    background-position: 50% 20%;
+  }
+  to {
+    background-position: 50% 40%;
+  }
+}
