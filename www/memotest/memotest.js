@@ -50,6 +50,8 @@ tablero.innerHTML = cards;
 //mezclo
 //coloco en html
 
+//const crearTablero
+
 
 
 //se muestra boton comenzar
