@@ -4,12 +4,7 @@ let game = {
     moves: 0, //aumenta con cada par levantado de cartas
     time: 0,
     difficulty: 1, // puede cambiar desde que comienza
-    tablero: [
-        { id: 0, text: 'A' },
-        { id: 1, text: 'B' },
-        { id: 2, text: 'C' },
-        { id: 3, text: 'D' },
-    ],
+    tablero: [],
 };
 
 const shuffleArray = (array) => {
@@ -24,7 +19,7 @@ const shuffleArray = (array) => {
     return array;
 }
 
-let itemAcomparar = false; // lo hago separado por que no quiero acceder al objeto game constantemente
+let itemAcomparar = ''; // lo hago separado por que no quiero acceder al objeto game constantemente
 
 //se elije que jugador quiere empezar o ofrecer aleatorio
 //se elije dificultad o aleatorio
@@ -38,6 +33,23 @@ const mezcla = shuffleArray(game.tablero);
 const cards = [...mezcla].map(({ id, text }) => (`<p> <span id=${id}>${text}</span> <span id=${id}>${text}</span> </p>`)).join('');
 
 tablero.innerHTML = cards;
+
+
+//crear array donde su largo sea a partir de la dificultad
+// si es dififultad 1
+// array va a medir 4
+// y cada posicion va a tener un texto/icono
+// luego clono ese array 
+// y lo coloco en el array original
+// array original ex
+// [ {texto: 'perro'}, {texto: 'gato'} ]
+// array clon
+// [ {texto: 'perro'}, {texto: 'gato'} ]
+// array mergeado
+// [ {texto: 'perro'}, {texto: 'gato'}, {texto: 'perro'}, {texto: 'gato'} ]
+//mezclo
+//coloco en html
+
 
 
 //se muestra boton comenzar
