@@ -24,17 +24,6 @@ let itemAcomparar = ''; // lo hago separado por que no quiero acceder al objeto 
 //se elije que jugador quiere empezar o ofrecer aleatorio
 //se elije dificultad o aleatorio
 
-//se muestra html con cartas mezcladas
-
-const tablero = document.getElementById('tablero');
-
-const mezcla = shuffleArray(game.tablero);
-
-const cards = [...mezcla].map(({ id, text }) => (`<p> <span id=${id}>${text}</span> <span id=${id}>${text}</span> </p>`)).join('');
-
-tablero.innerHTML = cards;
-
-
 //crear array donde su largo sea a partir de la dificultad
 // si es dififultad 1
 // array va a medir 4
@@ -51,6 +40,19 @@ tablero.innerHTML = cards;
 //coloco en html
 
 //const crearTablero
+
+//se muestra html con cartas mezcladas
+
+const tablero = document.getElementById('tablero');
+
+// const mezcla = shuffleArray(game.tablero);
+
+// const cards = [...mezcla].map(({ id, text }) => (`<p> <span id=${id}>${text}</span> <span id=${id}>${text}</span> </p>`)).join('');
+
+// tablero.innerHTML = cards;
+
+
+
 
 
 

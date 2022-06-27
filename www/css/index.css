@@ -24,7 +24,7 @@
    margin: 0 auto;
    text-align: center;   
    padding: 4em;
-   background-color: #084CD4;
+   background-color: #27175D;
    color: white;
  }
 
@@ -34,10 +34,6 @@
 
  span{
    font-size: x-small;
- }
-
- nav{
-   font-family: itc-avant-garde-gothic-pro,sans-serif;
  }
 
  a{
@@ -55,11 +51,25 @@
  }
 
  ul li{
-   padding: 2em;
+   padding: 1em;
+   margin: 1em;
+   background: linear-gradient(180deg, #6649C4 0%, #4A2BAE 98.44%);
+   border-radius: 16px;
  }
 
- nav li a{
+ nav li a, a{
     cursor:  pointer;
+    font-family: futura-pt, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+ }
+
+ #perfiles{
+  margin: 1em;
+  color: #F89740;
+  border: 2px solid #F89740;
+  padding: 1em;
+  border-radius: 16px;
  }
 
  nav li:active{
@@ -71,7 +81,6 @@
    padding: 1em;
    margin: 2em 0 auto;
    background-color: #1169D3;
-   font-family: itc-avant-garde-gothic-pro,sans-serif;
    font-weight: 700;
    font-style: normal;
    table-layout:fixed;
