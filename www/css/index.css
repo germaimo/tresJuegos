@@ -17,76 +17,102 @@
  * under the License.
  */
 
- body{
-   font-family: futura-pt-bold,sans-serif;
-   display: grid;
-   width: 50%;
-   margin: 0 auto;
-   text-align: center;   
-   padding: 4em;
-   background-color: #27175D;
-   color: white;
- }
+body {
+  font-family: futura-pt-bold, sans-serif;
+  display: flex;
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+  padding: 2em;
+  background-color: #27175D;
+  color: white;
+  align-items: center;
+  flex-direction: column;
+}
 
- header{
-   font-size: x-large;
- }
+header {
+  font-size: 20px;
+}
 
- span{
-   font-size: x-small;
- }
+#logo{
+  margin-top: 1em;
+  margin-bottom: 2em;
+}
 
- a{
-   text-decoration: none;
-   color: white;
- }
+span {
+  font-size: 17px;
+  font-family: 'futura-pt';
+}
 
- ul{
-   list-style-type: none;
-   margin-block-start: 0;
-   margin-block-end: 0;
-   margin-inline-start: 0px;
-   margin-inline-end: 0px;
-   padding-inline-start: 0;
- }
+a {
+  text-decoration: none;
+  color: white;
+}
 
- ul li{
-   padding: 1em;
-   margin: 1em;
-   background: linear-gradient(180deg, #6649C4 0%, #4A2BAE 98.44%);
-   border-radius: 16px;
- }
+ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  list-style-type: none;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 0;
+}
 
- nav li a, a{
-    cursor:  pointer;
-    font-family: futura-pt, sans-serif;
-    font-weight: 400;
-    font-style: normal;
- }
+ul li {
+  padding: 1em;
+  margin: .5em;
+  background: linear-gradient(180deg, #6649C4 0%, #4A2BAE 98.44%);
+  border-radius: 16px;
+  width:100%;
+  border: 2px solid #4A2BAE;
+}
 
- #perfiles{
+nav{
+  margin-top: 2em;
+}
+
+nav, #perfiles {
+  max-width: 334px;
+  width: 100%;
+}
+
+
+
+nav li a,
+a {
+  cursor: pointer;
+  font-family: futura-pt, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+#perfiles {
   margin: 1em;
   color: #F89740;
   border: 2px solid #F89740;
   padding: 1em;
   border-radius: 16px;
- }
+  margin-top: 4em;
+}
 
- nav li:active{
-    border: 2px solid red;
- }
+nav li:active {
+  border: 2px solid white;
+}
 
- table{
-   margin-top: 1em;
-   padding: 1em;
-   margin: 2em 0 auto;
-   background-color: #1169D3;
-   font-weight: 700;
-   font-style: normal;
-   table-layout:fixed;
-   border-collapse: collapse;
-   background-position: center;
-   background-repeat: no-repeat;
-   width: 420px;
-   height: 420px; 
+table {
+  margin-top: 1em;
+  padding: 1em;
+  margin: 2em 0 auto;
+  background-color: #1169D3;
+  font-weight: 700;
+  font-style: normal;
+  table-layout: fixed;
+  border-collapse: collapse;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 420px;
+  height: 420px;
 }
