@@ -37,17 +37,17 @@ const OnDeviceReady = () => {
         alert("Debe ingresar 2 jugadores antes de jugar");
     }
 
-    const tatetiTagA = document.getElementById('tateti');
-    tatetiTagA.onclick = () => { window.location.href = 'tateti/index.html' };
+    const tatetiTag = document.getElementById('tateti');
+    tatetiTag.onclick = () => { window.location.href = 'tateti/index.html' };
 
-    const generalaTagA = document.getElementById('generala');
-    generalaTagA.onclick = () => { window.location.href = "generala/index.html" };
+    const generalaTag = document.getElementById('generala');
+    generalaTag.onclick = () => { window.location.href = "generala/index.html" };
 
-    const memotestTagA = document.getElementById('memotest');
-    memotestTagA.onclick = () => { window.location.href = "memotest/index.html" };
+    const memotestTag = document.getElementById('memotest');
+    memotestTag.onclick = () => { window.location.href = "memotest/index.html" };
 
-    const perfilesTagA = document.getElementById('perfiles');
-    perfilesTagA.onclick = () => { window.location.href = "perfiles/jugadores.html" };
+    const perfilesTag = document.getElementById('perfiles');
+    perfilesTag.onclick = () => { window.location.href = "perfiles/jugadores.html" };
 
 }
 
