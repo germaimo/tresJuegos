@@ -5,6 +5,7 @@ let game = {
     time: 0,
     difficulty: 1, // puede cambiar desde que comienza
     tablero: [],
+    itemSelected: ''
 }
 
 const svgs = [
@@ -36,6 +37,7 @@ const svgs = [
     `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 250 250"><g transform="matrix(0.8333333333333334,0,0,0.8333333333333334,0,0)"><path fill="#E55733" d="M108.303 39.3099C149.389 80.35 149.74 149.529 149.74 149.529C149.74 149.529 83.4779 152.168 42.3922 111.128C1.30654 70.0878 0.95532 0.909076 0.95532 0.909076C0.95532 0.909076 67.2172 -1.73033 108.303 39.3099Z"></path><path fill="#E55733" d="M191.177 39.3099C150.091 80.35 149.74 149.529 149.74 149.529C149.74 149.529 216.002 152.168 257.087 111.128C298.173 70.0878 298.524 0.909076 298.524 0.909076C298.524 0.909076 232.262 -1.73033 191.177 39.3099Z"></path><path fill="#E55733" d="M108.303 259.69C149.389 218.65 149.74 149.471 149.74 149.471C149.74 149.471 83.4779 146.832 42.3922 187.872C1.30654 228.912 0.95532 298.091 0.95532 298.091C0.95532 298.091 67.2172 300.73 108.303 259.69Z"></path><path fill="#E55733" d="M191.177 259.69C150.091 218.65 149.74 149.471 149.74 149.471C149.74 149.471 216.002 146.832 257.087 187.872C298.173 228.912 298.524 298.091 298.524 298.091C298.524 298.091 232.262 300.73 191.177 259.69Z"></path></g></svg>`,
     `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 250 250"><g transform="matrix(0.8333333333333334,0,0,0.8333333333333334,0,0)"><path fill="#E55733" d="M207.123 57.5409L150 2.78174L92.8774 57.5409L0 110.422L43.5004 194.937L57.0352 283.786L150 273.619L242.965 283.786L256.5 194.937L300 110.422L207.123 57.5409Z"></path></g></svg>`
 ]
+
 const shuffleArray = (array) => {
     let counter = array.length;
     while (counter > 0) {
@@ -91,12 +93,8 @@ const startClock = () => {
     let secsTotales = 0;
 
     pad = (val) => {
-        var valString = val + "";
-        if (valString.length < 2) {
-            return "0" + valString;
-        } else {
-            return valString;
-        }
+        let valString = val + ""
+        return valString.length < 2 ? "0" + valString : valString
     }
 
     setTime = () => {
@@ -108,12 +106,43 @@ const startClock = () => {
     setInterval(setTime, 1000);
 }
 
+const checkCard = (e) => {
+    console.log('click', 'game item selected', game.itemSelected)
+
+    if (game.itemSelected === '') {
+        console.log('esta vacio asi que le asignamos valor')
+        return game.itemSelected = e.getAttribute('data-item')
+    } else {
+        console.log('hay data chequeada, asi que voy a chequear')
+
+        if (game.itemSelected === e.getAttribute('data-item')) {
+            console.log('son iguales', game.itemSelected, e.getAttribute('data-item'))
+            let cards = document.querySelectorAll(`[data-item="${game.itemSelected}"]`)
+            
+            console.log(cards)
+
+            Array.from(cards).forEach( item => item.removeChild(item.firstChild) )
+            card = ''
+            return game.itemSelected = ''
+        }else{
+            console.log('no soy iguales asi que reseteo selecccionado');
+            game.itemSelected = ''
+        }
+    }
+
+    console.log(game.itemSelected);
+
+
+
+    //game.itemSelected = ''
+
+}
 
 const cargaHtml = () => {
 
     const hud = document.getElementById('hud')
     const tarjetas = document.getElementById('tarjetas')
-    
+
     hud.style.display = 'flex';
 
     if (game.difficulty === 1) { tarjetas.classList.add('dos-columnas') }
@@ -121,59 +150,19 @@ const cargaHtml = () => {
     if (game.difficulty === 3) { tarjetas.classList.add('cuatro-columnas') }
 
     tarjetas.innerHTML = shuffleArray(game.tablero).map(
-        ({ id, item, icono }) => (`<li class='tarjeta' id=${id} data-item=${item}>${icono}</li>`)).join('')
+        ({ id, item, icono }) => (`<li class='tarjeta' onclick="checkCard(this)" id=${id} data-item=${item}>${icono}</li>`)).join('')
 
     startClock();
 }
 
-///start(1).map( ({item, icono}) => ` ${icono}` ) 
+ // lo hago separado por que no quiero acceder al objeto game constantemente
 
-
-
-let itemAcomparar = ''; // lo hago separado por que no quiero acceder al objeto game constantemente
-
-//se elije que jugador quiere empezar o ofrecer aleatorio
-//se elije dificultad o aleatorio
-
-//crear array donde su largo sea a partir de la dificultad
-// si es dififultad 1
-// array va a medir 4
-// y cada posicion va a tener un texto/icono
-// luego clono ese array 
-// y lo coloco en el array original
-// array original ex
-// [ {texto: 'perro'}, {texto: 'gato'} ]
-// array clon
-// [ {texto: 'perro'}, {texto: 'gato'} ]
-// array mergeado
-// [ {texto: 'perro'}, {texto: 'gato'}, {texto: 'perro'}, {texto: 'gato'} ]
-//mezclo
-//coloco en html
-
-//const crearTablero
-
-//se muestra html con cartas mezcladas
-
-const tablero = document.getElementById('tablero');
-
-// const mezcla = shuffleArray(game.tablero);
-
-// const cards = [...mezcla].map(({ id, text }) => (`<p> <span id=${id}>${text}</span> <span id=${id}>${text}</span> </p>`)).join('');
-
-// tablero.innerHTML = cards;
-
-
-
-
-
-
-//se muestra boton comenzar
-    //inicia timer
-
-//se habilitan las posiciones para ser clickeadas
 
 //al clickear sobre una imagen se chequea si hay algun valor seteado en itemAComparar guarda el valor para comparar 
+
 // si hay valor seteado se compara el itemAComparar con el segudo clickeado
-    // si esta comparacion es verdadera moves++
-    // se remueven estos items clickeados 
+
+// si esta comparacion es verdadera moves++
+
+// se remueven estos items clickeados 
 
