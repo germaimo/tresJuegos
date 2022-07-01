@@ -122,7 +122,9 @@ const checkCard = (e) => {
             console.log(cards)
 
             Array.from(cards).forEach( item => item.removeChild(item.firstChild) )
-            card = ''
+            cards = ''
+
+            console.log(cards)
             return game.itemSelected = ''
         }else{
             console.log('no soy iguales asi que reseteo selecccionado');
