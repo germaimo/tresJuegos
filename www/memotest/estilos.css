@@ -151,6 +151,7 @@ ul {
     padding: .2em;
     margin: .5em;
     background: #27175D;
+    border: 2px solid transparent;
     border-radius: 16px;
     display: flex;
     box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
@@ -204,4 +205,8 @@ ul {
 nav {
     max-width: 334px;
     width: 100%;
+}
+
+.tarjeta:active, .tarjeta:hover{
+    border: 2px solid white;
 }

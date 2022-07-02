@@ -5,13 +5,11 @@ let game = {
     time: 0,
     difficulty: 1, // puede cambiar desde que comienza
     tablero: [],
-    itemSelected: ''
+    cardSelected: { item: '', id: '' }
 }
 
 const svgs = [
-    `<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 24.3.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+    `<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 250 113.7" style="enable-background:new 0 0 250 113.7;" xml:space="preserve">
 <style type="text/css">
 	.st0{fill:#F5BD33;}
@@ -107,37 +105,27 @@ const startClock = () => {
 }
 
 const checkCard = (e) => {
-    console.log('click', 'game item selected', game.itemSelected)
 
-    if (game.itemSelected === '') {
-        console.log('esta vacio asi que le asignamos valor')
-        return game.itemSelected = e.getAttribute('data-item')
+    if (game.cardSelected.item === '') {
+        game.cardSelected.item = e.getAttribute('data-item')
+        game.cardSelected.id = e.getAttribute('id')
     } else {
-        console.log('hay data chequeada, asi que voy a chequear')
-
-        if (game.itemSelected === e.getAttribute('data-item')) {
-            console.log('son iguales', game.itemSelected, e.getAttribute('data-item'))
-            let cards = document.querySelectorAll(`[data-item="${game.itemSelected}"]`)
-            
-            console.log(cards)
-
-            Array.from(cards).forEach( item => item.removeChild(item.firstChild) )
+        if (game.cardSelected.item === e.getAttribute('data-item') &&
+            game.cardSelected.id !== e.getAttribute('id')) {
+            let cards = document.querySelectorAll(`[data-item="${game.cardSelected.item}"]`)
+            Array.from(cards).forEach(item => {
+                item.removeChild(item.firstChild)
+                item.onclick = null;
+            } )
             cards = ''
 
-            console.log(cards)
-            return game.itemSelected = ''
-        }else{
-            console.log('no soy iguales asi que reseteo selecccionado');
-            game.itemSelected = ''
+            game.cardSelected = { item: '', id: '' }
+        } else {
+            game.cardSelected = { item: '', id: '' }
         }
     }
 
-    console.log(game.itemSelected);
-
-
-
-    //game.itemSelected = ''
-
+    return game.cardSelected;
 }
 
 const cargaHtml = () => {
@@ -152,19 +140,15 @@ const cargaHtml = () => {
     if (game.difficulty === 3) { tarjetas.classList.add('cuatro-columnas') }
 
     tarjetas.innerHTML = shuffleArray(game.tablero).map(
-        ({ id, item, icono }) => (`<li class='tarjeta' onclick="checkCard(this)" id=${id} data-item=${item}>${icono}</li>`)).join('')
+
+        ///crear li con javascript, para poder hacerle atributo igual a funcion y para luego en checkCard
+        // poder hacer item.onclick = null
+
+
+        ({ id, item, icono }) => (
+            `<li class='tarjeta' onclick="checkCard(this)" id=${id} data-item=${item}>${icono}</li>`)
+        ).join('')
 
     startClock();
 }
-
- // lo hago separado por que no quiero acceder al objeto game constantemente
-
-
-//al clickear sobre una imagen se chequea si hay algun valor seteado en itemAComparar guarda el valor para comparar 
-
-// si hay valor seteado se compara el itemAComparar con el segudo clickeado
-
-// si esta comparacion es verdadera moves++
-
-// se remueven estos items clickeados 
 
