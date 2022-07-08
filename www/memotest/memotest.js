@@ -5,7 +5,8 @@ let game = {
     time: 0,
     difficulty: 1, // puede cambiar desde que comienza
     tablero: [],
-    cardSelected: { item: '', id: '' }
+    cardSelected: { item: '', id: '' },
+    resetCard : () => { game.cardSelected = { item: '', id: '' }  }
 }
 
 const svgs = [
@@ -63,6 +64,7 @@ const start = () => {
     const nav = document.querySelector('nav')
 
     aviso.style.display = nav.style.display = info.style.display = sombra.style.display = 'none'
+
     cargaHtml()
 }
 
@@ -104,24 +106,45 @@ const startClock = () => {
     setInterval(setTime, 1000);
 }
 
-const checkCard = (e) => {
+const checkCard = (obj) => {
 
     if (game.cardSelected.item === '') {
-        game.cardSelected.item = e.getAttribute('data-item')
-        game.cardSelected.id = e.getAttribute('id')
+        game.cardSelected.item = obj.item
+        game.cardSelected.id = obj.id
+
+        document.getElementById(obj.id).classList.add('active')
+
     } else {
-        if (game.cardSelected.item === e.getAttribute('data-item') &&
-            game.cardSelected.id !== e.getAttribute('id')) {
-            let cards = document.querySelectorAll(`[data-item="${game.cardSelected.item}"]`)
+
+        const { id, item } = game.cardSelected
+        document.getElementById(obj.id).classList.add('active')
+
+        if(id === obj.id){
+            document.getElementById(id).classList.remove('active')
+            document.getElementById(obj.id).classList.remove('active')
+            game.resetCard()
+        }
+
+        if (item === obj.item && id !== obj.id) {
+            
+            let cards = document.querySelectorAll(`[data-item="${item}"]`)
+            
             Array.from(cards).forEach(item => {
                 item.removeChild(item.firstChild)
                 item.onclick = null;
-            } )
+            })
+            
             cards = ''
 
-            game.cardSelected = { item: '', id: '' }
+            game.resetCard()
+
+            document.getElementById(id).classList.remove('active')
+            document.getElementById(obj.id).classList.remove('active')
+
         } else {
-            game.cardSelected = { item: '', id: '' }
+            document.getElementById(id).classList.remove('active')
+            document.getElementById(obj.id).classList.remove('active')
+            game.resetCard()
         }
     }
 
@@ -139,15 +162,23 @@ const cargaHtml = () => {
     if (game.difficulty === 2) { tarjetas.classList.add('tres-columnas') }
     if (game.difficulty === 3) { tarjetas.classList.add('cuatro-columnas') }
 
-    tarjetas.innerHTML = shuffleArray(game.tablero).map(
+    shuffleArray(game.tablero).map(
+        ({ id, item, icono }) => {
+            let li = document.createElement('li')
+            li.classList.add('tarjeta')
+            li.id = id
+            li.setAttribute('data-item', item)
+            li.onclick = () => checkCard({ id, item, icono })
+            
+            let span = document.createElement('span')
 
-        ///crear li con javascript, para poder hacerle atributo igual a funcion y para luego en checkCard
-        // poder hacer item.onclick = null
-
-
-        ({ id, item, icono }) => (
-            `<li class='tarjeta' onclick="checkCard(this)" id=${id} data-item=${item}>${icono}</li>`)
-        ).join('')
+            li.innerHTML = icono
+            li.appendChild(span)
+            
+            return tarjetas.appendChild(li)
+        }
+        //(`<li class='tarjeta' onclick="checkCard(this)" id=${id} data-item=${item}>${icono}</li>`)
+    ).join('')
 
     startClock();
 }

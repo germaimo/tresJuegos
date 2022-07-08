@@ -155,7 +155,24 @@ ul {
     border-radius: 16px;
     display: flex;
     box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
+    position: relative;
 }
+
+/* .tarjeta:after {
+    content: '';
+    right: 0px;
+    bottom: 0px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background: black;
+    -webkit-transform-style: preserve-3d;
+    -webkit-backface-visibility: hidden;
+    width: 74px;
+    height: 74px;
+    border-radius: 16px;
+    padding: 0.2em;
+} */
 
 #tablero{
     display: flex;
@@ -201,12 +218,11 @@ ul {
     height: 59px;
 }
 
-
 nav {
     max-width: 334px;
     width: 100%;
 }
 
-.tarjeta:active, .tarjeta:hover{
+.active{
     border: 2px solid white;
 }
