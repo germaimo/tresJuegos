@@ -5,8 +5,8 @@ let game = {
     time: 0,
     difficulty: 1, // puede cambiar desde que comienza
     tablero: [],
-    cardSelected: { item: '', id: '' },
-    resetCard : () => { game.cardSelected = { item: '', id: '' }  }
+    cardsSelected: [],
+    resetCard : () => { game.cardsSelected = [] }
 }
 
 const svgs = [
@@ -108,6 +108,88 @@ const startClock = () => {
 
 const checkCard = (obj) => {
 
+    //document.getElementById(obj.id).classList.add('active')
+    
+    game.cardsSelected.push(obj)
+
+    document.getElementById(obj.id).firstChild.classList.add('mostrar')
+    document.getElementById(obj.id).lastChild.classList.add('ocultar') 
+
+    if(game.cardsSelected.length === 2){
+        //si hay dos cartas seleccionadas
+        
+        //agrego clases que dan vueltan las cards
+
+       
+
+        setTimeout(() => {
+
+            if( game.cardsSelected[0].item === game.cardsSelected[1].item ){
+
+                console.log('son iguales')
+                
+                game.cardsSelected.map( obj => {
+
+                    let first = document.getElementById(obj.id).firstChild
+                    let second = document.getElementById(obj.id).lastChild
+
+                    first.style.opacity = '0';
+                    second.style.opacity = '0';
+
+                    setTimeout( () => {                         
+                        document.getElementById(obj.id).removeChild(first)
+                        document.getElementById(obj.id).removeChild(second)
+                     }, 1000 )
+                })
+    
+            }else{
+    
+                game.cardsSelected.map( obj => {
+                    
+                    setTimeout( () => {
+                        document.getElementById(obj.id).firstChild.classList.remove('mostrar')
+                        document.getElementById(obj.id).lastChild.classList.remove('ocultar') 
+                    }, 1500 )
+
+                })
+            }
+
+            game.resetCard()
+
+        }, 1000);
+
+        
+
+    }
+
+
+    //FALTARIA 
+        //BLOQUEAR 
+        //LA CARTA SELECCIONADA
+        //EL RESTO DE LAS CARTAS LUEGO DE LA SEGUNDA CLICKEADA
+
+        //cambiar de jugador cuando se equivoca
+        //para esto deberia ya manejar los jugadores apartir de localstorage
+
+        // sumar puntos a cada jugador
+        //reveer el tema del timer
+
+        // una vez finalizado
+        // mostrar pantalla ganador
+            //maquetar esta pantalla
+
+        //la cruz para salir del juego
+
+    //
+
+    // if(game.cardsSelected.length === 0){
+    //     game.cardsSelected.push(obj)
+    // }else if(game.cardsSelected.length === 1){
+    //     game.cardsSelected.push(obj)
+    // }
+
+    /*
+    
     if (game.cardSelected.item === '') {
         game.cardSelected.item = obj.item
         game.cardSelected.id = obj.id
@@ -149,6 +231,9 @@ const checkCard = (obj) => {
     }
 
     return game.cardSelected;
+
+    */
+
 }
 
 const cargaHtml = () => {
@@ -169,15 +254,13 @@ const cargaHtml = () => {
             li.id = id
             li.setAttribute('data-item', item)
             li.onclick = () => checkCard({ id, item, icono })
-            
-            let span = document.createElement('span')
-
             li.innerHTML = icono
+            let span = document.createElement('span')
+            let texto = document.createTextNode('?')
+            span.appendChild(texto)
             li.appendChild(span)
-            
             return tarjetas.appendChild(li)
         }
-        //(`<li class='tarjeta' onclick="checkCard(this)" id=${id} data-item=${item}>${icono}</li>`)
     ).join('')
 
     startClock();

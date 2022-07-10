@@ -158,21 +158,38 @@ ul {
     position: relative;
 }
 
-/* .tarjeta:after {
-    content: '';
+.tarjeta svg {
+    opacity: 1;
+    -webkit-transition: 1ms;
+    transition: 1ms;
+
+    transform: rotateY(90deg);
+}
+
+.tarjeta span {
+    font-family: 'futura-pt';
     right: 0px;
     bottom: 0px;
     position: absolute;
     top: 0px;
     left: 0px;
-    background: black;
+    background: #231753;
     -webkit-transform-style: preserve-3d;
     -webkit-backface-visibility: hidden;
-    width: 74px;
-    height: 74px;
     border-radius: 16px;
-    padding: 0.2em;
-} */
+    color: #6649C4;
+    font-size: 40px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0;
+    margin-top: 0;
+
+    opacity: 1;
+    -webkit-transition: 1s;
+    transition: 1s;
+}
 
 #tablero{
     display: flex;
@@ -225,4 +242,14 @@ nav {
 
 .active{
     border: 2px solid white;
+}
+
+.ocultar{
+    transition: 1s;
+    transform: rotateY(90deg);
+}
+
+.mostrar{
+    transition: 1s;
+    transform: rotateY(0deg) !important;
 }
