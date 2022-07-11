@@ -6,7 +6,7 @@ let game = {
     difficulty: 1, // puede cambiar desde que comienza
     tablero: [],
     cardsSelected: [],
-    resetCard : () => { game.cardsSelected = [] }
+    resetCard : () => { game.cardsSelected = []; blockCards(false) }
 }
 
 const svgs = [
@@ -107,26 +107,35 @@ const startClock = () => {
 }
 
 const checkCard = (obj) => {
-
-    //document.getElementById(obj.id).classList.add('active')
     
+    //si selecciona la misma carta, le quito las clases
+    //la reseteo
+    // y termino esta funcion
+
+    if( game.cardsSelected.length > 0 && obj.id === game.cardsSelected[0].id){
+        setTimeout( () => {
+            document.getElementById(obj.id).firstChild.classList.remove('mostrar')
+            document.getElementById(obj.id).lastChild.classList.remove('ocultar') 
+        }, 500 )
+
+        return game.resetCard();
+    }
+
     game.cardsSelected.push(obj)
 
     document.getElementById(obj.id).firstChild.classList.add('mostrar')
-    document.getElementById(obj.id).lastChild.classList.add('ocultar') 
-
+    document.getElementById(obj.id).lastChild.classList.add('ocultar')
+    
     if(game.cardsSelected.length === 2){
         //si hay dos cartas seleccionadas
         
         //agrego clases que dan vueltan las cards
 
-       
+        blockCards(true);
 
         setTimeout(() => {
 
             if( game.cardsSelected[0].item === game.cardsSelected[1].item ){
-
-                console.log('son iguales')
                 
                 game.cardsSelected.map( obj => {
 
@@ -139,6 +148,8 @@ const checkCard = (obj) => {
                     setTimeout( () => {                         
                         document.getElementById(obj.id).removeChild(first)
                         document.getElementById(obj.id).removeChild(second)
+                        document.getElementById(obj.id).onclick = null
+                        game.resetCard()
                      }, 1000 )
                 })
     
@@ -149,19 +160,18 @@ const checkCard = (obj) => {
                     setTimeout( () => {
                         document.getElementById(obj.id).firstChild.classList.remove('mostrar')
                         document.getElementById(obj.id).lastChild.classList.remove('ocultar') 
+                        game.resetCard()
                     }, 1500 )
 
                 })
             }
 
-            game.resetCard()
-
         }, 1000);
-
-        
 
     }
 
+
+    
 
     //FALTARIA 
         //BLOQUEAR 
@@ -266,3 +276,23 @@ const cargaHtml = () => {
     startClock();
 }
 
+const blockCards = (bool) => {
+    
+    if(bool){
+        document.querySelectorAll('[class="tarjeta"]').forEach( item => { 
+            item.classList.add('disabled') 
+        } )
+    }else{
+        document.querySelectorAll('[class="tarjeta disabled"]').forEach( item => { 
+            item.classList.remove('disabled') 
+        } )
+    }
+    
+}
+
+const returnHome = () => {
+
+    //mostrar modal de finalizar juego
+    
+    window.location.href = "../index.html"
+}
