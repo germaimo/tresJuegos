@@ -293,6 +293,5 @@ const blockCards = (bool) => {
 const returnHome = () => {
 
     //mostrar modal de finalizar juego
-    
     window.location.href = "../index.html"
 }
