@@ -13,6 +13,8 @@
     <header>Memotest</header>
     <span id="info" >Selecciona un nivel de dificultad</span>
 
+    <button id="close" onclick="showReturnHome()">x</button>
+
     <nav>
         <ul>
             <li onclick="load(1)">Fácil</li>
@@ -25,6 +27,21 @@
         <p>Le toca a:</p>
         <span>Germi</span>
         <button onclick="start()">Iniciar</button>
+    </div>
+
+    <div id="exitGame">
+        <p>Finalizar <br> Memotest</p>
+        <span>¿Deseas salir de la partida?</span>
+        <button id="cancelExit">Seguir partida</button>
+        <button id="returnHome">Salir</button>
+    </div>
+
+    <div id="ganador">
+        
+        <img src="" alt="">
+        <p>Ganó</p>
+        <span id="nombreJugador"></span>
+
     </div>
 
     <div id="sombra"></div>

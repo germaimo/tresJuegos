@@ -1,3 +1,7 @@
+* {
+    transition: all 1s linear;
+}
+
 p{
     margin-block-start: 0;
     margin-block-end: 0;
@@ -151,9 +155,44 @@ ul {
     padding: .2em;
     margin: .5em;
     background: #27175D;
+    border: 2px solid transparent;
     border-radius: 16px;
     display: flex;
     box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
+    position: relative;
+}
+
+.tarjeta svg {
+    opacity: 1;
+    -webkit-transition: 1ms;
+    transition: 1ms;
+
+    transform: rotateY(90deg);
+}
+
+.tarjeta span {
+    font-family: 'futura-pt';
+    right: 0px;
+    bottom: 0px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background: #231753;
+    -webkit-transform-style: preserve-3d;
+    -webkit-backface-visibility: hidden;
+    border-radius: 16px;
+    color: #6649C4;
+    font-size: 40px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0;
+    margin-top: 0;
+
+    opacity: 1;
+    -webkit-transition: 1s;
+    transition: 1s;
 }
 
 #tablero{
@@ -200,8 +239,99 @@ ul {
     height: 59px;
 }
 
-
 nav {
     max-width: 334px;
     width: 100%;
 }
+
+.active{
+    border: 2px solid white;
+}
+
+.ocultar{
+    transition: 1s;
+    transform: rotateY(90deg);
+}
+
+.mostrar{
+    transition: 1s;
+    transform: rotateY(0deg) !important;
+}
+
+.disabled{
+    pointer-events: none;
+}
+
+#close{
+    position: absolute;
+    right: 0;
+    padding: 0;
+    text-decoration: none;
+    border: none;
+    background: transparent;
+    color: white;
+    font-size: 2em;
+}
+
+
+#exitGame{
+    position: absolute;
+    transform: translateY(50%);
+    display: none;
+    flex-direction: column;
+    width: 340px;
+    height: 324px;
+    background: white;
+    border-radius: 16px;
+    letter-spacing: 1px;
+    z-index: 3;
+}
+
+#exitGame p{
+    font-family: 'futura-pt-bold';
+    font-size: 32px;
+    color: black;
+    margin-top: 1em;
+}
+
+#exitGame span{
+    font-family: 'futura-pt';
+    font-size: 20px;
+    color: black;
+    margin-top: .5em;
+    margin-bottom: 1em;
+}
+
+#exitGame button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 260px;
+    height: 56px;
+    font-family: 'futura-pt';
+    font-size: 20px;
+    color: #F89740;
+    padding: 1em;
+    margin: 0 auto;
+    border: 2px solid #F89740;
+    background: white;
+    border-radius: 16px;
+    margin-bottom: .5em;
+}
+
+#exitGame button:last-child{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 260px;
+    height: 56px;
+    font-family: 'futura-pt';
+    font-size: 20px;
+    color: white;
+    border:none;
+    padding: 1em;
+    margin: 0 auto;
+    background: linear-gradient(180deg, #6649C4 0%, #4A2BAE 98.44%);
+    border-radius: 16px;
+}
+
