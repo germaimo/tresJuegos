@@ -6,6 +6,7 @@ let game = {
     difficulty: 1, // puede cambiar desde que comienza
     tablero: [],
     cardsSelected: [],
+    paresAresolver: 0,
     resetCard : () => { game.cardsSelected = []; blockCards(false) }
 }
 
@@ -74,11 +75,11 @@ const load = (num) => {
 
     let arrayCards = '';
 
-    if (game.difficulty === 1) { arrayCards = [...Array(4).keys()] }
+    if (game.difficulty === 1) { arrayCards = [...Array(4).keys()]; game.paresAresolver = 4 }
 
-    if (game.difficulty === 2) { arrayCards = [...Array(6).keys()] }
+    if (game.difficulty === 2) { arrayCards = [...Array(6).keys()]; game.paresAresolver = 6 }
 
-    if (game.difficulty === 3) { arrayCards = [...Array(10).keys()] }
+    if (game.difficulty === 3) { arrayCards = [...Array(10).keys()]; game.paresAresolver = 10 }
 
     arrayCards = [...arrayCards, ...arrayCards];
 
@@ -111,6 +112,7 @@ const checkCard = (obj) => {
     //si selecciona la misma carta, le quito las clases
     //la reseteo
     // y termino esta funcion
+    //aca deberia cambiar turno
 
     if( game.cardsSelected.length > 0 && obj.id === game.cardsSelected[0].id){
         setTimeout( () => {
@@ -120,22 +122,24 @@ const checkCard = (obj) => {
 
         return game.resetCard();
     }
-
+    //guardo carta seleccionada
     game.cardsSelected.push(obj)
 
+    //la muestro, agregando clases que dan vueltan las cards
     document.getElementById(obj.id).firstChild.classList.add('mostrar')
     document.getElementById(obj.id).lastChild.classList.add('ocultar')
+    
     
     if(game.cardsSelected.length === 2){
         //si hay dos cartas seleccionadas
         
-        //agrego clases que dan vueltan las cards
-
         blockCards(true);
-
+        //luego de unos segundos pregunto si son iguales 
         setTimeout(() => {
 
             if( game.cardsSelected[0].item === game.cardsSelected[1].item ){
+                //resto
+                game.paresAresolver--
                 
                 game.cardsSelected.map( obj => {
 
@@ -149,9 +153,10 @@ const checkCard = (obj) => {
                         document.getElementById(obj.id).removeChild(first)
                         document.getElementById(obj.id).removeChild(second)
                         document.getElementById(obj.id).onclick = null
-                        game.resetCard()
                      }, 1000 )
-                })
+                })   
+                checkGameOver()
+                game.resetCard()
     
             }else{
     
@@ -170,13 +175,7 @@ const checkCard = (obj) => {
 
     }
 
-
-    
-
     //FALTARIA 
-        //BLOQUEAR 
-        //LA CARTA SELECCIONADA
-        //EL RESTO DE LAS CARTAS LUEGO DE LA SEGUNDA CLICKEADA
 
         //cambiar de jugador cuando se equivoca
         //para esto deberia ya manejar los jugadores apartir de localstorage
@@ -188,7 +187,6 @@ const checkCard = (obj) => {
         // mostrar pantalla ganador
             //maquetar esta pantalla
 
-        //la cruz para salir del juego
 
     //
 
@@ -290,8 +288,24 @@ const blockCards = (bool) => {
     
 }
 
-const returnHome = () => {
+const showReturnHome = () => {
 
     //mostrar modal de finalizar juego
-    window.location.href = "../index.html"
+    const exitGame = document.getElementById('exitGame')
+    const cancelExit = document.getElementById('cancelExit')
+    const returnHome = document.getElementById('returnHome')
+    const sombra = document.getElementById('sombra')
+    
+    sombra.style.display = 'block'
+    exitGame.style.display = 'flex'
+
+    cancelExit.onclick = () => { exitGame.style.display = sombra.style.display ='none'  }
+    returnHome.onclick = () => { window.location.href   = '../index.html' }
+    
+}
+
+const checkGameOver = () =>{
+    if(game.paresAresolver === 0){
+        console.log('no hay mas cards para emparejar');
+    }
 }

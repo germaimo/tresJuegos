@@ -1,3 +1,7 @@
+* {
+    transition: all 1s linear;
+}
+
 p{
     margin-block-start: 0;
     margin-block-end: 0;
@@ -268,3 +272,66 @@ nav {
     color: white;
     font-size: 2em;
 }
+
+
+#exitGame{
+    position: absolute;
+    transform: translateY(50%);
+    display: none;
+    flex-direction: column;
+    width: 340px;
+    height: 324px;
+    background: white;
+    border-radius: 16px;
+    letter-spacing: 1px;
+    z-index: 3;
+}
+
+#exitGame p{
+    font-family: 'futura-pt-bold';
+    font-size: 32px;
+    color: black;
+    margin-top: 1em;
+}
+
+#exitGame span{
+    font-family: 'futura-pt';
+    font-size: 20px;
+    color: black;
+    margin-top: .5em;
+    margin-bottom: 1em;
+}
+
+#exitGame button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 260px;
+    height: 56px;
+    font-family: 'futura-pt';
+    font-size: 20px;
+    color: #F89740;
+    padding: 1em;
+    margin: 0 auto;
+    border: 2px solid #F89740;
+    background: white;
+    border-radius: 16px;
+    margin-bottom: .5em;
+}
+
+#exitGame button:last-child{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 260px;
+    height: 56px;
+    font-family: 'futura-pt';
+    font-size: 20px;
+    color: white;
+    border:none;
+    padding: 1em;
+    margin: 0 auto;
+    background: linear-gradient(180deg, #6649C4 0%, #4A2BAE 98.44%);
+    border-radius: 16px;
+}
+
