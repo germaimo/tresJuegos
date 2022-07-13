@@ -335,3 +335,57 @@ nav {
     border-radius: 16px;
 }
 
+#ganador{
+    display: none;
+    position: absolute;
+    transform: translateY(26%);
+}
+
+.card{
+    width: 340px;
+    height: 340px;
+    background: radial-gradient(48.68% 48.68% at 50.44% 39.41%, #846AD9 0%, #4124A0 100%);
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
+    border-radius: 80px;
+}
+
+#ganador img{
+    margin-top: 1.5em;
+    box-sizing: border-box;
+    width: 199px;
+    height: 200px;
+    border: 8px solid #FFD031;
+    border-radius: 122px;
+}
+
+#ganador p{
+    font-family: 'futura-pt-bold';
+    letter-spacing: 1px;
+    font-size: 40px;
+}
+
+#ganador span{
+    font-family: 'futura-pt';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 20px;
+    color: #FFD031;
+}
+
+#ganador button{
+    display: flex;
+    margin-top: 1em;
+    align-items: center;
+    justify-content: center;
+    width: 334px;
+    height: 56px;
+    font-family: 'futura-pt';
+    font-size: 20px;
+    color: #F89740;
+    padding: 1em;
+    border: 2px solid #F89740;
+    background: transparent;
+    border-radius: 16px;
+    margin-bottom: .5em;
+}

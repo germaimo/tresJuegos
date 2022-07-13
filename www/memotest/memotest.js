@@ -306,6 +306,28 @@ const showReturnHome = () => {
 
 const checkGameOver = () =>{
     if(game.paresAresolver === 0){
-        console.log('no hay mas cards para emparejar');
+        
+        let modalGanador = document.getElementById('ganador')
+        let hud = document.getElementById('hud')
+        let tablero = document.getElementById('tablero')
+        let restartGame = document.getElementById('restartGame')
+        setTimeout(() => {
+            hud.style.display = tablero.style.display = 'none'
+            modalGanador.style.display = 'block' 
+            restartGame.onclick = () => {  }
+        }, 500);
+
     }
+}
+
+const restart = () =>{
+    const aviso = document.getElementById('aviso')
+    const info = document.getElementById('info')
+    const sombra = document.getElementById('sombra')
+
+    const nav = document.querySelector('nav')
+
+    aviso.style.display = nav.style.display = info.style.display = 'none'
+
+    cargaHtml()
 }
