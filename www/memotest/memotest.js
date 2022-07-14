@@ -1,5 +1,5 @@
 let game = {
-    turn: false,
+    turn: 0,
     winner: 0,
     moves: 0, //aumenta con cada par levantado de cartas
     time: 0,
@@ -120,7 +120,9 @@ const checkCard = (obj) => {
             document.getElementById(obj.id).lastChild.classList.remove('ocultar') 
         }, 500 )
 
-        return game.resetCard();
+        cambioTurno()
+
+        return game.resetCard()
     }
     //guardo carta seleccionada
     game.cardsSelected.push(obj)
@@ -169,6 +171,8 @@ const checkCard = (obj) => {
                     }, 1500 )
 
                 })
+
+                cambioTurno()
             }
 
         }, 1000);
@@ -183,73 +187,17 @@ const checkCard = (obj) => {
         // sumar puntos a cada jugador
         //reveer el tema del timer
 
-        // una vez finalizado
-        // mostrar pantalla ganador
-            //maquetar esta pantalla
-
-
-    //
-
-    // if(game.cardsSelected.length === 0){
-    //     game.cardsSelected.push(obj)
-    // }else if(game.cardsSelected.length === 1){
-    //     game.cardsSelected.push(obj)
-    // }
-
-    /*
-    
-    if (game.cardSelected.item === '') {
-        game.cardSelected.item = obj.item
-        game.cardSelected.id = obj.id
-
-        document.getElementById(obj.id).classList.add('active')
-
-    } else {
-
-        const { id, item } = game.cardSelected
-        document.getElementById(obj.id).classList.add('active')
-
-        if(id === obj.id){
-            document.getElementById(id).classList.remove('active')
-            document.getElementById(obj.id).classList.remove('active')
-            game.resetCard()
-        }
-
-        if (item === obj.item && id !== obj.id) {
-            
-            let cards = document.querySelectorAll(`[data-item="${item}"]`)
-            
-            Array.from(cards).forEach(item => {
-                item.removeChild(item.firstChild)
-                item.onclick = null;
-            })
-            
-            cards = ''
-
-            game.resetCard()
-
-            document.getElementById(id).classList.remove('active')
-            document.getElementById(obj.id).classList.remove('active')
-
-        } else {
-            document.getElementById(id).classList.remove('active')
-            document.getElementById(obj.id).classList.remove('active')
-            game.resetCard()
-        }
-    }
-
-    return game.cardSelected;
-
-    */
-
 }
 
 const cargaHtml = () => {
 
     const hud = document.getElementById('hud')
     const tarjetas = document.getElementById('tarjetas')
+    const tablero = document.getElementById('tablero')
 
-    hud.style.display = 'flex';
+    tarjetas.innerHTML = '';
+
+    hud.style.display = tablero.style.display ='flex';
 
     if (game.difficulty === 1) { tarjetas.classList.add('dos-columnas') }
     if (game.difficulty === 2) { tarjetas.classList.add('tres-columnas') }
@@ -270,6 +218,10 @@ const cargaHtml = () => {
             return tarjetas.appendChild(li)
         }
     ).join('')
+
+    let turnoDe = document.getElementById('turnoDe');
+
+    turnoDe.innerHTML = game.turn;
 
     startClock();
 }
@@ -312,9 +264,11 @@ const checkGameOver = () =>{
         let tablero = document.getElementById('tablero')
         let restartGame = document.getElementById('restartGame')
         setTimeout(() => {
+            
             hud.style.display = tablero.style.display = 'none'
             modalGanador.style.display = 'block' 
-            restartGame.onclick = () => {  }
+            restartGame.onclick = restart
+            clearInterval(setTime)
         }, 500);
 
     }
@@ -323,11 +277,37 @@ const checkGameOver = () =>{
 const restart = () =>{
     const aviso = document.getElementById('aviso')
     const info = document.getElementById('info')
-    const sombra = document.getElementById('sombra')
-
+    const modalGanador = document.getElementById('ganador')
     const nav = document.querySelector('nav')
 
-    aviso.style.display = nav.style.display = info.style.display = 'none'
+    aviso.style.display = nav.style.display = info.style.display = modalGanador.style.display = 'none'
+    info.style.display = nav.style.display = 'block'
 
-    cargaHtml()
+    //cargaHtml()
 }
+
+const cambioTurno = () =>{ 
+
+    game.turn = game.turn === 0 ? 1 : 0
+    
+    let turnoDe = document.getElementById('turnoDe')
+
+    let thePlayer = Storage.get(player === 1 ? "player1" : "player2"); 
+
+    turnoDe.innerHTML = thePlayer.name
+
+}
+
+
+function sumPoints(player) {
+    //let thePlayer = Storage.get(player == "jug1" ? "" : "player2");//base
+  
+    let thePlayer = Storage.get(player === 1 ? "player1" : "player2"); //reconstruccion
+  
+    let actualPoints = parseInt(thePlayer.memotestPoints);
+    thePlayer.memotestPoints = actualPoints + 10;
+    thePlayer.totalPoints = thePlayer.generalaPoints + thePlayer.tatetiPoints + thePlayer.memotestPoints;
+    Storage.put(player == "1" ? "player1" : "player2", thePlayer);
+  }
+
+

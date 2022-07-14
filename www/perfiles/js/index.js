@@ -1,6 +1,6 @@
 var app = {  cantPlayers: 0,  players: [] }
 
-var player = {  name,  img: "",  color: "",  generalaPoints: 0,  tatetiPoints: 0,  totalPoints: 0}
+var player = {  name,  img: "",  color: "",  generalaPoints: 0,  tatetiPoints: 0, memotestPoints:0, totalPoints: 0}
 
 let coloresOscuros = ["#ff0000", "#000000", "#0000ff"];
 let coloresClaros = ["#ffff00", "ff00ff", "ffffff", "00ffff", "00ff00"]
