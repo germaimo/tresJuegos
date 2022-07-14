@@ -265,7 +265,8 @@ nav {
 #close{
     position: absolute;
     right: 0;
-    padding: 0;
+    top: 0;
+    padding: .5em;
     text-decoration: none;
     border: none;
     background: transparent;
@@ -311,7 +312,6 @@ nav {
     font-family: 'futura-pt';
     font-size: 20px;
     color: #F89740;
-    padding: 1em;
     margin: 0 auto;
     border: 2px solid #F89740;
     background: white;
@@ -383,7 +383,6 @@ nav {
     font-family: 'futura-pt';
     font-size: 20px;
     color: #F89740;
-    padding: 1em;
     border: 2px solid #F89740;
     background: transparent;
     border-radius: 16px;
@@ -398,4 +397,5 @@ nav {
     margin-bottom: 0;
     margin-top: 0;
     margin-right: 50px;
+    margin-left: 15px;
 }

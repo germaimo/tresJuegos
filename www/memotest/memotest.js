@@ -1,13 +1,14 @@
 let game = {
     turn: 0,
-    winner: 0,
     moves: 0, //aumenta con cada par levantado de cartas
     time: 0,
     difficulty: 1, // puede cambiar desde que comienza
     tablero: [],
     cardsSelected: [],
     paresAresolver: 0,
-    resetCard : () => { game.cardsSelected = []; blockCards(false) }
+    puntos: [ 0, 0 ],
+    ganador: 0,
+    resetCard: () => { game.cardsSelected = []; blockCards(false) }
 }
 
 const svgs = [
@@ -39,15 +40,15 @@ const svgs = [
 ]
 
 const shuffleArray = (array) => {
-    let counter = array.length;
+    let counter = array.length
     while (counter > 0) {
-        let rnd = Math.floor(Math.random() * counter);
-        counter--;
-        let tmp = array[counter];
-        array[counter] = array[rnd];
-        array[rnd] = tmp;
+        let rnd = Math.floor(Math.random() * counter)
+        counter--
+        let tmp = array[counter]
+        array[counter] = array[rnd]
+        array[rnd] = tmp
     }
-    return array;
+    return array
 }
 
 const mostrarAviso = () => {
@@ -71,9 +72,9 @@ const start = () => {
 
 const load = (num) => {
 
-    game.difficulty = num;
+    game.difficulty = num
 
-    let arrayCards = '';
+    let arrayCards = ''
 
     if (game.difficulty === 1) { arrayCards = [...Array(4).keys()]; game.paresAresolver = 4 }
 
@@ -108,17 +109,17 @@ const startClock = () => {
 }
 
 const checkCard = (obj) => {
-    
+
     //si selecciona la misma carta, le quito las clases
     //la reseteo
     // y termino esta funcion
     //aca deberia cambiar turno
 
-    if( game.cardsSelected.length > 0 && obj.id === game.cardsSelected[0].id){
-        setTimeout( () => {
+    if (game.cardsSelected.length > 0 && obj.id === game.cardsSelected[0].id) {
+        setTimeout(() => {
             document.getElementById(obj.id).firstChild.classList.remove('mostrar')
-            document.getElementById(obj.id).lastChild.classList.remove('ocultar') 
-        }, 500 )
+            document.getElementById(obj.id).lastChild.classList.remove('ocultar')
+        }, 500)
 
         cambioTurno()
 
@@ -130,45 +131,46 @@ const checkCard = (obj) => {
     //la muestro, agregando clases que dan vueltan las cards
     document.getElementById(obj.id).firstChild.classList.add('mostrar')
     document.getElementById(obj.id).lastChild.classList.add('ocultar')
-    
-    
-    if(game.cardsSelected.length === 2){
+
+    if (game.cardsSelected.length === 2) {
         //si hay dos cartas seleccionadas
-        
+
         blockCards(true);
         //luego de unos segundos pregunto si son iguales 
         setTimeout(() => {
 
-            if( game.cardsSelected[0].item === game.cardsSelected[1].item ){
+            if (game.cardsSelected[0].item === game.cardsSelected[1].item) {
                 //resto
                 game.paresAresolver--
-                
-                game.cardsSelected.map( obj => {
 
-                    let first = document.getElementById(obj.id).firstChild
-                    let second = document.getElementById(obj.id).lastChild
+                sumPoints(game.turn)
 
-                    first.style.opacity = '0';
-                    second.style.opacity = '0';
+                game.cardsSelected.map(obj => {
 
-                    setTimeout( () => {                         
+                    let first = document.getElementById(obj.id).firstChild //svg - dibujo carta
+                    let second = document.getElementById(obj.id).lastChild //span - lomo carta
+
+                    first.style.opacity = '0'
+                    second.style.opacity = '0'
+
+                    setTimeout(() => {
                         document.getElementById(obj.id).removeChild(first)
                         document.getElementById(obj.id).removeChild(second)
                         document.getElementById(obj.id).onclick = null
-                     }, 1000 )
-                })   
+                    }, 1000)
+                })
                 checkGameOver()
                 game.resetCard()
-    
-            }else{
-    
-                game.cardsSelected.map( obj => {
-                    
-                    setTimeout( () => {
+
+            } else {
+
+                game.cardsSelected.map(obj => {
+
+                    setTimeout(() => {
                         document.getElementById(obj.id).firstChild.classList.remove('mostrar')
-                        document.getElementById(obj.id).lastChild.classList.remove('ocultar') 
+                        document.getElementById(obj.id).lastChild.classList.remove('ocultar')
                         game.resetCard()
-                    }, 1500 )
+                    }, 1500)
 
                 })
 
@@ -181,11 +183,7 @@ const checkCard = (obj) => {
 
     //FALTARIA 
 
-        //cambiar de jugador cuando se equivoca
-        //para esto deberia ya manejar los jugadores apartir de localstorage
-
-        // sumar puntos a cada jugador
-        //reveer el tema del timer
+    //reveer el tema del timer
 
 }
 
@@ -197,7 +195,7 @@ const cargaHtml = () => {
 
     tarjetas.innerHTML = '';
 
-    hud.style.display = tablero.style.display ='flex';
+    hud.style.display = tablero.style.display = 'flex';
 
     if (game.difficulty === 1) { tarjetas.classList.add('dos-columnas') }
     if (game.difficulty === 2) { tarjetas.classList.add('tres-columnas') }
@@ -221,23 +219,26 @@ const cargaHtml = () => {
 
     let turnoDe = document.getElementById('turnoDe');
 
-    turnoDe.innerHTML = game.turn;
+    const player1 = Storage.get("player1")
+    const player2 = Storage.get("player2")
+
+    turnoDe.innerHTML = game.turn === 0 ? player1.name : player2.name
 
     startClock();
 }
 
-const blockCards = (bool) => {
-    
-    if(bool){
-        document.querySelectorAll('[class="tarjeta"]').forEach( item => { 
-            item.classList.add('disabled') 
-        } )
-    }else{
-        document.querySelectorAll('[class="tarjeta disabled"]').forEach( item => { 
-            item.classList.remove('disabled') 
-        } )
+const blockCards = (block) => {
+
+    if (block) {
+        document.querySelectorAll('[class="tarjeta"]').forEach(item => {
+            item.classList.add('disabled')
+        })
+    } else {
+        document.querySelectorAll('[class="tarjeta disabled"]').forEach(item => {
+            item.classList.remove('disabled')
+        })
     }
-    
+
 }
 
 const showReturnHome = () => {
@@ -247,34 +248,54 @@ const showReturnHome = () => {
     const cancelExit = document.getElementById('cancelExit')
     const returnHome = document.getElementById('returnHome')
     const sombra = document.getElementById('sombra')
-    
+
     sombra.style.display = 'block'
     exitGame.style.display = 'flex'
 
-    cancelExit.onclick = () => { exitGame.style.display = sombra.style.display ='none'  }
-    returnHome.onclick = () => { window.location.href   = '../index.html' }
-    
+    cancelExit.onclick = () => { exitGame.style.display = sombra.style.display = 'none' }
+    returnHome.onclick = () => { window.location.href = '../index.html' }
+
 }
 
-const checkGameOver = () =>{
-    if(game.paresAresolver === 0){
-        
-        let modalGanador = document.getElementById('ganador')
-        let hud = document.getElementById('hud')
-        let tablero = document.getElementById('tablero')
-        let restartGame = document.getElementById('restartGame')
+const checkGanador = () => {
+
+    const player1 = Storage.get("player1")
+    const player2 = Storage.get("player2")
+
+    game.ganador = game.puntos[0] > game.puntos[1] ? player1.name : player2.name
+    game.ganador = game.puntos[0] === game.puntos[1] ? 'Empate' : game.ganador
+
+}
+
+const checkGameOver = () => {
+
+    if (game.paresAresolver === 0) {
+
+        const modalGanador = document.getElementById('ganador')
+        const hud = document.getElementById('hud')
+        const tablero = document.getElementById('tablero')
+        const restartGame = document.getElementById('restartGame')
+        const nombreJugador = document.getElementById('nombreJugador')
+
+        checkGanador()
+
         setTimeout(() => {
-            
+
             hud.style.display = tablero.style.display = 'none'
-            modalGanador.style.display = 'block' 
+            modalGanador.style.display = 'block'
+
+            nombreJugador.innerHTML = game.ganador
+
             restartGame.onclick = restart
             clearInterval(setTime)
-        }, 500);
+
+        }, 500)
 
     }
 }
 
-const restart = () =>{
+const restart = () => {
+
     const aviso = document.getElementById('aviso')
     const info = document.getElementById('info')
     const modalGanador = document.getElementById('ganador')
@@ -283,31 +304,28 @@ const restart = () =>{
     aviso.style.display = nav.style.display = info.style.display = modalGanador.style.display = 'none'
     info.style.display = nav.style.display = 'block'
 
-    //cargaHtml()
 }
 
-const cambioTurno = () =>{ 
+const cambioTurno = () => {
 
     game.turn = game.turn === 0 ? 1 : 0
-    
-    let turnoDe = document.getElementById('turnoDe')
 
-    let thePlayer = Storage.get(player === 1 ? "player1" : "player2"); 
+    console.log('game turn', game.turn);
 
+    const turnoDe = document.getElementById('turnoDe')
+    const thePlayer = Storage.get(game.turn === 0 ? "player1" : "player2")
     turnoDe.innerHTML = thePlayer.name
 
 }
 
+const sumPoints = (player) => {
 
-function sumPoints(player) {
-    //let thePlayer = Storage.get(player == "jug1" ? "" : "player2");//base
-  
-    let thePlayer = Storage.get(player === 1 ? "player1" : "player2"); //reconstruccion
-  
-    let actualPoints = parseInt(thePlayer.memotestPoints);
-    thePlayer.memotestPoints = actualPoints + 10;
-    thePlayer.totalPoints = thePlayer.generalaPoints + thePlayer.tatetiPoints + thePlayer.memotestPoints;
-    Storage.put(player == "1" ? "player1" : "player2", thePlayer);
-  }
+    game.puntos[player] += 10
 
+    let thePlayer = Storage.get(player === 0 ? "player1" : "player2")
+    let actualPoints = parseInt(thePlayer.memotestPoints)
+    thePlayer.memotestPoints = actualPoints + 10
+    thePlayer.totalPoints = thePlayer.generalaPoints + thePlayer.tatetiPoints + thePlayer.memotestPoints
+    Storage.put(player == 0 ? "player1" : "player2", thePlayer)
 
+}
