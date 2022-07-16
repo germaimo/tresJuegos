@@ -31,10 +31,13 @@ function onDeviceReady() {
 **/
 
 const OnDeviceReady = () => {
+    console.log('eu')
 
     if (faltanPerfiles()) {
         window.location.href = "perfiles/nuevo-jugador.html";
         alert("Debe ingresar 2 jugadores antes de jugar");
+    }else{
+        console.log('todo ok')
     }
 
     const tatetiTag = document.getElementById('tateti');

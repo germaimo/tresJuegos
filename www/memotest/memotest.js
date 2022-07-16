@@ -52,10 +52,19 @@ const shuffleArray = (array) => {
 }
 
 const mostrarAviso = () => {
-    const aviso = document.getElementById('aviso');
-    const sombra = document.getElementById('sombra');
-    sombra.style.display = 'block';
-    aviso.style.display = 'flex';
+    let oneOrZero = (Math.random()>0.5)? 1 : 0; 
+    game.turn = oneOrZero
+
+    let player = Storage.get( oneOrZero === 0 ? 'player1' : 'player2' )
+
+    let aviso = document.getElementById('aviso')
+    let sombra = document.getElementById('sombra')
+    let avisoTurno = document.getElementById('avisoTurno');
+
+    avisoTurno.innerHTML = player.name;
+
+    sombra.style.display = 'block'
+    aviso.style.display = 'flex'
 }
 
 const start = () => {
@@ -116,14 +125,7 @@ const checkCard = (obj) => {
     //aca deberia cambiar turno
 
     if (game.cardsSelected.length > 0 && obj.id === game.cardsSelected[0].id) {
-        setTimeout(() => {
-            document.getElementById(obj.id).firstChild.classList.remove('mostrar');
-            document.getElementById(obj.id).lastChild.classList.remove('ocultar');
-        }, 500)
-
-        cambioTurno();
-
-        return game.resetCard();
+        return;
     }
     //guardo carta seleccionada
     game.cardsSelected.push(obj);
@@ -184,6 +186,7 @@ const checkCard = (obj) => {
     //FALTARIA 
 
     //reveer el tema del timer
+    //reemplazar por puntos?
 
     //quitar cartel de iniciar
 
@@ -310,11 +313,12 @@ const restart = () => {
 
 const cambioTurno = () => {
 
-    game.turn = game.turn === 0 ? 1 : 0;
 
-    const turnoDe = document.getElementById('turnoDe');
-    const thePlayer = Storage.get(game.turn === 0 ? "player1" : "player2");
-    turnoDe.innerHTML = thePlayer.name;
+    game.turn = game.turn === 0 ? 1 : 0
+
+    const turnoDe = document.getElementById('turnoDe')
+    const thePlayer = Storage.get(game.turn === 0 ? "player1" : "player2")
+    turnoDe.innerHTML = thePlayer.name
 
 }
 
