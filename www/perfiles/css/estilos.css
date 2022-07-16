@@ -1,0 +1,85 @@
+body{
+    font-family: futura-pt-bold, sans-serif;
+    display: flex;
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    padding: 2em;
+    background-color: #27175D;
+    color: white;
+    align-items: center;
+    flex-direction: column;
+}
+
+a{
+    text-decoration: none;
+}
+
+p{
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+#players img{
+    width: 104px;
+    height: 104px;
+    border-radius: 16px;
+}
+
+#players p{
+    border-radius: 12px;
+    width: 334px;
+    height: 112px;
+    display: flex;
+}
+
+#players p{
+    margin-bottom: 1em;
+}
+
+#players p a{
+    display: flex;
+    align-items: center;
+    margin-left: 8px;
+    
+}
+
+
+#players p a span{
+    margin-left: 1em;
+    color: #27175D;
+    font-size: 20px;
+    font-family: futura-pt-bold, sans-serif;
+}
+
+
+.estadisticas{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 334px;
+    height: 56px;
+    background: linear-gradient(180deg, #F89740 0%, #C85E00 100%);
+    border-radius: 16px;
+    border: none;
+    margin-bottom: 0.5em;
+}
+
+.estadisticas a{
+    font-family: futura-pt;
+    color: #27175D;
+    font-size: 20px;
+}
+
+.iconStats{
+    background-image: url('../img/stadistics-icon.svg');
+    background-repeat: no-repeat;
+    width: 44px;
+    height: 44px;
+    margin-bottom: 0;
+    margin-top: 0;
+    margin-right: 55px;
+    margin-left: 25px;
+}

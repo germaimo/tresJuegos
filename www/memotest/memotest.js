@@ -52,8 +52,17 @@ const shuffleArray = (array) => {
 }
 
 const mostrarAviso = () => {
-    const aviso = document.getElementById('aviso')
-    const sombra = document.getElementById('sombra')
+    let oneOrZero = (Math.random()>0.5)? 1 : 0; 
+    game.turn = oneOrZero
+
+    let player = Storage.get( oneOrZero === 0 ? 'player1' : 'player2' )
+
+    let aviso = document.getElementById('aviso')
+    let sombra = document.getElementById('sombra')
+    let avisoTurno = document.getElementById('avisoTurno');
+
+    avisoTurno.innerHTML = player.name;
+
     sombra.style.display = 'block'
     aviso.style.display = 'flex'
 }
@@ -303,8 +312,6 @@ const restart = () => {
 const cambioTurno = () => {
 
     game.turn = game.turn === 0 ? 1 : 0
-
-    console.log('game turn', game.turn);
 
     const turnoDe = document.getElementById('turnoDe')
     const thePlayer = Storage.get(game.turn === 0 ? "player1" : "player2")

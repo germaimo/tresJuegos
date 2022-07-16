@@ -100,26 +100,37 @@ function loadPlayer() {
     for (let i = 1; i <= appstate.cantPlayers; i++) {
       let player = Storage.get("player" + i);
       let buttonsBox = document.getElementById("players");
+      let pContainer = document.createElement("p");
+
+
       let boxplayer = document.createElement("a");
-      boxplayer.style.backgroundColor = player.color;
+      pContainer.style.backgroundColor = player.color;
+
       boxplayer.setAttribute("href", "editar-jugador.html");
       boxplayer.setAttribute("data-player", i);
       boxplayer.setAttribute("id", "player" + i);
       boxplayer.setAttribute("onclick", "whoButton(" + i + ")");
       boxplayer.classList.add("jugador-btn");
       boxplayer.classList.add("flex-center-container");
+
       let imgplayer = document.createElement("img");
       imgplayer.setAttribute("src", player.img);
-      let nameplayer = document.createElement("p");
+      let nameplayer = document.createElement("span");
       nameplayer.innerHTML = player.name
       nameplayer.setAttribute("id", "jugadores-btn");
+
       boxplayer.appendChild(imgplayer);
       boxplayer.appendChild(nameplayer);
-      buttonsBox.appendChild(boxplayer);
+
+      pContainer.appendChild(boxplayer)
+
+      buttonsBox.appendChild(pContainer);
       if (coloresOscuros.includes(player.color)) {
         nameplayer.style.color = "white";
       }
     }
+
+
     if (appstate.cantPlayers == 2) {
       document.getElementById("register-btn").classList.add("nodisp")
     }
