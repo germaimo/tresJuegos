@@ -116,14 +116,7 @@ const checkCard = (obj) => {
     //aca deberia cambiar turno
 
     if (game.cardsSelected.length > 0 && obj.id === game.cardsSelected[0].id) {
-        setTimeout(() => {
-            document.getElementById(obj.id).firstChild.classList.remove('mostrar')
-            document.getElementById(obj.id).lastChild.classList.remove('ocultar')
-        }, 500)
-
-        cambioTurno()
-
-        return game.resetCard()
+        return;
     }
     //guardo carta seleccionada
     game.cardsSelected.push(obj)
@@ -184,6 +177,7 @@ const checkCard = (obj) => {
     //FALTARIA 
 
     //reveer el tema del timer
+    //reemplazar por puntos?
 
 }
 
