@@ -1,7 +1,5 @@
 let game = {
     turn: 0,
-    moves: 0, //aumenta con cada par levantado de cartas
-    time: 0,
     difficulty: 1, // puede cambiar desde que comienza
     tablero: [],
     cardsSelected: [],
@@ -279,17 +277,17 @@ const checkGanador = () => {
     switch (game.difficulty) {
         case 1:
             if( parseInt(secs) < 30 ){
-                game.puntos[game.turn] += 50;  
+                game.puntos[game.turn] += 150;  
             }
             break;
         case 2: 
             if( parseInt(secs) < 50 ){
-                game.puntos[game.turn] += 100;      
+                game.puntos[game.turn] += 200;      
             }
             break;
         case 3: 
             if( parseInt(mins) < 3 ){
-                game.puntos[game.turn] += 150;           
+                game.puntos[game.turn] += 250;           
             }
             break;
         default:
@@ -336,6 +334,8 @@ const restart = () => {
     aviso.style.display = nav.style.display = info.style.display = modalGanador.style.display = 'none';
     info.style.display = nav.style.display = 'block';
 
+    game.puntos = [0, 0];
+    game.interval_id = '';
 }
 
 const cambioTurno = () => {
