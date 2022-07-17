@@ -30,6 +30,10 @@ body {
   flex-direction: column;
 }
 
+* {
+  transition: all 1s linear;
+}
+
 header {
   font-size: 20px;
 }
@@ -116,3 +120,18 @@ table {
   width: 420px;
   height: 420px;
 }
+
+@media (orientation: landscape) { 
+  body{
+    flex-direction: row;
+    gap: 1.5em;
+    margin-top: 1em;
+  }
+
+  #logo{
+      margin-top: 0;
+      margin-bottom: 0;
+  }
+
+}
+

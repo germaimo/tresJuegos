@@ -195,6 +195,13 @@ const cargaHtml = () => {
     const hud = document.getElementById('hud');
     const tarjetas = document.getElementById('tarjetas');
     const tablero = document.getElementById('tablero');
+    const close = document.getElementById('close');
+    const goBack = document.getElementById('goBack')
+
+    close.style.display = 'block';
+    goBack.style.display = 'none';
+
+    document.body.classList.add('bodyGameOn')
 
     tarjetas.innerHTML = '';
 
@@ -257,11 +264,13 @@ const showReturnHome = () => {
     const cancelExit = document.getElementById('cancelExit');
     const returnHome = document.getElementById('returnHome');
     const sombra = document.getElementById('sombra');
+    
+    document.body.classList.remove('bodyGameOn');
 
     sombra.style.display = 'block';
     exitGame.style.display = 'flex';
 
-    cancelExit.onclick = () => { exitGame.style.display = sombra.style.display = 'none'; }
+    cancelExit.onclick = () => { exitGame.style.display = sombra.style.display = 'none'; document.body.classList.add('bodyGameOn'); }
     returnHome.onclick = () => { window.location.href = '../index.html'; }
 
 }
@@ -270,9 +279,6 @@ const checkGanador = () => {
 
     const mins = document.getElementById("mins").textContent;
     const secs = document.getElementById("secs").textContent;
-
-    game.ganador = game.puntos[0] > game.puntos[1] ? game.player1.name : game.player2.name;
-    game.ganador = game.puntos[0] === game.puntos[1] ? 'Empate' : game.ganador;
 
     switch (game.difficulty) {
         case 1:
@@ -294,6 +300,9 @@ const checkGanador = () => {
             break;
     }
 
+    game.ganador = game.puntos[0] > game.puntos[1] ? game.player1.name : game.player2.name;
+    game.ganador = game.puntos[0] === game.puntos[1] ? 'Empate' : game.ganador;
+
 }
 
 const checkGameOver = () => {
@@ -311,7 +320,7 @@ const checkGameOver = () => {
         setTimeout(() => {
 
             hud.style.display = tablero.style.display = 'none';
-            modalGanador.style.display = 'block';
+            modalGanador.classList.add('mostrarGanador');
 
             nombreJugador.innerHTML = game.ganador;
 
@@ -330,9 +339,14 @@ const restart = () => {
     const info = document.getElementById('info');
     const modalGanador = document.getElementById('ganador');
     const nav = document.querySelector('nav');
+    const close = document.getElementById('close');
+    const goBack = document.getElementById('goBack')
 
-    aviso.style.display = nav.style.display = info.style.display = modalGanador.style.display = 'none';
-    info.style.display = nav.style.display = 'block';
+    document.body.classList.remove('bodyGameOn');
+    modalGanador.classList.remove('mostrarGanador');
+
+    aviso.style.display = nav.style.display = info.style.display = close.style.display = 'none';
+    info.style.display = nav.style.display = goBack.style.display = 'block';
 
     game.puntos = [0, 0];
     game.interval_id = '';
@@ -358,4 +372,8 @@ const sumPoints = (player) => {
     thePlayer.totalPoints = thePlayer.generalaPoints + thePlayer.tatetiPoints + thePlayer.memotestPoints;
     Storage.put(player == 0 ? "player1" : "player2", thePlayer);
 
+}
+
+const goBack = () =>{
+    window.location.href = '../index.html';
 }
