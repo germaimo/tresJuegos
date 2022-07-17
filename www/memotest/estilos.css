@@ -269,7 +269,6 @@ nav {
     padding: .5em;
     text-decoration: none;
     border: none;
-    background: transparent;
     color: white;
     font-size: 2em;
 }
@@ -398,4 +397,31 @@ nav {
     margin-top: 0;
     margin-right: 50px;
     margin-left: 15px;
+}
+
+.closeIcon{
+    background-image: url('img/Close.svg');
+    width: 36px;
+    height: 36px;
+    background-repeat: no-repeat;
+    background-color: transparent;
+}
+
+#goBack{
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: .5em;
+    text-decoration: none;
+    border: none;
+    color: white;
+    font-size: 2em;
+}
+
+.goBackIcon{
+    background-image: url('img/ArrowBack.svg');
+    width: 36px;
+    height: 36px;
+    background-repeat: no-repeat;
+    background-color: transparent;
 }

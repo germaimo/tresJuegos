@@ -6,9 +6,12 @@ let game = {
     tablero: [],
     cardsSelected: [],
     paresAresolver: 0,
-    puntos: [ 0, 0 ],
+    puntos: [0, 0],
     ganador: 0,
-    resetCard: () => { game.cardsSelected = []; blockCards(false) }
+    resetCard: () => { game.cardsSelected = []; blockCards(false) },
+    interval_id: '',
+    player1 : Storage.get("player1"),
+    player2 : Storage.get("player2"),
 }
 
 const svgs = [
@@ -52,10 +55,10 @@ const shuffleArray = (array) => {
 }
 
 const mostrarAviso = () => {
-    let oneOrZero = (Math.random()>0.5)? 1 : 0; 
+    let oneOrZero = (Math.random() > 0.5) ? 1 : 0;
     game.turn = oneOrZero
 
-    let player = Storage.get( oneOrZero === 0 ? 'player1' : 'player2' )
+    let player = Storage.get(oneOrZero === 0 ? 'player1' : 'player2')
 
     let aviso = document.getElementById('aviso')
     let sombra = document.getElementById('sombra')
@@ -63,8 +66,8 @@ const mostrarAviso = () => {
 
     avisoTurno.innerHTML = player.name;
 
-    sombra.style.display = 'block'
-    aviso.style.display = 'flex'
+    sombra.style.display = 'block';
+    aviso.style.display = 'flex';
 }
 
 const start = () => {
@@ -101,6 +104,9 @@ const load = (num) => {
 const startClock = () => {
     let mins = document.getElementById("mins");
     let secs = document.getElementById("secs");
+    mins.innerHTML = '00';
+    secs.innerHTML = '00';
+
     let secsTotales = 0;
 
     pad = (val) => {
@@ -114,19 +120,18 @@ const startClock = () => {
         mins.innerHTML = pad(parseInt(secsTotales / 60));
     }
 
-    setInterval(setTime, 1000);
+    //setInterval(setTime, 1000);
+
+    game.interval_id = window.setInterval(setTime, 1000);
 }
 
 const checkCard = (obj) => {
 
     //si selecciona la misma carta, le quito las clases
-    //la reseteo
-    // y termino esta funcion
-    //aca deberia cambiar turno
+    //termino la funcion
 
-    if (game.cardsSelected.length > 0 && obj.id === game.cardsSelected[0].id) {
-        return;
-    }
+    if (game.cardsSelected.length > 0 &&
+        obj.id === game.cardsSelected[0].id) { return; }
     //guardo carta seleccionada
     game.cardsSelected.push(obj);
 
@@ -150,7 +155,7 @@ const checkCard = (obj) => {
                 game.cardsSelected.map(obj => {
 
                     let first = document.getElementById(obj.id).firstChild; //svg - dibujo carta
-                    let second = document.getElementById(obj.id).lastChild ;//span - lomo carta
+                    let second = document.getElementById(obj.id).lastChild;//span - lomo carta
 
                     first.style.opacity = '0';
                     second.style.opacity = '0';
@@ -160,8 +165,10 @@ const checkCard = (obj) => {
                         document.getElementById(obj.id).removeChild(second);
                         document.getElementById(obj.id).onclick = null;
                     }, 1000)
-                })
+                });
+
                 checkGameOver();
+
                 game.resetCard();
 
             } else {
@@ -183,13 +190,6 @@ const checkCard = (obj) => {
 
     }
 
-    //FALTARIA 
-
-    //reveer el tema del timer
-    //reemplazar por puntos?
-
-    //quitar cartel de iniciar
-
 }
 
 const cargaHtml = () => {
@@ -202,9 +202,19 @@ const cargaHtml = () => {
 
     hud.style.display = tablero.style.display = 'flex';
 
-    if (game.difficulty === 1) { tarjetas.classList.add('dos-columnas'); }
-    if (game.difficulty === 2) { tarjetas.classList.add('tres-columnas'); }
-    if (game.difficulty === 3) { tarjetas.classList.add('cuatro-columnas'); }
+    switch (game.difficulty) {
+        case 1:
+            tarjetas.classList.add('dos-columnas');
+            break;
+        case 2: 
+            tarjetas.classList.add('tres-columnas');
+            break;
+        case 3: 
+            tarjetas.classList.add('cuatro-columnas');
+            break;
+        default:
+            break;
+    }
 
     shuffleArray(game.tablero).map(
         ({ id, item, icono }) => {
@@ -224,10 +234,7 @@ const cargaHtml = () => {
 
     let turnoDe = document.getElementById('turnoDe');
 
-    const player1 = Storage.get("player1");
-    const player2 = Storage.get("player2");
-
-    turnoDe.innerHTML = game.turn === 0 ? player1.name : player2.name;
+    turnoDe.innerHTML = game.turn === 0 ? game.player1.name : game.player2.name;
 
     startClock();
 }
@@ -248,7 +255,6 @@ const blockCards = (block) => {
 
 const showReturnHome = () => {
 
-    //mostrar modal de finalizar juego
     const exitGame = document.getElementById('exitGame');
     const cancelExit = document.getElementById('cancelExit');
     const returnHome = document.getElementById('returnHome');
@@ -264,11 +270,31 @@ const showReturnHome = () => {
 
 const checkGanador = () => {
 
-    const player1 = Storage.get("player1");
-    const player2 = Storage.get("player2");
+    const mins = document.getElementById("mins").textContent;
+    const secs = document.getElementById("secs").textContent;
 
-    game.ganador = game.puntos[0] > game.puntos[1] ? player1.name : player2.name;
+    game.ganador = game.puntos[0] > game.puntos[1] ? game.player1.name : game.player2.name;
     game.ganador = game.puntos[0] === game.puntos[1] ? 'Empate' : game.ganador;
+
+    switch (game.difficulty) {
+        case 1:
+            if( parseInt(secs) < 30 ){
+                game.puntos[game.turn] += 50;  
+            }
+            break;
+        case 2: 
+            if( parseInt(secs) < 50 ){
+                game.puntos[game.turn] += 100;      
+            }
+            break;
+        case 3: 
+            if( parseInt(mins) < 3 ){
+                game.puntos[game.turn] += 150;           
+            }
+            break;
+        default:
+            break;
+    }
 
 }
 
@@ -281,7 +307,7 @@ const checkGameOver = () => {
         const tablero = document.getElementById('tablero');
         const restartGame = document.getElementById('restartGame');
         const nombreJugador = document.getElementById('nombreJugador');
-
+    
         checkGanador();
 
         setTimeout(() => {
@@ -292,7 +318,8 @@ const checkGameOver = () => {
             nombreJugador.innerHTML = game.ganador;
 
             restartGame.onclick = restart;
-            clearInterval(setTime);
+
+            window.clearInterval(game.interval_id);
 
         }, 500);
 
@@ -313,12 +340,11 @@ const restart = () => {
 
 const cambioTurno = () => {
 
+    game.turn = game.turn === 0 ? 1 : 0;
 
-    game.turn = game.turn === 0 ? 1 : 0
-
-    const turnoDe = document.getElementById('turnoDe')
-    const thePlayer = Storage.get(game.turn === 0 ? "player1" : "player2")
-    turnoDe.innerHTML = thePlayer.name
+    const turnoDe = document.getElementById('turnoDe');
+    const thePlayer = Storage.get(game.turn === 0 ? "player1" : "player2");
+    turnoDe.innerHTML = thePlayer.name;
 
 }
 

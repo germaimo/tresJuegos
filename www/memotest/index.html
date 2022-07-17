@@ -13,7 +13,10 @@
     <header>Memotest</header>
     <span id="info" >Selecciona un nivel de dificultad</span>
 
-    <button id="close" onclick="showReturnHome()">x</button>
+
+    <button id="goBack" class="goBackIcon" onclick="goBack()"></button>
+
+    <button id="close" class="closeIcon" onclick="showReturnHome()"></button>
 
     <nav>
         <ul>
@@ -65,8 +68,10 @@
         <ul id="tarjetas"></ul>
     </div>
     
+    <!-- <script src="cordova.js"></script> -->
+    <script src="../js/storage.js"></script>
     <script src="memotest.js"></script>
-	<!-- <script src="cordova.js"></script> -->
-	<script src="../js/storage.js"></script>
+	
+	
 </body>
 </html>
