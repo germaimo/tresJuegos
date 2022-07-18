@@ -1,10 +1,10 @@
-// function getPicture() {
-//   let cameraOptions = {
-//     quality: 75,
-//     destinationType: Camera.DestinationType.DATA_URL
-//   };
-//   navigator.camera.getPicture(onSuccess, onFail, cameraOptions);
-// }
+function getPicture() {
+  let cameraOptions = {
+    quality: 75,
+    destinationType: Camera.DestinationType.DATA_URL
+  };
+  navigator.camera.getPicture(onSuccess, onFail, cameraOptions);
+}
 
 function changePicture() {
   let cameraOptions = {
