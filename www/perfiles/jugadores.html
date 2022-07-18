@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,28 +11,23 @@
 <body class="flex-center-container" onload="loadPlayer()">
   <div id="main-menu" class="flex-center-container">
 
-
-
     <h1>Jugadores</h1>
+
+    <button id="goBack" class="goBackIcon" onclick="goBack()"></button>
     
     <div id="buttons">
-
 
       <div id="players" class="flex-center-container">
       </div>
       
-
       <button class="estadisticas"><span class="iconStats" ></span> <a id="#" href="estadisticas.html"> Estadisticas</a></button>
-        
-      <a id="volver-btn" class="" href="../index.html">Volver</a>
-        
+          
       <a id="register-btn" class="menu-btn flex-center-container" href="nuevo-jugador.html">Nuevo jugador</a>
 
     </div>
   </div>
 
-
-  <!-- <script src="../cordova.js"></script> -->
+  <script src="../cordova.js"></script>
   <script src="../js/storage.js"></script>
   <script src="js/index.js"></script>
 

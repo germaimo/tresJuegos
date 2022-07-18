@@ -1,4 +1,4 @@
-body{
+body {
     font-family: futura-pt-bold, sans-serif;
     display: flex;
     width: 80%;
@@ -11,50 +11,56 @@ body{
     flex-direction: column;
 }
 
-a{
+a {
     text-decoration: none;
 }
 
-p{
+p {
     margin-block-start: 0;
     margin-block-end: 0;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
 }
 
-#players img{
+#players img {
     width: 104px;
     height: 104px;
     border-radius: 16px;
 }
 
-#players p{
+#players p {
     border-radius: 12px;
     width: 334px;
     height: 112px;
     display: flex;
 }
 
-#players p{
+#players p {
     margin-bottom: 1em;
 }
 
-#players p a{
+#players p a {
     display: flex;
     align-items: center;
     margin-left: 8px;
-    
+
 }
 
+#foto {
+    width: 200px;
+    height: 200px;
+    border-radius: 16px;
+    border: 6px solid;
+}
 
-#players p a span{
+#players p a span {
     margin-left: 1em;
     color: #27175D;
     font-size: 20px;
     font-family: futura-pt-bold, sans-serif;
 }
 
-.estadisticas{
+.estadisticas {
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -66,13 +72,13 @@ p{
     margin-bottom: 0.5em;
 }
 
-.estadisticas a{
+.estadisticas a {
     font-family: futura-pt;
     color: #27175D;
     font-size: 20px;
 }
 
-.iconStats{
+.iconStats {
     background-image: url('../img/stadistics-icon.svg');
     background-repeat: no-repeat;
     width: 44px;
@@ -81,4 +87,65 @@ p{
     margin-top: 0;
     margin-right: 55px;
     margin-left: 25px;
+}
+
+#goBack {
+    position: absolute;
+    left: 0;
+    top: 14px;
+    padding: .5em;
+    text-decoration: none;
+    border: none;
+    color: white;
+    font-size: 2em;
+}
+
+.goBackIcon {
+    background-image: url('../img/ArrowBack.svg');
+    width: 36px;
+    height: 36px;
+    background-repeat: no-repeat;
+    background-color: transparent;
+}
+
+#nombreJugador {
+    background-color: transparent;
+    width: 300px;
+    height: 48px;
+    left: 28px;
+    top: 456px;
+    border: 2px solid #D6D6D6;
+    border-radius: 16px;
+    display: block;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    color: #FFFFFF;
+    font-family: 'futura-pt';
+    font-size: 14px;
+    padding-left: 1em;
+}
+
+#colores{
+    display: flex;
+    list-style-type: none;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    padding-inline-start: 0;
+    gap: 0.5em;
+}
+
+.circulo{
+    width: 52px;
+    height: 52px;
+    border: 3px solid transparent;
+    border-radius: 30px;
+}
+
+#selectColor{
+    margin-bottom: 1em;
+    color: white;
+    font-family: 'futura-pt';
+    text-align: justify;
 }

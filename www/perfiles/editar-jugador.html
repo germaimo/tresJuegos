@@ -1,63 +1,41 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Editar jugador</title>
-  <style type="text/css">
-    body{
-      background-color: #084CD4;
-    }
-  </style>
-  
+  <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="https://use.typekit.net/xpd3cco.css"> 
 </head>
-
 <body onload="showPlayer()">
 
-
-  <div id="main-menu" class="flex-center-container">
+  <div id="main-menu">
     
-
-
-    <h1 id="name-player">Jugador #1</h1>
+    <h1>Editar <span id="name-player"></span></h1>
     
+    <button id="goBack" class="goBackIcon" onclick="goBack()"></button>
 
+    <a href="#" onclick="changePicture()">
+      <img id="foto" src="" alt="foto de perfil jugador #1">
+    </a>
 
-    <div id="buttons" class="flex-center-container players-buttons buttons-landscape">
+    <div>
+    <input onclick="changeName()" type="text" value="" name="nombreJugador" id="nombreJugador">
 
-      <a href="#" class="menu-btn flex-center-container jugador-btn" onclick="changePicture()">
-        <img id="foto" src="" alt="foto de perfil jugador #1">
-        <p id="jugadores-btn">Editar foto</p>
-      </a>
+    <a href="#" onclick="changeColor()">
+      <p id="selectColor">Selecciona un color</p>
 
+      <ul id="colores"></ul>
 
+      <input id="favcolor" type="color" id="favcolor" name="favcolor" value="#ffffff">
+    </a>
 
-      <a href="#" class="menu-btn flex-center-container jugador-btn" onclick="changeName()">
-        <p id="stats-btn">Editar nombre</p>
-      </a>
-
-
-
-
-      <a href="#" class="menu-btn flex-center-container jugador-btn" onclick="changeColor()">
-        <p id="stats-btn">Editar color</p>
-        <input id="favcolor" type="color" id="favcolor" name="favcolor" value="#ffffff">
-      </a>
-
-
-
-      <div id="last-row">
-        <a class="menu-btn flex-center-container" href="jugadores.html" id="back-btn">Volver</a>
-        <a class="menu-btn flex-center-container" href="jugadores.html" id="play-btn"
-          onclick="confirmPlayer()">Confirmar</a>
-      </div>
-
-
-
+    <div id="last-row">
+      <a href="jugadores.html" id="play-btn"
+        onclick="confirmPlayer()">Confirmar</a>
     </div>
 
-
+  </div>
 
   </div>
 

@@ -314,6 +314,8 @@ const checkGameOver = () => {
         const tablero = document.getElementById('tablero');
         const restartGame = document.getElementById('restartGame');
         const nombreJugador = document.getElementById('nombreJugador');
+        const cardImage = document.getElementById('cardImage');
+        let thePlayer = Storage.get(game.turn === 0 ? "player1" : "player2");
     
         checkGanador();
 
@@ -323,6 +325,7 @@ const checkGameOver = () => {
             modalGanador.classList.add('mostrarGanador');
 
             nombreJugador.innerHTML = game.ganador;
+            cardImage.setAttribute("src", thePlayer.img);
 
             restartGame.onclick = restart;
 
