@@ -10,8 +10,8 @@ body{
 }
 
 #cartel{
-	margin-top: 1em;
-	color: black;
+	margin-top: 128px;
+	color: white;
 	font-size: 1.5em;
 	border-radius: 9px;
 	font-family: futura-pt-bold,sans-serif;
@@ -33,90 +33,85 @@ a{
 h1{
 	margin-block-start: 0em;
 	margin-block-end: 0em;
-	margin-left: .5em;
+	text-align: center;
 }
 
 table{
-	margin-top: 1em;
-	padding: 1em;
 	margin: 2em 0 auto;
-	background: linear-gradient(180deg, #6649C4 0%, #4A2BAE 100%);
 	table-layout:fixed;
 	border-collapse: collapse;
 	background-position: center;
-	background-repeat: no-repeat;
-	border-radius: 9px;
-	width: 334px;
-	height: 472px;
-	box-shadow: 5px 10px #0f09b238;
-
-	/* animation: animarShadow 2s, animarTabla 2s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-	animation-direction: alternate; */
+	width: 340px;
+	height: 340px;
+	background: linear-gradient(180deg, #6649C4 0%, #4A2BAE 100%);
+	box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
+	border-radius: 16px;
+	display: none;
 }
-
 
 .choose{
-	background-image: url(img/choose.svg), linear-gradient(180deg, #6649C4 0%, #4A2BAE 100%);
-	/* animation: animatedBackground 1s, animarShadow 1s,  animarTabla 2s;
-	animation-iteration-count: infinite;
-    animation-timing-function: linear;
-    animation-direction: alternate; */
+	background: linear-gradient(180deg, #6649C4 0%, #4A2BAE 100%);
+	background-repeat: no-repeat;
+    background-position: center;
+    width: 334px;
+    height: 472px;
+    border-radius: 16px;
+    text-align: center;
+    font-family: futura-pt;
+    font-size: 20px;
+	display: grid;
 }
 
-.choose td{
-	pointer-events: none;
+.choose img{
+	margin: 0 auto;
+    margin-top: 2em;
+}
+
+.choose p{
+	width: 136px;
+    margin: 0 auto;
+    margin-top: auto;
+    padding-bottom: 2em;
+    font-weight: 500;
+    letter-spacing: .5px;
 }
 
 .x-win{
 	background-image: url(img/x-win.svg);
 }
 
-
 .o-win{
 	background-image: url(img/o-win.svg);
 }
-
 
 td{
 	padding: 1.5em;
 	cursor: pointer;
 	width: calc(100% / 3);
-		height: calc(100% / 3);
-		text-align: center;
-		color: #fa4197;
-}
-
-.bordes{
-	border-bottom: 1px solid #084CD4;
-	border-right: 1px solid #084CD4; 
+	height: calc(100% / 3);
+	text-align: center;
+	border-bottom: 1px solid #27175D;
+	border-right: 1px solid #27175D; 
 }
 
 #info{
-	font-family: futura-pt,sans-serif;
-	font-weight: 500;
+    font-family: futura-pt,sans-serif;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    text-align: center;
+    width: 340px;
+    height: 77px;
+	background: #4D2FB1;
+	border-radius: 16px;
 	font-style: normal;
-	margin-block-start: 0em;
-	margin-block-end: 0em;
-	margin-inline-start: 0px;
-	margin-inline-end: 0px;
-	background-color: #1169D3;
-	border-radius: 9px;
-	font-size: 2em;
-	padding: .5em;
-	width: 5.6em;
-	text-align: center;
-	cursor: pointer;
-	border: 1px solid #ffffff40;
-	box-shadow: 5px 10px #0f09b236;
-	
-	/* animation: animarShadow 2s;
-	animation-iteration-count: infinite;
-    animation-timing-function: linear;
-    animation-direction: alternate; */
+    font-weight: 500;
+    font-size: 40px;
+	display: none; /*flex*/
+    align-items: center;
+    justify-content: space-around;
 }
-
 
 .j1{
 	color: red;
@@ -126,61 +121,25 @@ td{
 	color:  yellow;
 }
 
-/* #signoExclamacion{
-	animation-name: flotar;
-	animation-duration: 3s;
-	animation-iteration-count: infinite;
-	animation-timing-function: ease-in-out;
-} */
-
-
 #signoReset{
 	display: none;
-	/* animation-name: girar;
-    animation-duration: 2s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear; */
 }
 
+#close{
+    position: absolute;
+    right: 0;
+    top: 14px;
+    padding: .5em;
+    text-decoration: none;
+    border: none;
+    color: white;
+    font-size: 2em;
+}
 
-/* @media (pointer: coarse){
-	body{
-		zoom: 2;
-	}
-} */
-
-/* @keyframes animarTabla{
-	0% { 
-		width: 420px;
-		height: 420px;
-	 }
-    100%  { 
-		width: 415px;
-		height: 415px;
-	}
-} */
-
-/* @keyframes animarShadow{
-	0% { box-shadow: 5px 10px #0f09b238; }
-    100%  { box-shadow: 10px 15px #0f09b238; }
-} */
-
-/* @keyframes girar {
-    0% { transform: rotate(0deg); }
-    100%  { transform: rotate(180deg);}
-} */
-
-/* @keyframes flotar {
-    0% { transform: translate(0,  0px); }
-    50%  { transform: translate(0, 30px); }
-    100%   { transform: translate(0, -0px); }   
-} */
-
-/* @keyframes animatedBackground {
-  from {
-    background-position: 50% 20%;
-  }
-  to {
-    background-position: 50% 40%;
-  }
-} */
+.closeIcon{
+    background-image: url('img/Close.svg');
+    width: 36px;
+    height: 36px;
+    background-repeat: no-repeat;
+    background-color: transparent;
+}

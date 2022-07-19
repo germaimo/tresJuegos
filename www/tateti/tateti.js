@@ -146,9 +146,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
     table.onclick = (e) => {
         e.preventDefault();
         table.classList.remove('choose');
-        let todasLasPosiciones = document.querySelectorAll('tr td');
+        //let todasLasPosiciones = document.querySelectorAll('tr td');
 
-        todasLasPosiciones.forEach(function(celda){ celda.classList.add('bordes'); });
+        //todasLasPosiciones.forEach(function(celda){ celda.classList.add('bordes'); });
         table.onclick = null;
     }
 });
