@@ -1,0 +1,214 @@
+body {
+    font-family: futura-pt-bold, sans-serif;
+    display: flex;
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    padding: 2em;
+    background-color: #27175D;
+    color: white;
+    align-items: center;
+    flex-direction: column;
+}
+
+*{
+    transition: all 1s linear;
+}
+
+a {
+    text-decoration: none;
+}
+
+p {
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+#players img {
+    width: 104px;
+    height: 104px;
+    border-radius: 16px;
+    object-fit: cover;
+}
+
+#players p {
+    border-radius: 12px;
+    width: 334px;
+    height: 112px;
+    display: flex;
+}
+
+#players p {
+    margin-bottom: 1em;
+}
+
+#players p a {
+    display: flex;
+    align-items: center;
+    margin-left: 8px;
+
+}
+
+#foto {
+    width: 200px;
+    height: 200px;
+    border-radius: 16px;
+    border: 6px solid;
+    object-fit: cover;
+}
+
+#players p a span {
+    margin-left: 1em;
+    color: #27175D;
+    font-size: 20px;
+    font-family: futura-pt-bold, sans-serif;
+}
+
+.estadisticas {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 334px;
+    height: 56px;
+    background: linear-gradient(180deg, #F89740 0%, #C85E00 100%);
+    border-radius: 16px;
+    border: none;
+    margin-bottom: 6.5em;
+}
+
+.estadisticas a {
+    font-family: futura-pt;
+    color: #27175D;
+    font-size: 20px;
+}
+
+.iconStats {
+    background-image: url('../img/stadistics-icon.svg');
+    background-repeat: no-repeat;
+    width: 44px;
+    height: 44px;
+    margin-bottom: 0;
+    margin-top: 0;
+    margin-right: 55px;
+    margin-left: 25px;
+}
+
+#goBack {
+    position: absolute;
+    left: 0;
+    top: 14px;
+    padding: .5em;
+    text-decoration: none;
+    border: none;
+    color: white;
+    font-size: 2em;
+}
+
+.goBackIcon {
+    background-image: url('../img/ArrowBack.svg');
+    width: 36px;
+    height: 36px;
+    background-repeat: no-repeat;
+    background-color: transparent;
+}
+
+#nombreJugador {
+    background-color: transparent;
+    width: 300px;
+    height: 48px;
+    left: 28px;
+    top: 456px;
+    border: 2px solid #D6D6D6;
+    border-radius: 16px;
+    display: block;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    color: #FFFFFF;
+    font-family: 'futura-pt';
+    font-size: 14px;
+    padding-left: 1em;
+}
+
+#colores{
+    display: flex;
+    list-style-type: none;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    padding-inline-start: 0;
+    gap: 0.5em;
+    margin-bottom: 3em;
+}
+
+.circulo{
+    width: 52px;
+    height: 52px;
+    border: 4px solid transparent;
+    border-radius: 30px;
+}
+
+#selectColor{
+    margin-bottom: 1em;
+    color: white;
+    font-family: 'futura-pt';
+    text-align: justify;
+}
+
+#confirm{
+    padding: 1em;
+    background: linear-gradient(180deg, #6649C4 0%, #4A2BAE 98.44%);
+    border-radius: 16px;
+    width: 100%;
+    border: 2px solid #4A2BAE;
+    color: white;
+}
+
+.selected{
+    border: 4px solid white;
+}
+
+.cordova-camera-capture{
+    top: 115px;
+    position: absolute !important;
+    background-color: white;
+    padding: 1em;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cordova-camera-capture button{
+    padding: 1em;
+    background: linear-gradient(180deg, #6649C4 0%, #4A2BAE 98.44%);
+    border-radius: 16px;
+    border: 2px solid #4A2BAE;
+    color: white;
+    font-family: 'futura-pt';
+    letter-spacing: 1px;
+    margin-top: 1em;
+}
+
+.cruz{
+    opacity: 0.5;
+    background-image: url('../img/Close.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#nuevoJugador{
+    padding: 1em;
+    background: linear-gradient(180deg, #6649C4 0%, #4A2BAE 98.44%);
+    border-radius: 16px;
+    width: 100%;
+    border: 2px solid #4A2BAE;
+    color: white;
+}
+
+.disabled{
+    pointer-events: none;
+    opacity: .5;
+}

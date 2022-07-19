@@ -1,8 +1,5 @@
 body{
-	background-color: #084CD4;
-	background-image: url('img/pattern.svg');
-	background-repeat: repeat repeat;
-    background-size: 37.5px;
+	background: #27175D;
 	color: white;
 	font-weight: 300;
 	font-style: normal;
@@ -14,7 +11,6 @@ body{
 
 #cartel{
 	margin-top: 1em;
-	background-color: white;
 	color: black;
 	font-size: 1.5em;
 	border-radius: 9px;
@@ -44,33 +40,29 @@ table{
 	margin-top: 1em;
 	padding: 1em;
 	margin: 2em 0 auto;
-	background-color: #1169D3;
-	font-family: itc-avant-garde-gothic-pro,sans-serif;
-	font-weight: 700;
-	font-style: normal;
+	background: linear-gradient(180deg, #6649C4 0%, #4A2BAE 100%);
 	table-layout:fixed;
 	border-collapse: collapse;
 	background-position: center;
 	background-repeat: no-repeat;
-	width: 420px;
-	height: 420px;
 	border-radius: 9px;
-	
+	width: 334px;
+	height: 472px;
 	box-shadow: 5px 10px #0f09b238;
 
-	animation: animarShadow 2s, animarTabla 2s;
+	/* animation: animarShadow 2s, animarTabla 2s;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
-	animation-direction: alternate;
+	animation-direction: alternate; */
 }
 
 
 .choose{
-	background-image: url(img/choose.svg);
-	animation: animatedBackground 1s, animarShadow 1s,  animarTabla 2s;
+	background-image: url(img/choose.svg), linear-gradient(180deg, #6649C4 0%, #4A2BAE 100%);
+	/* animation: animatedBackground 1s, animarShadow 1s,  animarTabla 2s;
 	animation-iteration-count: infinite;
     animation-timing-function: linear;
-    animation-direction: alternate;
+    animation-direction: alternate; */
 }
 
 .choose td{
@@ -119,10 +111,10 @@ td{
 	border: 1px solid #ffffff40;
 	box-shadow: 5px 10px #0f09b236;
 	
-	animation: animarShadow 2s;
+	/* animation: animarShadow 2s;
 	animation-iteration-count: infinite;
     animation-timing-function: linear;
-    animation-direction: alternate;
+    animation-direction: alternate; */
 }
 
 
@@ -134,30 +126,30 @@ td{
 	color:  yellow;
 }
 
-#signoExclamacion{
+/* #signoExclamacion{
 	animation-name: flotar;
 	animation-duration: 3s;
 	animation-iteration-count: infinite;
 	animation-timing-function: ease-in-out;
-}
+} */
 
 
 #signoReset{
 	display: none;
-	animation-name: girar;
+	/* animation-name: girar;
     animation-duration: 2s;
     animation-iteration-count: infinite;
-    animation-timing-function: linear;
+    animation-timing-function: linear; */
 }
 
 
-@media (pointer: coarse){
+/* @media (pointer: coarse){
 	body{
 		zoom: 2;
 	}
-}
+} */
 
-@keyframes animarTabla{
+/* @keyframes animarTabla{
 	0% { 
 		width: 420px;
 		height: 420px;
@@ -166,29 +158,29 @@ td{
 		width: 415px;
 		height: 415px;
 	}
-}
+} */
 
-@keyframes animarShadow{
+/* @keyframes animarShadow{
 	0% { box-shadow: 5px 10px #0f09b238; }
     100%  { box-shadow: 10px 15px #0f09b238; }
-}
+} */
 
-@keyframes girar {
+/* @keyframes girar {
     0% { transform: rotate(0deg); }
     100%  { transform: rotate(180deg);}
-}
+} */
 
-@keyframes flotar {
+/* @keyframes flotar {
     0% { transform: translate(0,  0px); }
     50%  { transform: translate(0, 30px); }
     100%   { transform: translate(0, -0px); }   
-}
+} */
 
-@keyframes animatedBackground {
+/* @keyframes animatedBackground {
   from {
     background-position: 50% 20%;
   }
   to {
     background-position: 50% 40%;
   }
-}
+} */

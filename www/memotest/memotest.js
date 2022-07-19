@@ -1,14 +1,15 @@
 let game = {
     turn: 0,
-    moves: 0, //aumenta con cada par levantado de cartas
-    time: 0,
     difficulty: 1, // puede cambiar desde que comienza
     tablero: [],
     cardsSelected: [],
     paresAresolver: 0,
-    puntos: [ 0, 0 ],
+    puntos: [0, 0],
     ganador: 0,
-    resetCard: () => { game.cardsSelected = []; blockCards(false) }
+    resetCard: () => { game.cardsSelected = []; blockCards(false) },
+    interval_id: '',
+    player1 : Storage.get("player1"),
+    player2 : Storage.get("player2"),
 }
 
 const svgs = [
@@ -40,41 +41,50 @@ const svgs = [
 ]
 
 const shuffleArray = (array) => {
-    let counter = array.length
+    let counter = array.length;
     while (counter > 0) {
-        let rnd = Math.floor(Math.random() * counter)
-        counter--
-        let tmp = array[counter]
-        array[counter] = array[rnd]
-        array[rnd] = tmp
+        let rnd = Math.floor(Math.random() * counter);
+        counter--;
+        let tmp = array[counter];
+        array[counter] = array[rnd];
+        array[rnd] = tmp;
     }
-    return array
+    return array;
 }
 
 const mostrarAviso = () => {
-    const aviso = document.getElementById('aviso')
-    const sombra = document.getElementById('sombra')
-    sombra.style.display = 'block'
-    aviso.style.display = 'flex'
+    let oneOrZero = (Math.random() > 0.5) ? 1 : 0;
+    game.turn = oneOrZero
+
+    let player = Storage.get(oneOrZero === 0 ? 'player1' : 'player2')
+
+    let aviso = document.getElementById('aviso')
+    let sombra = document.getElementById('sombra')
+    let avisoTurno = document.getElementById('avisoTurno');
+
+    avisoTurno.innerHTML = player.name;
+
+    sombra.style.display = 'block';
+    aviso.style.display = 'flex';
 }
 
 const start = () => {
-    const aviso = document.getElementById('aviso')
-    const info = document.getElementById('info')
-    const sombra = document.getElementById('sombra')
+    const aviso = document.getElementById('aviso');
+    const info = document.getElementById('info');
+    const sombra = document.getElementById('sombra');
 
-    const nav = document.querySelector('nav')
+    const nav = document.querySelector('nav');
 
-    aviso.style.display = nav.style.display = info.style.display = sombra.style.display = 'none'
+    aviso.style.display = nav.style.display = info.style.display = sombra.style.display = 'none';
 
-    cargaHtml()
+    cargaHtml();
 }
 
 const load = (num) => {
 
-    game.difficulty = num
+    game.difficulty = num;
 
-    let arrayCards = ''
+    let arrayCards = '';
 
     if (game.difficulty === 1) { arrayCards = [...Array(4).keys()]; game.paresAresolver = 4 }
 
@@ -84,14 +94,17 @@ const load = (num) => {
 
     arrayCards = [...arrayCards, ...arrayCards];
 
-    game.tablero = arrayCards.map((item, index) => ({ id: index, item: item, icono: svgs[item] }))
+    game.tablero = arrayCards.map((item, index) => ({ id: index, item: item, icono: svgs[item] }));
 
-    mostrarAviso()
+    mostrarAviso();
 }
 
 const startClock = () => {
     let mins = document.getElementById("mins");
     let secs = document.getElementById("secs");
+    mins.innerHTML = '00';
+    secs.innerHTML = '00';
+
     let secsTotales = 0;
 
     pad = (val) => {
@@ -105,32 +118,24 @@ const startClock = () => {
         mins.innerHTML = pad(parseInt(secsTotales / 60));
     }
 
-    setInterval(setTime, 1000);
+    //setInterval(setTime, 1000);
+
+    game.interval_id = window.setInterval(setTime, 1000);
 }
 
 const checkCard = (obj) => {
 
     //si selecciona la misma carta, le quito las clases
-    //la reseteo
-    // y termino esta funcion
-    //aca deberia cambiar turno
+    //termino la funcion
 
-    if (game.cardsSelected.length > 0 && obj.id === game.cardsSelected[0].id) {
-        setTimeout(() => {
-            document.getElementById(obj.id).firstChild.classList.remove('mostrar')
-            document.getElementById(obj.id).lastChild.classList.remove('ocultar')
-        }, 500)
-
-        cambioTurno()
-
-        return game.resetCard()
-    }
+    if (game.cardsSelected.length > 0 &&
+        obj.id === game.cardsSelected[0].id) { return; }
     //guardo carta seleccionada
-    game.cardsSelected.push(obj)
+    game.cardsSelected.push(obj);
 
     //la muestro, agregando clases que dan vueltan las cards
-    document.getElementById(obj.id).firstChild.classList.add('mostrar')
-    document.getElementById(obj.id).lastChild.classList.add('ocultar')
+    document.getElementById(obj.id).firstChild.classList.add('mostrar');
+    document.getElementById(obj.id).lastChild.classList.add('ocultar');
 
     if (game.cardsSelected.length === 2) {
         //si hay dos cartas seleccionadas
@@ -141,88 +146,100 @@ const checkCard = (obj) => {
 
             if (game.cardsSelected[0].item === game.cardsSelected[1].item) {
                 //resto
-                game.paresAresolver--
+                game.paresAresolver--;
 
-                sumPoints(game.turn)
+                sumPoints(game.turn);
 
                 game.cardsSelected.map(obj => {
 
-                    let first = document.getElementById(obj.id).firstChild //svg - dibujo carta
-                    let second = document.getElementById(obj.id).lastChild //span - lomo carta
+                    let first = document.getElementById(obj.id).firstChild; //svg - dibujo carta
+                    let second = document.getElementById(obj.id).lastChild;//span - lomo carta
 
-                    first.style.opacity = '0'
-                    second.style.opacity = '0'
+                    first.style.opacity = '0';
+                    second.style.opacity = '0';
 
                     setTimeout(() => {
-                        document.getElementById(obj.id).removeChild(first)
-                        document.getElementById(obj.id).removeChild(second)
-                        document.getElementById(obj.id).onclick = null
+                        document.getElementById(obj.id).removeChild(first);
+                        document.getElementById(obj.id).removeChild(second);
+                        document.getElementById(obj.id).onclick = null;
                     }, 1000)
-                })
-                checkGameOver()
-                game.resetCard()
+                });
+
+                checkGameOver();
+
+                game.resetCard();
 
             } else {
 
                 game.cardsSelected.map(obj => {
 
                     setTimeout(() => {
-                        document.getElementById(obj.id).firstChild.classList.remove('mostrar')
-                        document.getElementById(obj.id).lastChild.classList.remove('ocultar')
-                        game.resetCard()
+                        document.getElementById(obj.id).firstChild.classList.remove('mostrar');
+                        document.getElementById(obj.id).lastChild.classList.remove('ocultar');
+                        game.resetCard();
                     }, 1500)
 
                 })
 
-                cambioTurno()
+                cambioTurno();
             }
 
         }, 1000);
 
     }
 
-    //FALTARIA 
-
-    //reveer el tema del timer
-
 }
 
 const cargaHtml = () => {
 
-    const hud = document.getElementById('hud')
-    const tarjetas = document.getElementById('tarjetas')
-    const tablero = document.getElementById('tablero')
+    const hud = document.getElementById('hud');
+    const tarjetas = document.getElementById('tarjetas');
+    const tablero = document.getElementById('tablero');
+    const close = document.getElementById('close');
+    const goBack = document.getElementById('goBack')
+
+    close.style.display = 'block';
+    goBack.style.display = 'none';
+
+    document.body.classList.add('bodyGameOn')
 
     tarjetas.innerHTML = '';
 
     hud.style.display = tablero.style.display = 'flex';
 
-    if (game.difficulty === 1) { tarjetas.classList.add('dos-columnas') }
-    if (game.difficulty === 2) { tarjetas.classList.add('tres-columnas') }
-    if (game.difficulty === 3) { tarjetas.classList.add('cuatro-columnas') }
+    switch (game.difficulty) {
+        case 1:
+            tarjetas.classList.add('dos-columnas');
+            break;
+        case 2: 
+            tarjetas.classList.add('tres-columnas');
+            break;
+        case 3: 
+            tarjetas.classList.add('cuatro-columnas');
+            break;
+        default:
+            break;
+    }
 
     shuffleArray(game.tablero).map(
         ({ id, item, icono }) => {
-            let li = document.createElement('li')
-            li.classList.add('tarjeta')
-            li.id = id
-            li.setAttribute('data-item', item)
-            li.onclick = () => checkCard({ id, item, icono })
-            li.innerHTML = icono
-            let span = document.createElement('span')
-            let texto = document.createTextNode('?')
-            span.appendChild(texto)
-            li.appendChild(span)
-            return tarjetas.appendChild(li)
+            let li = document.createElement('li');
+            li.classList.add('tarjeta');
+            li.id = id;
+            li.setAttribute('data-item', item);
+            li.onclick = () => checkCard({ id, item, icono });
+            li.innerHTML = icono;
+            let span = document.createElement('span');
+            let texto = document.createTextNode('?');
+            span.appendChild(texto);
+            li.appendChild(span);
+            return tarjetas.appendChild(li);
         }
-    ).join('')
+    ).join('');
 
     let turnoDe = document.getElementById('turnoDe');
 
-    const player1 = Storage.get("player1")
-    const player2 = Storage.get("player2")
-
-    turnoDe.innerHTML = game.turn === 0 ? player1.name : player2.name
+    turnoDe.innerHTML = game.turn === 0 ? game.player1.name : game.player2.name;
 
     startClock();
 }
@@ -231,11 +248,11 @@ const blockCards = (block) => {
 
     if (block) {
         document.querySelectorAll('[class="tarjeta"]').forEach(item => {
-            item.classList.add('disabled')
+            item.classList.add('disabled');
         })
     } else {
         document.querySelectorAll('[class="tarjeta disabled"]').forEach(item => {
-            item.classList.remove('disabled')
+            item.classList.remove('disabled');
         })
     }
 
@@ -243,27 +260,48 @@ const blockCards = (block) => {
 
 const showReturnHome = () => {
 
-    //mostrar modal de finalizar juego
-    const exitGame = document.getElementById('exitGame')
-    const cancelExit = document.getElementById('cancelExit')
-    const returnHome = document.getElementById('returnHome')
-    const sombra = document.getElementById('sombra')
+    const exitGame = document.getElementById('exitGame');
+    const cancelExit = document.getElementById('cancelExit');
+    const returnHome = document.getElementById('returnHome');
+    const sombra = document.getElementById('sombra');
+    
+    document.body.classList.remove('bodyGameOn');
 
-    sombra.style.display = 'block'
-    exitGame.style.display = 'flex'
+    sombra.style.display = 'block';
+    exitGame.style.display = 'flex';
 
-    cancelExit.onclick = () => { exitGame.style.display = sombra.style.display = 'none' }
-    returnHome.onclick = () => { window.location.href = '../index.html' }
+    cancelExit.onclick = () => { exitGame.style.display = sombra.style.display = 'none'; document.body.classList.add('bodyGameOn'); }
+    returnHome.onclick = () => { window.location.href = '../index.html'; }
 
 }
 
 const checkGanador = () => {
 
-    const player1 = Storage.get("player1")
-    const player2 = Storage.get("player2")
+    const mins = document.getElementById("mins").textContent;
+    const secs = document.getElementById("secs").textContent;
 
-    game.ganador = game.puntos[0] > game.puntos[1] ? player1.name : player2.name
-    game.ganador = game.puntos[0] === game.puntos[1] ? 'Empate' : game.ganador
+    switch (game.difficulty) {
+        case 1:
+            if( parseInt(secs) < 30 ){
+                game.puntos[game.turn] += 150;  
+            }
+            break;
+        case 2: 
+            if( parseInt(secs) < 50 ){
+                game.puntos[game.turn] += 200;      
+            }
+            break;
+        case 3: 
+            if( parseInt(mins) < 3 ){
+                game.puntos[game.turn] += 250;           
+            }
+            break;
+        default:
+            break;
+    }
+
+    game.ganador = game.puntos[0] > game.puntos[1] ? game.player1.name : game.player2.name;
+    game.ganador = game.puntos[0] === game.puntos[1] ? 'Empate' : game.ganador;
 
 }
 
@@ -271,61 +309,75 @@ const checkGameOver = () => {
 
     if (game.paresAresolver === 0) {
 
-        const modalGanador = document.getElementById('ganador')
-        const hud = document.getElementById('hud')
-        const tablero = document.getElementById('tablero')
-        const restartGame = document.getElementById('restartGame')
-        const nombreJugador = document.getElementById('nombreJugador')
-
-        checkGanador()
+        const modalGanador = document.getElementById('ganador');
+        const hud = document.getElementById('hud');
+        const tablero = document.getElementById('tablero');
+        const restartGame = document.getElementById('restartGame');
+        const nombreJugador = document.getElementById('nombreJugador');
+        const cardImage = document.getElementById('cardImage');
+        let thePlayer = Storage.get(game.turn === 0 ? "player1" : "player2");
+    
+        checkGanador();
 
         setTimeout(() => {
 
-            hud.style.display = tablero.style.display = 'none'
-            modalGanador.style.display = 'block'
+            hud.style.display = tablero.style.display = 'none';
+            modalGanador.classList.add('mostrarGanador');
 
-            nombreJugador.innerHTML = game.ganador
+            nombreJugador.innerHTML = game.ganador;
+            cardImage.setAttribute("src", thePlayer.img);
+            cardImage.style.border = `6px solid ${thePlayer.color}`;
 
-            restartGame.onclick = restart
-            clearInterval(setTime)
+            restartGame.onclick = restart;
 
-        }, 500)
+            window.clearInterval(game.interval_id);
+
+        }, 500);
 
     }
 }
 
 const restart = () => {
 
-    const aviso = document.getElementById('aviso')
-    const info = document.getElementById('info')
-    const modalGanador = document.getElementById('ganador')
-    const nav = document.querySelector('nav')
+    const aviso = document.getElementById('aviso');
+    const info = document.getElementById('info');
+    const modalGanador = document.getElementById('ganador');
+    const nav = document.querySelector('nav');
+    const close = document.getElementById('close');
+    const goBack = document.getElementById('goBack')
 
-    aviso.style.display = nav.style.display = info.style.display = modalGanador.style.display = 'none'
-    info.style.display = nav.style.display = 'block'
+    document.body.classList.remove('bodyGameOn');
+    modalGanador.classList.remove('mostrarGanador');
 
+    aviso.style.display = nav.style.display = info.style.display = close.style.display = 'none';
+    info.style.display = nav.style.display = goBack.style.display = 'block';
+
+    game.puntos = [0, 0];
+    game.interval_id = '';
 }
 
 const cambioTurno = () => {
 
-    game.turn = game.turn === 0 ? 1 : 0
+    game.turn = game.turn === 0 ? 1 : 0;
 
-    console.log('game turn', game.turn);
-
-    const turnoDe = document.getElementById('turnoDe')
-    const thePlayer = Storage.get(game.turn === 0 ? "player1" : "player2")
-    turnoDe.innerHTML = thePlayer.name
+    const turnoDe = document.getElementById('turnoDe');
+    const thePlayer = Storage.get(game.turn === 0 ? "player1" : "player2");
+    turnoDe.innerHTML = thePlayer.name;
 
 }
 
 const sumPoints = (player) => {
 
-    game.puntos[player] += 10
+    game.puntos[player] += 10;
 
-    let thePlayer = Storage.get(player === 0 ? "player1" : "player2")
-    let actualPoints = parseInt(thePlayer.memotestPoints)
-    thePlayer.memotestPoints = actualPoints + 10
-    thePlayer.totalPoints = thePlayer.generalaPoints + thePlayer.tatetiPoints + thePlayer.memotestPoints
-    Storage.put(player == 0 ? "player1" : "player2", thePlayer)
+    let thePlayer = Storage.get(player === 0 ? "player1" : "player2");
+    let actualPoints = parseInt(thePlayer.memotestPoints);
+    thePlayer.memotestPoints = actualPoints + 10;
+    thePlayer.totalPoints = thePlayer.generalaPoints + thePlayer.tatetiPoints + thePlayer.memotestPoints;
+    Storage.put(player == 0 ? "player1" : "player2", thePlayer);
 
+}
+
+const goBack = () =>{
+    window.location.href = '../index.html';
 }
