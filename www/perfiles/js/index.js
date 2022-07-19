@@ -1,6 +1,12 @@
 var app = { cantPlayers: 0, players: [] }
 
-var player = { name, img: "", color: "", generalaPoints: 0, tatetiPoints: 0, memotestPoints: 0, totalPoints: 0 }
+var player = { name, 
+  img: "", 
+  color: "", 
+  generalaPoints: 0, 
+  tatetiPoints: 0, 
+  memotestPoints: 0, 
+  totalPoints: 0 }
 
 let coloresOscuros = ["#ff0000", "#000000", "#0000ff"];
 let coloresClaros = ["#ffff00", "ff00ff", "ffffff", "00ffff", "00ff00"];
@@ -57,6 +63,7 @@ function changeColor() {
 
   one_player.color = newColor;
 
+
   // if (coloresOscuros.includes(one_player.color)) {
   //   let name = document.getElementById("name-player");
   //   name.style.color = "white";
@@ -68,8 +75,18 @@ function changeColor() {
 
 }
 
-function selectColor(color) {
+function selectColor(color, id) {
+  
   one_player.color = color;
+
+  document.getElementById("foto").style.border = `6px solid ${color}`;
+  
+  document.querySelectorAll('[class="circulo selected"]').forEach(item => {
+    item.classList.remove('selected');
+  });
+
+  document.getElementById(id).classList.add('selected');
+
 }
 
 function confirmPlayer() {
@@ -149,7 +166,7 @@ function loadPlayer() {
 
 
     if (appstate.cantPlayers == 2) {
-      document.getElementById("register-btn").classList.add("nodisp")
+      document.getElementById("nuevoJugador").classList.add("disabled")
     }
   }
 }
@@ -161,17 +178,26 @@ function stats() {
   document.getElementById("nameplayer1").setAttribute("style", "color:" + player1.color);
   document.getElementById("nameplayer2").innerHTML = player2.name;
   document.getElementById("nameplayer2").setAttribute("style", "color:" + player2.color);
+
   document.getElementById("generalaPointsPlayer1").innerHTML = player1.generalaPoints;
   document.getElementById("generalaPointsPlayer1").setAttribute("style", "color:" + player1.color);
   document.getElementById("generalaPointsPlayer2").innerHTML = player2.generalaPoints;
   document.getElementById("generalaPointsPlayer2").setAttribute("style", "color:" + player2.color);
+  
   document.getElementById("tatetiPointsPlayer1").innerHTML = player1.tatetiPoints;
   document.getElementById("tatetiPointsPlayer1").setAttribute("style", "color:" + player1.color);
   document.getElementById("tatetiPointsPlayer2").innerHTML = player2.tatetiPoints;
   document.getElementById("tatetiPointsPlayer2").setAttribute("style", "color:" + player2.color);
-  document.getElementById("totalPlayer1").innerHTML = player1.tatetiPoints + player1.generalaPoints;
+
+  document.getElementById("memotestPointsPlayer1").innerHTML = player1.memotestPoints;
+  document.getElementById("memotestPointsPlayer1").setAttribute("style", "color:" + player1.color);
+  document.getElementById("memotestPointsPlayer2").innerHTML = player2.memotestPoints;
+  document.getElementById("memotestPointsPlayer2").setAttribute("style", "color:" + player2.color);
+
+
+  document.getElementById("totalPlayer1").innerHTML = player1.tatetiPoints + player1.generalaPoints + player1.memotestPoints;
   document.getElementById("totalPlayer1").setAttribute("style", "color:" + player1.color);
-  document.getElementById("totalPlayer2").innerHTML = player2.tatetiPoints + player2.generalaPoints;
+  document.getElementById("totalPlayer2").innerHTML = player2.tatetiPoints + player2.generalaPoints + player2.memotestPoints;
   document.getElementById("totalPlayer2").setAttribute("style", "color:" + player2.color);
 }
 
@@ -181,7 +207,9 @@ function whoButton(i) {
 
 function showPlayer() {
   let who = Storage.get("who");
-  let player = Storage.get("player" + who);
+  let player = Storage.get(`player${who}`);
+
+  let otroPlayer = Storage.get(`player${who === 1 ? 2 : 1}`);
 
   document.getElementById("name-player").innerHTML = player.name;
   document.getElementById('nombreJugador').value = player.name;
@@ -189,26 +217,31 @@ function showPlayer() {
   document.getElementById("foto").src = player.img;
   document.getElementById("foto").style.border = `6px solid ${player.color}`;
 
-  if (coloresOscuros.includes(one_player.color)) {
-    let name = document.getElementById("name-player");
-    name.style.color = "white";
-  }
+  // if (coloresOscuros.includes(one_player.color)) {
+  //   let name = document.getElementById("name-player");
+  //   name.style.color = "white";
+  // }
 
-  if (coloresClaros.includes(one_player.color)) {
-    let name = document.getElementById("name-player");
-    name.style.color = "black";
-  }
+  // if (coloresClaros.includes(one_player.color)) {
+  //   let name = document.getElementById("name-player");
+  //   name.style.color = "black";
+  // }
 
   let listaColores = document.getElementById('colores');
 
   colores.map(({ color, elegido }, index) => {
     let li = document.createElement('li');
-    let clases = `circulo${elegido ? ' cruz' : ''}`;
-    li.classList.add(clases);
+    let elegidoPorPlayerActual = color === player.color;
+    let elegidoPorOtroPlayer = color === otroPlayer.color;
+    
+    let clases = ['circulo'];
+    if(elegidoPorPlayerActual){ clases.push('selected'); }
+    if(elegidoPorOtroPlayer){ clases.push('cruz'); }
 
+    li.classList.add(...clases);
     li.style.backgroundColor = color;
     li.id = index;
-    li.onclick = () => selectColor(color);
+    if(!elegidoPorOtroPlayer){ li.onclick = () => selectColor(color, index); }
     return listaColores.appendChild(li);
   }
   ).join('');
@@ -217,4 +250,8 @@ function showPlayer() {
 
 const goBack = () => {
   window.location.href = '../index.html';
+}
+
+const goBackJugadores = () =>{
+  window.location.href = '../perfiles/jugadores.html';
 }

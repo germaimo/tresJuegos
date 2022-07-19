@@ -359,8 +359,9 @@ nav {
     box-sizing: border-box;
     width: 199px;
     height: 200px;
-    border: 8px solid #FFD031;
+    border: 8px solid transparent;
     border-radius: 122px;
+    object-fit: cover;
 }
 
 #ganador p{

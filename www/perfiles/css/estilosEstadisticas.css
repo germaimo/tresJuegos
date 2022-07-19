@@ -1,0 +1,47 @@
+body{
+    background: linear-gradient(180deg, #27175D 0%, #664AC4 0.01%, #4B2BAF 100%);
+    background-repeat: no-repeat;
+    height: 96vh;
+    overflow: hidden;
+    font-family: 'futura-pt-bold', sans-serif;
+    width: 80%;
+    display: flex;
+    margin: 0 auto;
+    text-align: center;
+    padding: 2em;
+    color: white;
+    align-items: center;
+    flex-direction: column;
+}
+
+table {
+    border-collapse: collapse;
+    border-style: hidden;
+    width: 334px;
+    height: 472px;
+    background: #27175D;
+    border-radius: 16px;
+}
+
+table td, table th {
+    border: 0.5px solid #4D2FB1;
+}
+
+.goBackIcon {
+    background-image: url('../img/ArrowBack.svg');
+    width: 36px;
+    height: 36px;
+    background-repeat: no-repeat;
+    background-color: transparent;
+}
+
+#goBack {
+    position: absolute;
+    left: 0;
+    top: 14px;
+    padding: .5em;
+    text-decoration: none;
+    border: none;
+    color: white;
+    font-size: 2em;
+}   

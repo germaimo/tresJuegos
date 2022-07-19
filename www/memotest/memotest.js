@@ -326,6 +326,7 @@ const checkGameOver = () => {
 
             nombreJugador.innerHTML = game.ganador;
             cardImage.setAttribute("src", thePlayer.img);
+            cardImage.style.border = `6px solid ${thePlayer.color}`;
 
             restartGame.onclick = restart;
 

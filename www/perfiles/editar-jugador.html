@@ -13,7 +13,7 @@
     
     <h1>Editar <span id="name-player"></span></h1>
     
-    <button id="goBack" class="goBackIcon" onclick="goBack()"></button>
+    <button id="goBack" class="goBackIcon" onclick="goBackJugadores()"></button>
 
     <a href="#" onclick="changePicture()">
       <img id="foto" src="" alt="foto de perfil jugador #1">
@@ -22,18 +22,17 @@
     <div>
     <input onclick="changeName()" type="text" value="" name="nombreJugador" id="nombreJugador">
 
-    <a href="#" onclick="changeColor()">
-      <p id="selectColor">Selecciona un color</p>
+    <p id="selectColor">Selecciona un color</p>
 
-      <ul id="colores"></ul>
+    <ul id="colores"></ul>
 
+    <!-- <a href="#" onclick="changeColor()">
       <input id="favcolor" type="color" id="favcolor" name="favcolor" value="#ffffff">
-    </a>
+    </a> -->
 
-    <div id="last-row">
-      <a href="jugadores.html" id="play-btn"
-        onclick="confirmPlayer()">Confirmar</a>
-    </div>
+    
+      <a href="jugadores.html" id="confirm" onclick="confirmPlayer()">Confirmar</a>
+    
 
   </div>
 
