@@ -130,7 +130,7 @@ const gameOver = () => {
     let thePlayer = game.winner == "X" ? game.player1 : game.player2;
     const table = document.querySelector('table');
     
-    sumPoints(game.winner); /// esto deberia ser solo game.winner
+    sumPoints(game.winner);
 
     setTimeout(() => {
 
@@ -143,16 +143,12 @@ const gameOver = () => {
 
         restartGame.onclick = restart;
 
-    }, 500);
-
-    // document.getElementById("ganador").innerHTML = (game.winner === 0 ? " Empate" : (" Ganó: " + game.winner));
-    // document.getElementById("cartel").style.display = "block";
-    
+    }, 500); 
     
 };
 
 const sumPoints = (player)  => {
-  let thePlayer = Storage.get(player == "X" ? "player1" : "player2"); //reconstruccion
+  let thePlayer = Storage.get(player == "X" ? "player1" : "player2");
 
   let actualPoints = parseInt(thePlayer.tatetiPoints);
   thePlayer.tatetiPoints = actualPoints + 10;
@@ -164,8 +160,6 @@ const start = () => {
     let intro = document.getElementById('intro');
     let table = document.querySelector('table');
     let info = document.getElementById('info');
-
-    console.log(game.turno)
 
     document.getElementById("info").innerHTML = `le toca a: ${game.turno === 'X' ? xSvg : oSvg}`;
 

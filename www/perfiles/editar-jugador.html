@@ -1,47 +1,51 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Editar jugador</title>
-  <link rel="stylesheet" href="css/estilos.css">
-  <link rel="stylesheet" href="https://use.typekit.net/xpd3cco.css"> 
-</head>
-<body onload="showPlayer()">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Editar jugador</title>
+    <link rel="stylesheet" href="css/estilos.css" />
+    <link rel="stylesheet" href="https://use.typekit.net/xpd3cco.css" />
+  </head>
+  <body onload="showPlayer()">
+    <div id="main-menu">
+      <h1>Editar <span id="name-player"></span></h1>
 
-  <div id="main-menu">
-    
-    <h1>Editar <span id="name-player"></span></h1>
-    
-    <button id="goBack" class="goBackIcon" onclick="goBackJugadores()"></button>
+      <button
+        id="goBack"
+        class="goBackIcon"
+        onclick="goBackJugadores()"
+      ></button>
 
-    <a href="#" onclick="changePicture()">
-      <img id="foto" src="" alt="foto de perfil jugador #1">
-    </a>
+      <a href="#" onclick="changePicture()">
+        <img id="foto" src="" alt="foto de perfil jugador #1" />
+      </a>
 
-    <div>
-    <input onclick="changeName()" type="text" value="" name="nombreJugador" id="nombreJugador">
+      <div>
+        <input
+          onclick="changeName()"
+          type="text"
+          value=""
+          name="nombreJugador"
+          id="nombreJugador"
+        />
 
-    <p id="selectColor">Selecciona un color</p>
+        <p id="selectColor">Selecciona un color</p>
 
-    <ul id="colores"></ul>
+        <ul id="colores"></ul>
 
-    <!-- <a href="#" onclick="changeColor()">
+        <!-- <a href="#" onclick="changeColor()">
       <input id="favcolor" type="color" id="favcolor" name="favcolor" value="#ffffff">
     </a> -->
 
-    
-      <a href="jugadores.html" id="confirm" onclick="confirmPlayer()">Confirmar</a>
-    
+        <a href="jugadores.html" id="confirm" onclick="confirmPlayer()">Confirmar</a
+        >
+      </div>
+    </div>
 
-  </div>
-
-  </div>
-
-  <script src="../js/storage.js"></script>
-  <script src="js/index.js"></script>
-  <script src="js/camera.js"></script>
-  <script src="../cordova.js"></script>
-</body>
-
+    <script src="../js/storage.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/camera.js"></script>
+    <script src="../cordova.js"></script>
+  </body>
 </html>
