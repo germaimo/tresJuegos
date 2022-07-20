@@ -12,19 +12,18 @@
 
 <body>
 
-	<div id="cartel">
-		<h1 id="ganador">Tateti</h1>
-	</div>
+	
+	<header>Tateti</header>
+	
 
 	<p id="info"> <span>le toca a:</span></p>
 
 	<button id="close" class="closeIcon" onclick="showReturnHome()"></button>
 
-	<div class="choose">
+	<div onclick="start()" id="intro" class="choose">
 		<img src="img/choose.svg" alt="intro game">
 		<p>Toca el tablero para jugar</p>
 	</div>
-
 
 	<table>
 		<tr>
@@ -46,10 +45,32 @@
 		</tr>
 
 	</table>
+
+	<div id="ganador">
+        
+        <div class="card">
+            <img id="cardImage" src="" alt="">
+            <p>Ganó</p>
+            <span id="nombreJugador">jugador</span>
+        </div>
+
+        <button id="restartGame"> <span class="restartIcon"></span> Volver a Jugar</button>
+
+    </div>
+
+	<div id="exitGame">
+        <p>Finalizar <br> Memotest</p>
+        <span>¿Deseas salir de la partida?</span>
+        <button id="cancelExit">Seguir partida</button>
+        <button id="returnHome">Salir</button>
+    </div>
+
+	<div id="sombra"></div>
 	
-	<script src="tateti.js"></script>
-	<script src="../cordova.js"></script>
+	<!-- <script src="../cordova.js"></script> -->
 	<script src="../js/storage.js"></script>
+	<script src="tateti.js"></script>
+	
 
 
 </body>

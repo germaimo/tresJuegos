@@ -1,22 +1,31 @@
 body{
+	font-family: 'futura-pt', sans-serif;
 	background: #27175D;
-	color: white;
-	font-weight: 300;
-	font-style: normal;
-	display: grid;
-	justify-content: space-around;
-	width: 50%;
-	margin: 0 auto;
+    color: white;
+    font-weight: 300;
+    font-style: normal;
+    width: 80%;
+    margin: 0 auto;
+    flex-direction: column;
+    position: relative;
+    display: flex;
+    align-items: center;
+	text-align: center;
+	padding: 2em;
 }
 
-#cartel{
-	margin-top: 128px;
-	color: white;
-	font-size: 1.5em;
-	border-radius: 9px;
-	font-family: futura-pt-bold,sans-serif;
-	font-weight: 700;
-	font-style: normal;
+p{
+	margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+}
+
+header{
+	margin-top: 0.5em;
+	font-size: 2.5rem;
+	font-family: 'futura-pt-bold';
+    letter-spacing: 1px;
 }
 
 a{
@@ -30,12 +39,6 @@ a{
     bottom: 3.5em;
 }
 
-h1{
-	margin-block-start: 0em;
-	margin-block-end: 0em;
-	text-align: center;
-}
-
 table{
 	margin: 2em 0 auto;
 	table-layout:fixed;
@@ -47,6 +50,12 @@ table{
 	box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
 	border-radius: 16px;
 	display: none;
+}
+
+tbody{
+	width: 340px;
+    height: 340px;
+    display: table;
 }
 
 .choose{
@@ -76,6 +85,11 @@ table{
     letter-spacing: .5px;
 }
 
+svg{
+	width: 92px;
+	height: 92px;
+}
+
 .x-win{
 	background-image: url(img/x-win.svg);
 }
@@ -85,7 +99,6 @@ table{
 }
 
 td{
-	padding: 1.5em;
 	cursor: pointer;
 	width: calc(100% / 3);
 	height: calc(100% / 3);
@@ -108,9 +121,14 @@ td{
 	font-style: normal;
     font-weight: 500;
     font-size: 40px;
-	display: none; /*flex*/
+	display: none;
     align-items: center;
     justify-content: space-around;
+}
+
+#info svg{
+	width: 54px;
+    height: 54px;
 }
 
 .j1{
@@ -142,4 +160,159 @@ td{
     height: 36px;
     background-repeat: no-repeat;
     background-color: transparent;
+}
+
+
+#ganador{
+    display: none;
+    position: absolute;
+    transform: translateY(26%);
+}
+
+#ganador img{
+    margin-top: 1.5em;
+    box-sizing: border-box;
+    width: 199px;
+    height: 200px;
+    border: 8px solid transparent;
+    border-radius: 122px;
+    object-fit: cover;
+}
+
+#ganador p{
+    font-family: 'futura-pt-bold';
+    letter-spacing: 1px;
+    font-size: 40px;
+}
+
+#nombreJugador{
+    font-family: 'futura-pt';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 20px;
+    color: #FFD031;
+	margin-bottom: 3em;
+    margin-top: 1em;
+}
+
+#ganador button{
+    display: flex;
+    margin-top: 1em;
+    align-items: center;
+    justify-content: flex-start;
+    width: 334px;
+    height: 56px;
+    font-family: 'futura-pt';
+    font-size: 20px;
+    color: #F89740;
+    border: 2px solid #F89740;
+    background: transparent;
+    border-radius: 16px;
+    margin-bottom: .5em;
+}
+
+
+.card{
+    width: 340px;
+    height: 340px;
+    background: radial-gradient(48.68% 48.68% at 50.44% 39.41%, #846AD9 0%, #4124A0 100%);
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
+    border-radius: 80px;
+}
+
+#nombreJugador{
+    font-family: 'futura-pt';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 20px;
+    color: #FFD031;
+}
+
+.restartIcon{
+    background-image: url('img/restart.svg');
+    background-repeat: no-repeat;
+    width: 44px;
+    height: 44px;
+    margin-bottom: 0;
+    margin-top: 0;
+    margin-right: 50px;
+    margin-left: 15px;
+}
+
+.mostrarGanador{
+    display: block !important;
+}
+
+#exitGame {
+    position: absolute;
+    transform: translateY(50%);
+    display: none;
+    flex-direction: column;
+    width: 340px;
+    height: 324px;
+    background: white;
+    border-radius: 16px;
+    letter-spacing: 1px;
+    z-index: 3;
+}
+
+#exitGame p {
+    font-family: 'futura-pt-bold';
+    font-size: 32px;
+    color: black;
+    margin-top: 1em;
+}
+
+#exitGame span {
+    font-family: 'futura-pt';
+    font-size: 20px;
+    color: black;
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+	letter-spacing: 1px;
+}
+
+#exitGame button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 260px;
+    height: 56px;
+    font-family: 'futura-pt';
+    font-size: 20px;
+    color: #F89740;
+    margin: 0 auto;
+    border: 2px solid #F89740;
+    background: white;
+    border-radius: 16px;
+    margin-bottom: 0.5em;
+}
+
+#exitGame button:last-child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 260px;
+    height: 56px;
+    font-family: 'futura-pt';
+    font-size: 20px;
+    color: white;
+    border: none;
+    padding: 1em;
+    margin: 0 auto;
+    background: linear-gradient(180deg, #6649C4 0%, #4A2BAE 98.44%);
+    border-radius: 16px;
+}
+
+#sombra {
+    position: absolute;
+    top: 0;
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    background: black;
+    opacity: .5;
+    z-index: 2;
 }
