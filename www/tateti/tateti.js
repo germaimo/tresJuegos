@@ -125,7 +125,9 @@ const gameOver = () => {
     const nombreJugador = document.getElementById('nombreJugador');
     const cardImage = document.getElementById('cardImage');
     const info = document.getElementById('info')
-    let thePlayer = game.winner == "X" ? game.player1 : game.player2;
+
+    let thePlayer = game.moves === 9 ? 'Empate' : game.winner == "X" ? game.player1 : game.player2;
+    
     const table = document.querySelector('table');
     table.classList.add('disabled');
 
@@ -135,9 +137,16 @@ const gameOver = () => {
         table.style.display = info.style.display = 'none';
         modalGanador.classList.add('mostrarGanador');
         table.classList.remove('disabled');
-        nombreJugador.innerHTML = thePlayer.name;
-        cardImage.setAttribute("src", thePlayer.img);
-        cardImage.style.border = `6px solid ${thePlayer.color}`;
+        
+        if(thePlayer === 'Empate'){
+            nombreJugador.innerHTML = 'Empate';
+            cardImage.style.display = 'none';
+        }else{
+            nombreJugador.innerHTML = thePlayer.name;
+            cardImage.setAttribute("src", thePlayer.img);
+            cardImage.style.border = `6px solid ${thePlayer.color}`;
+        }
+        
         restartGame.onclick = restart;
 
     }, 500);

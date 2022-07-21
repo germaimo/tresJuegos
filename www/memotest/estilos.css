@@ -432,6 +432,11 @@ nav {
     background-color: transparent;
 }
 
+#puntaje{
+    margin-bottom: .5em;
+    margin-top: .5em;
+}
+
 @media (orientation: landscape) { 
     body{
         padding: 0 1em;

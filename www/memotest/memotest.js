@@ -183,10 +183,15 @@ const checkCard = (obj) => {
 
                 cambioTurno();
             }
+            
+            let puntaje = document.getElementById('puntaje');
+            puntaje.innerHTML = game.player1.name + ': ' +game.puntos[0] + ' | ' + game.player2.name + ': ' +game.puntos[1];
 
         }, 1000);
 
     }
+
+
 
 }
 
@@ -196,7 +201,9 @@ const cargaHtml = () => {
     const tarjetas = document.getElementById('tarjetas');
     const tablero = document.getElementById('tablero');
     const close = document.getElementById('close');
-    const goBack = document.getElementById('goBack')
+    const goBack = document.getElementById('goBack');
+    let puntaje = document.getElementById('puntaje');
+    puntaje.innerHTML = game.player1.name + ': ' +game.puntos[0] + ' | ' + game.player2.name + ': ' +game.puntos[1];
 
     close.style.display = 'block';
     goBack.style.display = 'none';
@@ -324,9 +331,16 @@ const checkGameOver = () => {
             hud.style.display = tablero.style.display = 'none';
             modalGanador.classList.add('mostrarGanador');
 
-            nombreJugador.innerHTML = game.ganador;
-            cardImage.setAttribute("src", thePlayer.img);
-            cardImage.style.border = `6px solid ${thePlayer.color}`;
+            if(game.ganador === 'Empate'){
+                nombreJugador.innerHTML = game.ganador;
+                cardImage.style.display = 'none';
+            }else{
+                nombreJugador.innerHTML = game.ganador;
+                cardImage.setAttribute("src", thePlayer.img);
+                cardImage.style.border = `6px solid ${thePlayer.color}`;
+            }
+
+            
 
             restartGame.onclick = restart;
 

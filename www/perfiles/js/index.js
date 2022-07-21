@@ -98,7 +98,7 @@ function pushPlayer() {
       Storage.put("appstate", app);
       Storage.put("player" + app.cantPlayers, player);
     }
-    //window.location = "jugadores.html"
+    window.location = "jugadores.html"
   }
 }
 

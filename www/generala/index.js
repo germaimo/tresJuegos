@@ -91,16 +91,31 @@ const dibujarTablero = () => {
 
 const quienGano = () => {
     const totales = game.puntos[11];
-    const puntajeFinal = [];
+    let pos = 1;
+    let puntaje = totales[1];
+    let esEmpate = true;
+
     for (let i = 1; i < totales.length; i++) {
-        puntajeFinal.push({jugador: i, puntos: totales[i]});
+        if( totales[i] > puntaje ){
+           pos = i;
+           puntaje = totales[i];
+           esEmpate = false;
+        }
     }
-    puntajeFinal.sort((a, b) => b.puntos - a.puntos);
-    if (puntajeFinal[0].puntos > puntajeFinal[1].puntos) {
-        return puntajeFinal[0].jugador;
-    } else {
-        return -1;
-    }
+
+    return esEmpate ? -1 : pos;
+
+    // const puntajeFinal = [];
+    // for (let i = 1; i < totales.length; i++) {
+    //     puntajeFinal.push({jugador: i, puntos: totales[i]});
+    // }
+    // puntajeFinal.sort((a, b) => b.puntos - a.puntos);
+    
+    // if (puntajeFinal[0].puntos > puntajeFinal[1].puntos) {
+    //     return puntajeFinal[0].jugador;
+    // } else {
+    //     return -1;
+    // }
 };
 
 const tirarDado = () => Math.floor(Math.random() * (6 - 1 + 1)) + 1;
@@ -233,7 +248,7 @@ const anotar = (i, confirmado) => {
                         let ganador = quienGano();
 
                         if (ganador != -1) {
-                            winner.innerHTML = `Ganó ${ganador === 0 ? game.player1.name : game.player2.name}`;
+                            winner.innerHTML = `Ganó ${ganador === 1 ? game.player1.name : game.player2.name}`;
                         } else {
                             winner.innerHTML = "Empate";
                         }
@@ -389,6 +404,9 @@ const calcularPuntos = pos => {
             if (esGenerala()) {
                 puntos = 100;
             }
+            // if (esGenerala() && game.puntos[9][game.turno+1] !== -1 ) {
+            //     puntos = 100;
+            // }
             break;
         
         default:
