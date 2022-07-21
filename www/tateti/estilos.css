@@ -90,14 +90,6 @@ svg{
 	height: 92px;
 }
 
-.x-win{
-	background-image: url(img/x-win.svg);
-}
-
-.o-win{
-	background-image: url(img/o-win.svg);
-}
-
 td{
 	cursor: pointer;
 	width: calc(100% / 3);
@@ -129,14 +121,6 @@ td{
 #info svg{
 	width: 54px;
     height: 54px;
-}
-
-.j1{
-	color: red;
-}
-
-.j2{
-	color:  yellow;
 }
 
 #signoReset{
@@ -315,4 +299,8 @@ td{
     background: black;
     opacity: .5;
     z-index: 2;
+}
+
+.disabled{
+    pointer-events: none;
 }

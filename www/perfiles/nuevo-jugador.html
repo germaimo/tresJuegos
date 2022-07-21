@@ -8,7 +8,7 @@
     <title>Nuevo Jugador</title>
   </head>
 
-  <body>
+  <body onload="loadColors()">
     <div id="main-menu">
       <h1 id="name-player">Nuevo Jugador</h1>
 
@@ -32,18 +32,28 @@
           id="nombreJugador"
         />
 
-        <a href="#" id="color-btn" onclick="getColor()">
+        <!-- <a href="#" id="color-btn" onclick="getColor()">
           <p href="#" id="stats-btn">Agregar color</p>
           <input type="color" id="favcolor" name="favcolor" value="#ffffff" />
-        </a>
+        </a> -->
+
+        <p id="selectColor">Selecciona un color</p>
+
+        <ul id="colores"></ul>
+        
+<!-- href="jugadores.html" -->
+        <a  id="confirm" onclick="pushPlayer()">Confirmar</a>
+
         <div id="">
-          <a href="jugadores.html" id="play-btn">Volver</a>
-          <button id="play-btn" onclick="pushPlayer()">Confirmar</button>
+          <!-- <a href="jugadores.html" id="play-btn">Volver</a> -->
+          <!-- <button id="play-btn" onclick="pushPlayer()">Confirmar</button> -->
+
+          
         </div>
       </div>
     </div>
 
-    <!--script src="../cordova.js"></script-->
+    <script src="../cordova.js"></script>
     <script src="../js/storage.js"></script>
     <script src="js/index.js"></script>
     <script src="js/camera.js"></script>

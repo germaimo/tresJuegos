@@ -16,15 +16,15 @@ const oSvg = `<?xml version="1.0" encoding="UTF-8"?> <svg style="fill:${game.pla
 
 const rellenoData = () => {
 
-   document.getElementById("info").innerHTML = `le toca a: ${game.turno === 'X' ? xSvg : oSvg}`;
-    
+    document.getElementById("info").innerHTML = `le toca a: ${game.turno === 'X' ? xSvg : oSvg}`;
+
     for (let r = 0; r < game.tablero.length; r++) {
         const row = document.querySelector("table tr:nth-of-type(" + (r + 1) + ")");
         for (let c = 0; c < game.tablero[r].length; c++) {
-            if(game.tablero[r][c] != 0){
+            if (game.tablero[r][c] != 0) {
 
                 row.querySelector("td:nth-of-type(" + (c + 1) + ")").innerHTML = (game.tablero[r][c] === 'X') ? xSvg : oSvg;
-                
+
             } else {
                 row.querySelector("td:nth-of-type(" + (c + 1) + ")").innerHTML = " ";
             }
@@ -44,29 +44,28 @@ const reset = () => {
             [0, 0, 0]
         ],
         player1: Storage.get('player1'),
-        player2: Storage.get('player2'),  
+        player2: Storage.get('player2'),
     };
 
     rellenoData();
-    
+
     let todasLasPosiciones = document.querySelectorAll('tr td');
-    todasLasPosiciones.forEach( celda => { celda.innerHTML = ''; })
+    todasLasPosiciones.forEach(celda => { celda.innerHTML = ''; })
 
 }
 
-const play = (r, c)  => {
-    console.log('play');
+const play = (r, c) => {
     if (game.tablero[r][c] === 0) {
         game.tablero[r][c] = game.turno;
         game.moves++;
-        
-        if(checkGanador() || game.moves === 9) {
+
+        if (checkGanador() || game.moves === 9) {
             gameOver();
         } else {
             game.turno = game.turno === "X" ? "O" : "X";
             rellenoData();
         }
-        
+
     }
 }
 
@@ -74,30 +73,30 @@ const checkGanador = () => {
     return checkFila() || checkCol() || checkDiag();
 }
 
-const checkFila = ()  => {
-    if(
-    (game.tablero[0][0] === game.turno && game.tablero[0][1] === game.turno && game.tablero[0][2] === game.turno) || 
-    (game.tablero[1][0] === game.turno && game.tablero[1][1] === game.turno && game.tablero[1][2] === game.turno) || 
-    (game.tablero[2][0] === game.turno && game.tablero[2][1] === game.turno && game.tablero[2][2] === game.turno) ) {
+const checkFila = () => {
+    if (
+        (game.tablero[0][0] === game.turno && game.tablero[0][1] === game.turno && game.tablero[0][2] === game.turno) ||
+        (game.tablero[1][0] === game.turno && game.tablero[1][1] === game.turno && game.tablero[1][2] === game.turno) ||
+        (game.tablero[2][0] === game.turno && game.tablero[2][1] === game.turno && game.tablero[2][2] === game.turno)) {
         game.winner = game.turno;
     }
     return game.winner !== 0;
 }
 
-const checkCol = ()  => {
-    if(
-    (game.tablero[0][0] === game.turno && game.tablero[1][0] === game.turno && game.tablero[2][0] === game.turno) || 
-    (game.tablero[0][1] === game.turno && game.tablero[1][1] === game.turno && game.tablero[2][1] === game.turno) || 
-    (game.tablero[0][2] === game.turno && game.tablero[1][2] === game.turno && game.tablero[2][2] === game.turno) ) {
+const checkCol = () => {
+    if (
+        (game.tablero[0][0] === game.turno && game.tablero[1][0] === game.turno && game.tablero[2][0] === game.turno) ||
+        (game.tablero[0][1] === game.turno && game.tablero[1][1] === game.turno && game.tablero[2][1] === game.turno) ||
+        (game.tablero[0][2] === game.turno && game.tablero[1][2] === game.turno && game.tablero[2][2] === game.turno)) {
         game.winner = game.turno;
     }
     return game.winner !== 0;
 }
 
-const checkDiag = ()  => {
-    if(
-    (game.tablero[0][0] === game.turno && game.tablero[1][1] === game.turno && game.tablero[2][2] === game.turno) || 
-    (game.tablero[0][2] === game.turno && game.tablero[1][1] === game.turno && game.tablero[2][0] === game.turno) ) {
+const checkDiag = () => {
+    if (
+        (game.tablero[0][0] === game.turno && game.tablero[1][1] === game.turno && game.tablero[2][2] === game.turno) ||
+        (game.tablero[0][2] === game.turno && game.tablero[1][1] === game.turno && game.tablero[2][0] === game.turno)) {
         game.winner = game.turno;
     }
     return game.winner !== 0;
@@ -107,19 +106,18 @@ const restart = () => {
 
     const info = document.getElementById('info');
     const modalGanador = document.getElementById('ganador');
-    const close = document.getElementById('close');
     const table = document.querySelector('table');
 
     modalGanador.classList.remove('mostrarGanador');
 
-    info.style.display  = 'flex';
+    info.style.display = 'flex';
     table.style.display = 'table';
 
     reset();
 }
 
 const gameOver = () => {
-    
+
     rellenoData();
 
     const modalGanador = document.getElementById('ganador');
@@ -129,31 +127,31 @@ const gameOver = () => {
     const info = document.getElementById('info')
     let thePlayer = game.winner == "X" ? game.player1 : game.player2;
     const table = document.querySelector('table');
-    
+    table.classList.add('disabled');
+
     sumPoints(game.winner);
 
     setTimeout(() => {
 
-        table.style.display = info.style.display= 'none';
+        table.style.display = info.style.display = 'none';
         modalGanador.classList.add('mostrarGanador');
-
+        table.classList.remove('disabled');
         nombreJugador.innerHTML = thePlayer.name;
         cardImage.setAttribute("src", thePlayer.img);
         cardImage.style.border = `6px solid ${thePlayer.color}`;
-
         restartGame.onclick = restart;
 
-    }, 500); 
-    
+    }, 500);
+
 };
 
-const sumPoints = (player)  => {
-  let thePlayer = Storage.get(player == "X" ? "player1" : "player2");
+const sumPoints = (player) => {
+    let thePlayer = Storage.get(player == "X" ? "player1" : "player2");
 
-  let actualPoints = parseInt(thePlayer.tatetiPoints);
-  thePlayer.tatetiPoints = actualPoints + 10;
-  thePlayer.totalPoints = thePlayer.generalaPoints + thePlayer.tatetiPoints + thePlayer.memotestPoints;
-  Storage.put(player == "X" ? "player1" : "player2", thePlayer);
+    let actualPoints = parseInt(thePlayer.tatetiPoints);
+    thePlayer.tatetiPoints = actualPoints + 10;
+    thePlayer.totalPoints = thePlayer.generalaPoints + thePlayer.tatetiPoints + thePlayer.memotestPoints;
+    Storage.put(player == "X" ? "player1" : "player2", thePlayer);
 }
 
 const start = () => {
@@ -166,21 +164,17 @@ const start = () => {
     info.style.display = 'flex'
     intro.style.display = 'none';
     table.style.display = 'block';
-
-
 }
 
 const showReturnHome = () => {
-
     const exitGame = document.getElementById('exitGame');
     const cancelExit = document.getElementById('cancelExit');
     const returnHome = document.getElementById('returnHome');
     const sombra = document.getElementById('sombra');
-    
+
     sombra.style.display = 'block';
     exitGame.style.display = 'flex';
 
     cancelExit.onclick = () => { exitGame.style.display = sombra.style.display = 'none'; }
     returnHome.onclick = () => { window.location.href = '../index.html'; }
-
 }

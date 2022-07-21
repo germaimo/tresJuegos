@@ -25,7 +25,13 @@ let one_player = Storage.get("player" + who);
 function getName() {
   let name = document.getElementById("name-player");
   let newName = prompt("Ingrese nombre del jugador");
+
+  if( newName === '' ){
+    return;
+  }
+
   player.name = newName;
+  document.getElementById('nombreJugador').value = newName;
   name.innerHTML = newName;
 }
 
@@ -57,25 +63,25 @@ function getColor() {
   }
 }
 
-function changeColor() {
+// function changeColor() {
 
-  let newColor = document.getElementById("favcolor").value;
+//   let newColor = document.getElementById("favcolor").value;
 
-  one_player.color = newColor;
+//   one_player.color = newColor;
 
 
-  // if (coloresOscuros.includes(one_player.color)) {
-  //   let name = document.getElementById("name-player");
-  //   name.style.color = "white";
-  // }
-  // if (coloresClaros.includes(one_player.color)) {
-  //   let name = document.getElementById("name-player");
-  //   name.style.color = "black";
-  // }
+//   // if (coloresOscuros.includes(one_player.color)) {
+//   //   let name = document.getElementById("name-player");
+//   //   name.style.color = "white";
+//   // }
+//   // if (coloresClaros.includes(one_player.color)) {
+//   //   let name = document.getElementById("name-player");
+//   //   name.style.color = "black";
+//   // }
 
-}
+// }
 
-function selectColor(color, id) {
+function changeColor(color, id) {
   
   one_player.color = color;
 
@@ -89,6 +95,21 @@ function selectColor(color, id) {
 
 }
 
+function selectColor(color, id) {
+  
+  player.color = color;
+
+  document.getElementById("foto").style.border = `6px solid ${color}`;
+  
+  document.querySelectorAll('[class="circulo selected"]').forEach(item => {
+    item.classList.remove('selected');
+  });
+
+  document.getElementById(id).classList.add('selected');
+
+}
+
+
 function confirmPlayer() {
   let who = Storage.get("who");
   Storage.put("player" + who, one_player);
@@ -97,8 +118,14 @@ function confirmPlayer() {
 function pushPlayer() {
   if (checkData()) {
     if (Storage.get("appstate") != null) {
+      
       let appstate = Storage.get("appstate");
+      console.log('appstate ', appstate)
       appstate.cantPlayers++;
+      console.log( 'appstate.cantPlayers ', appstate.cantPlayers)
+
+      console.log( 'player ', player)
+
       appstate.players.push(player);
       Storage.put("appstate", appstate);
       Storage.put("player" + appstate.cantPlayers, player);
@@ -108,21 +135,22 @@ function pushPlayer() {
       Storage.put("appstate", app);
       Storage.put("player" + app.cantPlayers, player);
     }
-    window.location = "jugadores.html"
+    //window.location = "jugadores.html"
   }
 }
 
 function checkData() {
   let img = document.getElementById("foto");
-  let name = document.getElementById("name-player");
-  let color = document.getElementById("favcolor");
+  let name = document.getElementById("name-player"); 
+  let colorSeleccionado = document.querySelectorAll('[class="circulo selected"');
+
   if (img.src.includes("assets/img/cameras.svg")) {
     alert("Falta ingresar una foto");
     return false;
   } else if (name.innerHTML == "Nuevo Jugador") {
     alert("Falta ingresar un nombre");
     return false;
-  } else if (color.value == "#ffffff") {
+  } else if ( colorSeleccionado.length !== 1 ) {
     alert("Falta ingresar un color");
     return false;
   } else {
@@ -241,7 +269,7 @@ function showPlayer() {
     li.classList.add(...clases);
     li.style.backgroundColor = color;
     li.id = index;
-    if(!elegidoPorOtroPlayer){ li.onclick = () => selectColor(color, index); }
+    if(!elegidoPorOtroPlayer){ li.onclick = () => changeColor(color, index); }
     return listaColores.appendChild(li);
   }
   ).join('');
@@ -254,4 +282,34 @@ const goBack = () => {
 
 const goBackJugadores = () =>{
   window.location.href = '../perfiles/jugadores.html';
+}
+
+const loadColors = () =>{
+
+    let listaColores = document.getElementById('colores');
+    let hayOtroPlayer = false;
+    let otroPlayer = '';
+    
+    if(Storage.get("appstate") != null){
+      let appstate = Storage.get("appstate");
+      otroPlayer = Storage.get(`player${appstate.cantPlayers}`);
+      hayOtroPlayer = true;
+    }
+
+    colores.map(({ color, elegido }, index) => {
+      let li = document.createElement('li');
+      let elegidoPorOtroPlayer = hayOtroPlayer && color === otroPlayer.color;
+      
+      let clases = ['circulo'];
+      
+      if(elegidoPorOtroPlayer){ clases.push('cruz'); }
+
+      li.classList.add(...clases);
+      li.style.backgroundColor = color;
+      li.id = index;
+      if(!elegidoPorOtroPlayer){ li.onclick = () => selectColor(color, index); }
+      return listaColores.appendChild(li);
+    }
+    ).join('');
+
 }
