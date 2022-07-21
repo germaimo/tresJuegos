@@ -26,6 +26,11 @@ p {
     margin-inline-end: 0px;
 }
 
+#jugadoresMenu{
+    display: flex;
+    flex-direction: column;
+}
+
 #players img {
     width: 104px;
     height: 104px;
@@ -211,4 +216,21 @@ p {
 .disabled{
     pointer-events: none;
     opacity: .5;
+}
+
+#botones{
+    display: flex;
+    flex-direction: column;
+}
+
+@media (orientation: landscape) { 
+    #botones{
+        flex-direction: row;
+        gap: 1em;
+    }
+
+    #jugadoresMenu{
+        flex-direction: row;
+        gap: 1em;
+    }
 }

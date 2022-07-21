@@ -19,7 +19,9 @@ let game = {
         ["Generala", -1, -1],
         ["Doble Generala", -1, -1],
         ["Total", -1, -1]
-    ]
+    ],
+    player1: Storage.get('player1'),
+    player2: Storage.get('player2')
 };
 const movimientos = 11;
 let gameOver = game.cantJugadores * movimientos;
@@ -32,7 +34,7 @@ const rgxGenerala = /1{5}|2{5}|3{5}|4{5}|5{5}|6{5}/;
 const dibujarTablero = () => {
     const cont = document.querySelector("table tbody");
     cont.innerHTML = null;
-    
+
     const tr1 = document.createElement("tr");
 
     let tdJu = document.createElement("td");
@@ -42,12 +44,14 @@ const dibujarTablero = () => {
 
     for (let k = 0; k < game.cantJugadores; k++) {
         tdJu = document.createElement("td");
-        tdJu.innerHTML = "Jugador " + (k + 1);
+
+        tdJu.innerHTML =  k === 0 ? game.player1.name : game.player2.name;
+
         if (game.turno === k) {
             if (k === 0){
-                tdJu.classList.add("backColor1");
+                tdJu.style.backgroundColor = game.player1.color ;
             } else {
-                tdJu.classList.add("backColor2");
+                tdJu.style.backgroundColor = game.player2.color ;
             }
         } 
         tr1.appendChild(tdJu);
@@ -70,7 +74,7 @@ const dibujarTablero = () => {
                 
                 tdJugador.appendChild(document.createTextNode(game.puntos[i][j]));
                 if (i < (game.puntos.length - 1)) {
-                    (j === 1) ? tdJugador.classList.add("backColor1") : tdJugador.classList.add("backColor2");
+                    (j === 1) ? tdJugador.style.backgroundColor = game.player1.color  : tdJugador.style.backgroundColor = game.player2.color ;
                 }
             }
             else {
@@ -169,13 +173,13 @@ const tirarDados = () => {
 const confirm = (i) => {
     let content = `<div id='confirm'>
                         <div>
-                            <p>Tachar</p>
+                            <p class="accion">Tachar</p>
                             <div> 
-                                <p>¿Desea tachar el juego ${game.puntos[i][0]}?</p>
+                                <p class="pregunta">¿Desea tachar el juego ${game.puntos[i][0]}?</p>
                             </div>
-                            <div>
-                                <button onclick='continuar("${i}");'>Si</button>
-                                <button onclick='cancelar();'>No</button>
+                            <div class="botones">
+                                <button class="si" onclick='continuar("${i}");'>Si</button>
+                                <button class="no" onclick='cancelar();'>No</button>
                             </div>
                         </div>
                     </div>`;
@@ -185,13 +189,11 @@ const confirm = (i) => {
 
 const continuar = (i) => {
     document.getElementById("confirm").remove();
-    console.log(i);
     anotar(parseInt(i), true);
 }
 
 const cancelar = () => {
     document.getElementById("confirm").remove();
-    
     mostrarDados();
     dibujarTablero();
 }
@@ -231,10 +233,7 @@ const anotar = (i, confirmado) => {
                         let ganador = quienGano();
 
                         if (ganador != -1) {
-                            winner.innerHTML = "Ganó el jugador "+ganador;
-                            
-                            (ganador === game.turno + 1) ? winner.style.color = "#f808f8" : winner.style.color = "#f808f8";
-
+                            winner.innerHTML = `Ganó ${ganador === 0 ? game.player1.name : game.player2.name}`;
                         } else {
                             winner.innerHTML = "Empate";
                         }
@@ -273,7 +272,7 @@ const dibujarDado = (canvas, numero) => {
     ctx.clearRect(0, 0, game.dadoSize, game.dadoSize);
     ctx.beginPath();
     ctx.rect(0 ,0 , game.dadoSize, game.dadoSize);
-    ctx.fillStyle = "#f76206";
+    ctx.fillStyle = game.turno === 0 ? game.player1.color : game.player2.color;
     ctx.fill();
     ctx.closePath();
 
@@ -360,8 +359,6 @@ const esEscalera = () => {
 const calcularPuntos = pos => {
     let puntos = 0;
 
-    console.log(pos, typeof pos);
-
     switch (pos) {
         case 6:
             if (esEscalera()) {
@@ -426,7 +423,9 @@ const reset = () => {
             ["Generala", -1, -1],
             ["Doble Generala", -1, -1],
             ["Total", -1, -1]
-        ]
+        ],
+        player1: Storage.get('player1'),
+        player2: Storage.get('player2')
     };
 
     gameOver = game.cantJugadores * movimientos;
@@ -446,6 +445,10 @@ const sumPoints = (player) => {
   thePlayer.generalaPoints = actualPoints + 10;
   thePlayer.totalPoints = thePlayer.generalaPoints + thePlayer.tatetiPoints;
   Storage.put(player == 1 ? "player1" : "player2", thePlayer);
+}
+
+const goBack = () =>{
+    window.location.href = '../index.html';
 }
 
 document.addEventListener('deviceready', mostrarDados, false);

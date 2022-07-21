@@ -6,7 +6,7 @@
 */
 
 body{
-	background-color: #084CD4;
+	background-color: #27175D;
 	font-family: futura-pt,sans-serif;
 	background-position: inherit;
 	color: white;
@@ -14,13 +14,12 @@ body{
 	font-style: normal;
 	display: -ms-grid;
 	display: grid;
-	width: 50%;
+	width: 70%;
 	margin: 0 auto;
 }
 
 table{
 	margin: 2em 0 auto;
-	background-color: #1169D3;
 	font-weight: 700;
 	font-style: normal;
 	padding: .5em;
@@ -29,17 +28,17 @@ table{
 	background-position: center;
 	background-repeat: no-repeat;
 	width: 100%;
-	border-radius: 5px;
+    background: #5337ac;
+    border-radius: 16px;
+    border-style: hidden;
 }
 
-td{
-	border-bottom: 1px solid #084CD4;
-    border-right: 1px solid #084CD4;
-    padding-left: 0.5em;
+table td, table th {
+    border: 0.5px solid #4D2FB1;
 }
 
 h1{
-	font-family: itc-avant-garde-gothic-pro,sans-serif;
+	font-family: futura-pt-bold,sans-serif;
 }
 
 h1, #tirar, #turno, #tiros {
@@ -47,9 +46,17 @@ h1, #tirar, #turno, #tiros {
 }
 
 #juego{
-	background-color: #133A87;
-	padding: .5em;
-	border-radius: 5px;
+    text-align: center;
+    background: linear-gradient(180deg, #6649C4 0%, #4A2BAE 100%);
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
+    border-radius: 16px;
+    padding: .5em;
+}
+
+canvas{
+    border: 1px solid transparent;
+    width: 60px;
+    height: 60px;
 }
 
 #container{
@@ -73,7 +80,7 @@ h1, #tirar, #turno, #tiros {
 }
 
 button, input{
-	background-color: #f76206;
+	background-color: #5136ab;
     color: #fdfff7;
     font-size: 1.3em;
     border-radius: 5px;
@@ -98,8 +105,9 @@ button, input{
     font-size: 1.5em;
     text-align: center;
     padding: 1em;
-    border-radius: 5px;
-    color: #133a87;
+    border-radius: 16px;
+    color: black;
+    transform: translateY(50%);
 }
 
 p{
@@ -125,4 +133,68 @@ p{
 .seleccionado{
     border: 1px solid white;
     opacity: 0.5;
+}
+
+.accion{
+    font-family: 'futura-pt-bold' ;   
+}
+
+.pregunta{
+    font-family: 'futura-pt' ;
+    margin-bottom: 1em;
+}
+
+.si, .no{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'futura-pt';
+    font-size: 20px;
+    color: white;
+    border: none;
+    padding: 1em;
+    margin: 0 auto;
+    background: linear-gradient(180deg, #6649C4 0%, #4A2BAE 98.44%);
+    border-radius: 16px;
+}
+
+.botones{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+#close{
+    position: absolute;
+    right: 0;
+    top: 14px;
+    padding: .5em;
+    text-decoration: none;
+    border: none;
+    color: white;
+    font-size: 2em;
+}
+
+.closeIcon{
+    background-image: url('img/Close.svg');
+    width: 36px;
+    height: 36px;
+    background-repeat: no-repeat;
+    background-color: transparent;
+}
+
+#game{
+    display: flex;
+    flex-direction: column; 
+}
+
+@media (orientation: landscape) { 
+    #game{
+        flex-direction: row; 
+        gap: 1em;
+    }
+
+    #container{
+        margin-top: 2em;
+    }
 }

@@ -68,7 +68,8 @@ tbody{
     text-align: center;
     font-family: futura-pt;
     font-size: 20px;
-	display: grid;
+	display: flex;
+    flex-direction: column;
 }
 
 .choose img{
@@ -303,4 +304,74 @@ td{
 
 .disabled{
     pointer-events: none;
+}
+
+@media (orientation: landscape) {
+    
+    body{
+        padding: 1em;
+        flex-direction: row;
+        gap: 1em;
+    }
+
+    .fix{
+        flex-direction: column;
+    }
+
+    header{
+        margin-top: 0;
+    }
+
+    .choose{
+        width: fit-content;
+        height: fit-content;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .choose img, .choose p{
+        margin-top: 0;
+    }
+
+    #exitGame{
+        transform: translateY(1%);
+    }
+    
+
+    .mostrarGanador{
+        display: flex !important;
+    }
+
+    #ganador{
+        align-items: center;
+        flex-direction: row-reverse;
+        margin: 0 auto;
+        width: 78%;
+        transform: translateY(56%);
+    }
+
+    .card{
+        width: 280px;
+        height: 280px;
+    }
+
+    #ganador img{
+        width: 149px;
+        height: 150px;
+    }
+
+    #ganador button{
+        width: 184px;
+        height: 56px;
+    }
+
+    #restartGame{
+        margin-right: 1em;
+    }
+
+    .restartIcon{
+        margin-left: 0;
+        margin-right: 10px;
+    }
+
 }

@@ -135,3 +135,22 @@ table {
 
 }
 
+
+/* @media screen 
+  and (device-width: 412px) 
+
+  and (device-height: 823px) 
+    and (-webkit-device-pixel-ratio: 3.5) 
+  and (orientation: landscape) { 
+  body{
+    flex-direction: row;
+    gap: 1.5em;
+    margin-top: 1em;
+  }
+
+  #logo{
+      margin-top: 0;
+      margin-bottom: 0;
+  }
+
+} */

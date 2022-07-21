@@ -109,9 +109,9 @@ const restart = () => {
     const table = document.querySelector('table');
 
     modalGanador.classList.remove('mostrarGanador');
-
+    document.body.classList.remove('fix');
     info.style.display = 'flex';
-    table.style.display = 'table';
+    table.style.display = 'block';
 
     reset();
 }
@@ -132,7 +132,6 @@ const gameOver = () => {
     sumPoints(game.winner);
 
     setTimeout(() => {
-
         table.style.display = info.style.display = 'none';
         modalGanador.classList.add('mostrarGanador');
         table.classList.remove('disabled');
@@ -174,7 +173,8 @@ const showReturnHome = () => {
 
     sombra.style.display = 'block';
     exitGame.style.display = 'flex';
+    document.body.classList.add('fix');
 
-    cancelExit.onclick = () => { exitGame.style.display = sombra.style.display = 'none'; }
+    cancelExit.onclick = () => { exitGame.style.display = sombra.style.display = 'none'; document.body.classList.remove('fix'); }
     returnHome.onclick = () => { window.location.href = '../index.html'; }
 }

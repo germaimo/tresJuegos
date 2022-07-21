@@ -8,9 +8,6 @@ var player = { name,
   memotestPoints: 0, 
   totalPoints: 0 }
 
-let coloresOscuros = ["#ff0000", "#000000", "#0000ff"];
-let coloresClaros = ["#ffff00", "ff00ff", "ffffff", "00ffff", "00ff00"];
-
 let colores = [
   { color: '#FFD031', elegido: false },
   { color: '#EB1751', elegido: false },
@@ -48,39 +45,6 @@ function changeName() {
   document.getElementById('nombreJugador').value = newName;
 }
 
-function getColor() {
-  let menu = document.getElementById("main-menu");
-  let newColor = document.getElementById("favcolor").value;
-  menu.style.backgroundColor = newColor;
-  player.color = newColor;
-  if (coloresOscuros.includes(player.color)) {
-    let name = document.getElementById("name-player");
-    name.style.color = "white";
-  }
-  if (coloresClaros.includes(player.color)) {
-    let name = document.getElementById("name-player");
-    name.style.color = "black";
-  }
-}
-
-// function changeColor() {
-
-//   let newColor = document.getElementById("favcolor").value;
-
-//   one_player.color = newColor;
-
-
-//   // if (coloresOscuros.includes(one_player.color)) {
-//   //   let name = document.getElementById("name-player");
-//   //   name.style.color = "white";
-//   // }
-//   // if (coloresClaros.includes(one_player.color)) {
-//   //   let name = document.getElementById("name-player");
-//   //   name.style.color = "black";
-//   // }
-
-// }
-
 function changeColor(color, id) {
   
   one_player.color = color;
@@ -108,7 +72,6 @@ function selectColor(color, id) {
   document.getElementById(id).classList.add('selected');
 
 }
-
 
 function confirmPlayer() {
   let who = Storage.get("who");
@@ -186,10 +149,6 @@ function loadPlayer() {
       boxplayer.appendChild(nameplayer);
       pContainer.appendChild(boxplayer);
       buttonsBox.appendChild(pContainer);
-
-      if (coloresOscuros.includes(player.color)) {
-        nameplayer.style.color = "white";
-      }
     }
 
 
@@ -244,16 +203,6 @@ function showPlayer() {
 
   document.getElementById("foto").src = player.img;
   document.getElementById("foto").style.border = `6px solid ${player.color}`;
-
-  // if (coloresOscuros.includes(one_player.color)) {
-  //   let name = document.getElementById("name-player");
-  //   name.style.color = "white";
-  // }
-
-  // if (coloresClaros.includes(one_player.color)) {
-  //   let name = document.getElementById("name-player");
-  //   name.style.color = "black";
-  // }
 
   let listaColores = document.getElementById('colores');
 
