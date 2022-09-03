@@ -1,0 +1,549 @@
+* {
+    transition: all 1s linear;
+}
+
+p{
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+}
+
+body {
+    font-family: 'futura-pt', sans-serif;
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    padding: 2em;
+    background-color: #27175D;
+    color: white;
+    flex-direction: column;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+header, span {
+    font-family: 'futura-pt-bold';
+    letter-spacing: 1px;
+}
+
+header{
+    font-size: 2.5rem;
+    margin-top: .5em;
+}
+
+span{
+    font-size: 1rem;
+    margin-bottom: 3em;
+    margin-top: 1em;
+}
+
+ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    list-style-type: none;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 0;
+}
+
+ nav ul li {
+    padding: 1em;
+    margin: .5em;
+    background: linear-gradient(180deg, #6649C4 0%, #4A2BAE 98.44%);
+    border-radius: 16px;
+    width: 100%;
+    border: 2px solid #4A2BAE;
+}
+
+#sombra{
+    position: absolute;
+    top: 0;
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    background: black;
+    opacity: .5;
+    z-index: 2;
+}
+
+#aviso{
+    position: absolute;
+    transform: translateY(50%);
+    display: none;
+    flex-direction: column;
+    width: 340px;
+    height: 295px;
+    background: white;
+    border-radius: 16px;
+    letter-spacing: 1px;
+    z-index: 3;
+}
+
+#aviso p{
+    font-family: 'futura-pt-bold';
+    font-size: 38px;
+    color: black;
+    margin-top: 1em;
+}
+
+#aviso span{
+    font-family: 'futura-pt';
+    font-size: 38px;
+    color: black;
+    margin-top: .5em;
+    margin-bottom: 1em;
+}
+
+#aviso button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 260px;
+    height: 56px;
+    font-family: 'futura-pt';
+    font-size: 20px;
+    color: white;
+    border:none;
+    padding: 1em;
+    margin: 0 auto;
+    background: linear-gradient(180deg, #6649C4 0%, #4A2BAE 98.44%);
+    border-radius: 16px;
+}
+
+#hud{
+    display: none;
+    margin: 1em;
+    justify-content: space-between;
+    align-items: center;
+    width: 340px;
+    height: 72px;
+    background: linear-gradient(180deg, #6649C4 0%, #4A2BAE 98.44%);
+    border-radius:16px;
+}
+
+#turno{
+    margin-left: 1em;
+}
+
+#turno span{
+    color: #FFD031;
+}
+
+#timer{
+    margin-right: 1em;
+    background-color: white;
+    color: #4D2FB1;
+    font-family: 'futura-pt-bold';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+    width: 120px;
+    height: 40px;
+}
+
+#timer span{
+    font-size: 20px;
+}
+
+.tarjeta{
+    padding: .2em;
+    margin: .5em;
+    background: #27175D;
+    border: 2px solid transparent;
+    border-radius: 16px;
+    display: flex;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
+    position: relative;
+}
+
+.tarjeta svg {
+    opacity: 1;
+    -webkit-transition: 1ms;
+    transition: 1ms;
+
+    transform: rotateY(90deg);
+}
+
+.tarjeta span {
+    font-family: 'futura-pt';
+    right: 0px;
+    bottom: 0px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background: #231753;
+    -webkit-transform-style: preserve-3d;
+    -webkit-backface-visibility: hidden;
+    border-radius: 16px;
+    color: #6649C4;
+    font-size: 40px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0;
+    margin-top: 0;
+
+    opacity: 1;
+    -webkit-transition: 1s;
+    transition: 1s;
+}
+
+#tablero{
+    display: none;
+    /* display: flex; */
+    background: linear-gradient(180deg, #6649C4 0%, #4A2BAE 98.44%);
+    border-radius: 16px;
+    width: 340px;
+}
+
+#tarjetas{
+    display: grid;
+    margin: 0 auto;
+}
+
+#tarjetas svg{
+    width: 3em;
+    margin: 0 auto;
+}
+
+.dos-columnas{
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.tres-columnas{
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.cuatro-columnas{
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.dos-columnas li{
+    width: 75px;
+    height: 75px;
+}
+
+.tres-columnas li{
+    width: 74px;
+    height: 74px;
+}
+
+.cuatro-columnas li{
+    width: 59px;
+    height: 59px;
+}
+
+nav {
+    max-width: 334px;
+    width: 100%;
+}
+
+.active{
+    border: 2px solid white;
+}
+
+.ocultar{
+    transition: 1s;
+    transform: rotateY(90deg);
+}
+
+.mostrar{
+    transition: 1s;
+    transform: rotateY(0deg) !important;
+}
+
+.disabled{
+    pointer-events: none;
+}
+
+#close{
+    position: absolute;
+    display: none;
+    right: 0;
+    top: 14px;
+    padding: .5em;
+    text-decoration: none;
+    border: none;
+    color: white;
+    font-size: 2em;
+}
+
+#exitGame{
+    position: absolute;
+    transform: translateY(50%);
+    display: none;
+    flex-direction: column;
+    width: 340px;
+    height: 324px;
+    background: white;
+    border-radius: 16px;
+    letter-spacing: 1px;
+    z-index: 3;
+}
+
+#exitGame p{
+    font-family: 'futura-pt-bold';
+    font-size: 32px;
+    color: black;
+    margin-top: 1em;
+}
+
+#exitGame span{
+    font-family: 'futura-pt';
+    font-size: 20px;
+    color: black;
+    margin-top: .5em;
+    margin-bottom: 1em;
+}
+
+#exitGame button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 260px;
+    height: 56px;
+    font-family: 'futura-pt';
+    font-size: 20px;
+    color: #F89740;
+    margin: 0 auto;
+    border: 2px solid #F89740;
+    background: white;
+    border-radius: 16px;
+    margin-bottom: .5em;
+}
+
+#exitGame button:last-child{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 260px;
+    height: 56px;
+    font-family: 'futura-pt';
+    font-size: 20px;
+    color: white;
+    border:none;
+    padding: 1em;
+    margin: 0 auto;
+    background: linear-gradient(180deg, #6649C4 0%, #4A2BAE 98.44%);
+    border-radius: 16px;
+}
+
+#ganador{
+    display: none;
+    position: absolute;
+    transform: translateY(26%);
+}
+
+.mostrarGanador{
+    display: block !important;
+}
+
+.card{
+    width: 340px;
+    height: 340px;
+    background: radial-gradient(48.68% 48.68% at 50.44% 39.41%, #846AD9 0%, #4124A0 100%);
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
+    border-radius: 80px;
+}
+
+#ganador img{
+    margin-top: 1.5em;
+    box-sizing: border-box;
+    width: 199px;
+    height: 200px;
+    border: 8px solid transparent;
+    border-radius: 122px;
+    object-fit: cover;
+}
+
+#ganador p{
+    font-family: 'futura-pt-bold';
+    letter-spacing: 1px;
+    font-size: 40px;
+}
+
+#nombreJugador{
+    font-family: 'futura-pt';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 20px;
+    color: #FFD031;
+}
+
+#ganador button{
+    display: flex;
+    margin-top: 1em;
+    align-items: center;
+    justify-content: flex-start;
+    width: 334px;
+    height: 56px;
+    font-family: 'futura-pt';
+    font-size: 20px;
+    color: #F89740;
+    border: 2px solid #F89740;
+    background: transparent;
+    border-radius: 16px;
+    margin-bottom: .5em;
+}
+
+.restartIcon{
+    background-image: url('img/restart.svg');
+    background-repeat: no-repeat;
+    width: 44px;
+    height: 44px;
+    margin-bottom: 0;
+    margin-top: 0;
+    margin-right: 50px;
+    margin-left: 15px;
+}
+
+.closeIcon{
+    background-image: url('img/Close.svg');
+    width: 36px;
+    height: 36px;
+    background-repeat: no-repeat;
+    background-color: transparent;
+}
+
+#goBack{
+    position: absolute;
+    left: 0;
+    top: 14px;
+    padding: .5em;
+    text-decoration: none;
+    border: none;
+    color: white;
+    font-size: 2em;
+}
+
+.goBackIcon{
+    background-image: url('img/ArrowBack.svg');
+    width: 36px;
+    height: 36px;
+    background-repeat: no-repeat;
+    background-color: transparent;
+}
+
+#puntaje{
+    margin-bottom: .5em;
+    margin-top: .5em;
+}
+
+@media (orientation: landscape) { 
+    body{
+        padding: 0 1em;
+        grid-gap: 1em;
+        grid-template-columns: repeat(2, 1fr);
+        width: 90%;
+    }
+
+    header{
+        grid-column: 1 / 2;
+        grid-row: 1/2;
+    }
+
+    #info{
+        margin-bottom: 0;
+        margin-top: 0;
+    }
+
+    #hud{
+        grid-column: 1/2;
+        grid-row: 1/2;
+        margin-top: 4em;
+        width: 200px;
+    }
+
+    #aviso{
+        transform: translateY(15%);
+    }
+
+    #exitGame{
+        transform: translate(0%, 4%);
+    }
+
+    #tablero{
+        margin-top: 2em;
+    }
+
+    /* comienza juego */
+    .bodyGameOn{
+        display: grid;
+        align-items: flex-start;
+    }
+
+    .bodyGameOn #exitGame{
+        transform: translate(40%, 6%) !important;
+    }
+
+    .mostrarGanador{
+        display: flex !important;
+    }
+
+    #ganador{
+        align-items: center;
+        flex-direction: row-reverse;
+        margin: 0 auto;
+        width: 88%;
+    }
+
+    .card{
+        width: 280px;
+        height: 280px;
+    }
+
+    #ganador img{
+        width: 149px;
+        height: 150px;
+    }
+
+    #ganador button{
+        width: 184px;
+        height: 56px;
+    }
+
+    #restartGame{
+        margin-right: 1em;
+    }
+
+    .restartIcon{
+        margin-left: 0;
+        margin-right: 10px;
+    }
+
+    #hud{
+        flex-direction: column;
+        padding: 1em 0;
+    }
+
+    #turno{
+        margin-left: 0;
+        margin-bottom: .5em;
+    }
+
+    #timer{
+        margin-right: 0;
+    }
+
+    .dos-columnas {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .tres-columnas li {
+        width: 54px;
+        height: 54px;
+    }
+
+    .cuatro-columnas li {
+        width: 39px;
+        height: 39px;
+    }
+ }

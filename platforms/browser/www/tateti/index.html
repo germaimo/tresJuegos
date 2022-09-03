@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Tateti</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="estilos.css" />
+    <link rel="stylesheet" href="https://use.typekit.net/xpd3cco.css" />
+  </head>
+
+  <body>
+    <header>Tateti</header>
+
+    <p id="info"><span>le toca a:</span></p>
+
+    <button id="close" class="closeIcon" onclick="showReturnHome()"></button>
+
+    <div onclick="start()" id="intro" class="choose">
+      <img src="img/choose.svg" alt="intro game" />
+      <p>Toca el tablero para jugar</p>
+    </div>
+
+    <table>
+      <tr>
+        <td onclick="play(0, 0)"></td>
+        <td onclick="play(0, 1)"></td>
+        <td onclick="play(0, 2)"></td>
+      </tr>
+
+      <tr>
+        <td onclick="play(1,0)"></td>
+        <td onclick="play(1,1)"></td>
+        <td onclick="play(1,2)"></td>
+      </tr>
+
+      <tr>
+        <td onclick="play(2,0)"></td>
+        <td onclick="play(2,1)"></td>
+        <td onclick="play(2,2)"></td>
+      </tr>
+    </table>
+
+    <div id="ganador">
+      <div class="card">
+        <img id="cardImage" src="" alt="" />
+        <p>Ganó</p>
+        <span id="nombreJugador">jugador</span>
+      </div>
+
+      <button id="restartGame">
+        <span class="restartIcon"></span> Volver a Jugar
+      </button>
+    </div>
+
+    <div id="exitGame">
+      <p>
+        Finalizar <br />
+        Memotest
+      </p>
+      <span>¿Deseas salir de la partida?</span>
+      <button id="cancelExit">Seguir partida</button>
+      <button id="returnHome">Salir</button>
+    </div>
+
+    <div id="sombra"></div>
+
+    <!-- <script src="../cordova.js"></script> -->
+    <script src="../js/storage.js"></script>
+    <script src="tateti.js"></script>
+  </body>
+</html>

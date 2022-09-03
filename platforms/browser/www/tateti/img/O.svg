@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="92" height="92" viewBox="0 0 92 92">
+  <defs>
+    <style>
+      .cls-1 {
+        clip-path: url(#clip-O);
+      }
+
+      .cls-2 {
+        fill: #f89b08;
+      }
+
+      .cls-3 {
+        fill: #f76206;
+      }
+    </style>
+    <clipPath id="clip-O">
+      <rect width="92" height="92"/>
+    </clipPath>
+  </defs>
+  <g id="O" class="cls-1">
+    <g id="Grupo_634" data-name="Grupo 634" transform="translate(-248 -345)">
+      <g id="Layer_2" data-name="Layer 2" transform="translate(249 351)">
+        <g id="ring_shape_2_copy_5" data-name="ring_shape_2 copy 5">
+          <path id="Trazado_1" data-name="Trazado 1" class="cls-2" d="M41.912,0A41.912,41.912,0,1,0,83.824,41.912,41.912,41.912,0,0,0,41.912,0ZM61.334,41.912A19.422,19.422,0,1,1,41.912,22.491,19.422,19.422,0,0,1,61.334,41.912Z"/>
+        </g>
+      </g>
+      <g id="Layer_2-2" data-name="Layer 2" transform="translate(255 346)">
+        <g id="ring_shape_2_copy_5-2" data-name="ring_shape_2 copy 5">
+          <path id="Trazado_1-2" data-name="Trazado 1" class="cls-3" d="M41.912,0A41.912,41.912,0,1,0,83.824,41.912,41.912,41.912,0,0,0,41.912,0ZM61.334,41.912A19.422,19.422,0,1,1,41.912,22.491,19.422,19.422,0,0,1,61.334,41.912Z"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

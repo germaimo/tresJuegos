@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estadisticas</title>
+  <link rel="stylesheet" href="css/estilosEstadisticas.css">
+  <link rel="stylesheet" href="https://use.typekit.net/xpd3cco.css">
+</head>
+
+<body onload="stats()">
+
+  <h1>Estadísticas</h1>
+
+  <button id="goBack" class="goBackIcon" onclick="goBackJugadores()"></button>
+
+  <div>
+    <table>
+      <tr>
+        <th></th>
+        <th id="nameplayer1"></th>
+        <th id="nameplayer2"></th>
+      </tr>
+
+      <tr>
+        <td>Tatetí</td>
+        <td id="tatetiPointsPlayer1"></td>
+        <td id="tatetiPointsPlayer2"></td>
+      </tr>
+
+      <tr>
+        <td>Generala</td>
+        <td id="generalaPointsPlayer1"></td>
+        <td id="generalaPointsPlayer2"></td>
+      </tr>
+
+      <tr>
+        <td>Memotest</td>
+        <td id="memotestPointsPlayer1"></td>
+        <td id="memotestPointsPlayer2"></td>
+      </tr>
+
+      <tr>
+        <td>Total</td>
+        <td id="totalPlayer1"></td>
+        <td id="totalPlayer2"></td>
+      </tr>
+    </table>
+
+  </div>
+
+  <script src="../js/storage.js"></script>
+  <script src="js/index.js"></script>
+
+</body>
+
+</html>

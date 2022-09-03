@@ -1,0 +1,200 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.3.6,
+* Autoprefixer: v10.3.1
+* Browsers: last 4 version
+*/
+
+body{
+	background-color: #27175D;
+	font-family: futura-pt,sans-serif;
+	background-position: inherit;
+	color: white;
+	font-weight: 300;
+	font-style: normal;
+	display: -ms-grid;
+	display: grid;
+	width: 70%;
+	margin: 0 auto;
+}
+
+table{
+	margin: 2em 0 auto;
+	font-weight: 700;
+	font-style: normal;
+	padding: .5em;
+	table-layout:fixed;
+	border-collapse: collapse;
+	background-position: center;
+	background-repeat: no-repeat;
+	width: 100%;
+    background: #5337ac;
+    border-radius: 16px;
+    border-style: hidden;
+}
+
+table td, table th {
+    border: 0.5px solid #4D2FB1;
+}
+
+h1{
+	font-family: futura-pt-bold,sans-serif;
+}
+
+h1, #tirar, #turno, #tiros {
+	display: inline-block;
+}
+
+#juego{
+    text-align: center;
+    background: linear-gradient(180deg, #6649C4 0%, #4A2BAE 100%);
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
+    border-radius: 16px;
+    padding: .5em;
+}
+
+canvas{
+    border: 1px solid transparent;
+    width: 60px;
+    height: 60px;
+}
+
+#container{
+	text-align: center;
+}
+
+#tituloBoton, #turnoTiros{
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+
+#turno{
+	margin-right: 1em;
+}
+
+button, input{
+	background-color: #5136ab;
+    color: #fdfff7;
+    font-size: 1.3em;
+    border-radius: 5px;
+    padding: .3em;
+    border: none;
+    cursor: pointer;
+}
+
+#gameOver{
+	display: none;
+}
+
+#confirm, #gameOver{
+	position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    background-color: white;
+    width: 50%;
+    font-size: 1.5em;
+    text-align: center;
+    padding: 1em;
+    border-radius: 16px;
+    color: black;
+    transform: translateY(50%);
+}
+
+p{
+	display: block;
+    -webkit-margin-before: 0;
+            margin-block-start: 0;
+    -webkit-margin-after: 0;
+            margin-block-end: 0;
+    -webkit-margin-start: 0;
+            margin-inline-start: 0;
+    -webkit-margin-end: 0;
+            margin-inline-end: 0;
+}
+
+.backColor1{
+    background-color: #f808f8;
+}
+
+.backColor2{
+    background: #f808f8;
+}
+
+.seleccionado{
+    border: 1px solid white;
+    opacity: 0.5;
+}
+
+.accion{
+    font-family: 'futura-pt-bold' ;   
+}
+
+.pregunta{
+    font-family: 'futura-pt' ;
+    margin-bottom: 1em;
+}
+
+.si, .no{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'futura-pt';
+    font-size: 20px;
+    color: white;
+    border: none;
+    padding: 1em;
+    margin: 0 auto;
+    background: linear-gradient(180deg, #6649C4 0%, #4A2BAE 98.44%);
+    border-radius: 16px;
+}
+
+.botones{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+#close{
+    position: absolute;
+    right: 0;
+    top: 14px;
+    padding: .5em;
+    text-decoration: none;
+    border: none;
+    color: white;
+    font-size: 2em;
+}
+
+.closeIcon{
+    background-image: url('img/Close.svg');
+    width: 36px;
+    height: 36px;
+    background-repeat: no-repeat;
+    background-color: transparent;
+}
+
+#game{
+    display: flex;
+    flex-direction: column; 
+}
+
+@media (orientation: landscape) { 
+    #game{
+        flex-direction: row; 
+        gap: 1em;
+    }
+
+    #container{
+        margin-top: 2em;
+    }
+}

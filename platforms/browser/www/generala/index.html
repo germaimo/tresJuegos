@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generala</title>
+    <link rel="stylesheet" href="https://use.typekit.net/xpd3cco.css">
+    <link rel="stylesheet" type="text/css" href="estilos.css">
+</head>
+
+<body onload="dibujarTablero();">
+
+    <button id="close" class="closeIcon" onclick="goBack()"></button>
+
+    <div id="game" >
+        <div>
+            <div id="tituloBoton">
+                <h1>Generala</h1>
+                <div id="tirar">
+                    <button id="boton" onclick="tirarDados();">Tirar dados</button>
+                </div>
+            </div>
+            <div id="juego">
+
+                <div id="turnoTiros">
+                    <div id="turno">
+                        <p>Turno: <span></span></p>
+                    </div>
+
+                    <div id="tiros">
+                        <p>Tiros restantes: <span></span></p>
+                    </div>
+                </div>
+
+                <div id="dados"></div>
+            </div>
+        </div>
+
+        <div id="container">
+            <table id="tablero">
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td id="player1"></td>
+                        <td id="player2"></td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Escalera</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Full</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Póker</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Generala</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Doble Generala</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Total</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="gameOver">
+        <p>Fin de juego</p>
+        <p id="ganador"></p>
+        <input type="reset" onclick="reset()" value="resetear">
+    </div>
+
+
+    <script src="../js/storage.js"></script>
+    <script src="../cordova.js"></script>
+    <script src="index.js"></script>
+</body>
+
+</html>

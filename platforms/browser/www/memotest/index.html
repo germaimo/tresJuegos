@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memotest</title>
+    <link rel="stylesheet" href="./estilos.css">
+    <link rel="stylesheet" href="https://use.typekit.net/xpd3cco.css">
+</head>
+<body>
+    
+    <header>Memotest</header>
+    <span id="puntaje"></span>
+    <span id="info" >Selecciona un nivel de dificultad</span>
+
+    <button id="goBack" class="goBackIcon" onclick="goBack()"></button>
+
+    <button id="close" class="closeIcon" onclick="showReturnHome()"></button>
+
+    <nav>
+        <ul>
+            <li onclick="load(1)">Fácil</li>
+            <li onclick="load(2)">Medio</li>
+            <li onclick="load(3)">Difícil</li>
+        </ul>        
+    </nav>
+
+    <div id="aviso">
+        <p>Comienza:</p>
+        <span id="avisoTurno"></span>
+        <button onclick="start()">Iniciar</button>
+    </div>
+
+    <div id="exitGame">
+        <p>Finalizar <br> Memotest</p>
+        <span>¿Deseas salir de la partida?</span>
+        <button id="cancelExit">Seguir partida</button>
+        <button id="returnHome">Salir</button>
+    </div>
+
+    <div id="ganador">
+        
+        <div class="card">
+            <img id="cardImage" src="" alt="">
+            <p>Ganó</p>
+            <span id="nombreJugador">jugador</span>
+        </div>
+
+        <button id="restartGame"> <span class="restartIcon"></span> Volver a Jugar</button>
+
+    </div>
+
+    <div id="sombra"></div>
+
+    <div id="hud" >
+        <div id="turno" >
+            <p>Le toca a:</p>
+            <span id="turnoDe"></span>
+        </div>
+
+        <div id="timer">
+            <p> <span id="mins">00</span>:<span id="secs" >00</span> </p>
+        </div>
+    </div>
+
+    <div id="tablero">
+        <ul id="tarjetas"></ul>
+    </div>
+    
+    <script src="../cordova.js"></script>
+    <script src="../js/storage.js"></script>
+    <script src="memotest.js"></script>
+	
+	
+</body>
+</html>

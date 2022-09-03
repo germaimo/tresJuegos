@@ -1,0 +1,377 @@
+body{
+	font-family: 'futura-pt', sans-serif;
+	background: #27175D;
+    color: white;
+    font-weight: 300;
+    font-style: normal;
+    width: 80%;
+    margin: 0 auto;
+    flex-direction: column;
+    position: relative;
+    display: flex;
+    align-items: center;
+	text-align: center;
+	padding: 2em;
+}
+
+p{
+	margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+}
+
+header{
+	margin-top: 0.5em;
+	font-size: 2.5rem;
+	font-family: 'futura-pt-bold';
+    letter-spacing: 1px;
+}
+
+a{
+	color: white;
+    text-decoration: none;
+    font-family: futura-pt-bold,sans-serif;
+    padding: 1em;
+    position: absolute;
+    background-color: #1169d3;
+    border-radius: 9px;
+    bottom: 3.5em;
+}
+
+table{
+	margin: 2em 0 auto;
+	table-layout:fixed;
+	border-collapse: collapse;
+	background-position: center;
+	width: 340px;
+	height: 340px;
+	background: linear-gradient(180deg, #6649C4 0%, #4A2BAE 100%);
+	box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
+	border-radius: 16px;
+	display: none;
+}
+
+tbody{
+	width: 340px;
+    height: 340px;
+    display: table;
+}
+
+.choose{
+	background: linear-gradient(180deg, #6649C4 0%, #4A2BAE 100%);
+	background-repeat: no-repeat;
+    background-position: center;
+    width: 334px;
+    height: 472px;
+    border-radius: 16px;
+    text-align: center;
+    font-family: futura-pt;
+    font-size: 20px;
+	display: flex;
+    flex-direction: column;
+}
+
+.choose img{
+	margin: 0 auto;
+    margin-top: 2em;
+}
+
+.choose p{
+	width: 136px;
+    margin: 0 auto;
+    margin-top: auto;
+    padding-bottom: 2em;
+    font-weight: 500;
+    letter-spacing: .5px;
+}
+
+svg{
+	width: 92px;
+	height: 92px;
+}
+
+td{
+	cursor: pointer;
+	width: calc(100% / 3);
+	height: calc(100% / 3);
+	text-align: center;
+	border-bottom: 1px solid #27175D;
+	border-right: 1px solid #27175D; 
+}
+
+#info{
+    font-family: futura-pt,sans-serif;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    text-align: center;
+    width: 340px;
+    height: 77px;
+	background: #4D2FB1;
+	border-radius: 16px;
+	font-style: normal;
+    font-weight: 500;
+    font-size: 40px;
+	display: none;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#info svg{
+	width: 54px;
+    height: 54px;
+}
+
+#signoReset{
+	display: none;
+}
+
+#close{
+    position: absolute;
+    right: 0;
+    top: 14px;
+    padding: .5em;
+    text-decoration: none;
+    border: none;
+    color: white;
+    font-size: 2em;
+}
+
+.closeIcon{
+    background-image: url('img/Close.svg');
+    width: 36px;
+    height: 36px;
+    background-repeat: no-repeat;
+    background-color: transparent;
+}
+
+
+#ganador{
+    display: none;
+    position: absolute;
+    transform: translateY(26%);
+}
+
+#ganador img{
+    margin-top: 1.5em;
+    box-sizing: border-box;
+    width: 199px;
+    height: 200px;
+    border: 8px solid transparent;
+    border-radius: 122px;
+    object-fit: cover;
+}
+
+#ganador p{
+    font-family: 'futura-pt-bold';
+    letter-spacing: 1px;
+    font-size: 40px;
+}
+
+#nombreJugador{
+    font-family: 'futura-pt';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 20px;
+    color: #FFD031;
+	margin-bottom: 3em;
+    margin-top: 1em;
+}
+
+#ganador button{
+    display: flex;
+    margin-top: 1em;
+    align-items: center;
+    justify-content: flex-start;
+    width: 334px;
+    height: 56px;
+    font-family: 'futura-pt';
+    font-size: 20px;
+    color: #F89740;
+    border: 2px solid #F89740;
+    background: transparent;
+    border-radius: 16px;
+    margin-bottom: .5em;
+}
+
+
+.card{
+    width: 340px;
+    height: 340px;
+    background: radial-gradient(48.68% 48.68% at 50.44% 39.41%, #846AD9 0%, #4124A0 100%);
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
+    border-radius: 80px;
+}
+
+#nombreJugador{
+    font-family: 'futura-pt';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 20px;
+    color: #FFD031;
+}
+
+.restartIcon{
+    background-image: url('img/restart.svg');
+    background-repeat: no-repeat;
+    width: 44px;
+    height: 44px;
+    margin-bottom: 0;
+    margin-top: 0;
+    margin-right: 50px;
+    margin-left: 15px;
+}
+
+.mostrarGanador{
+    display: block !important;
+}
+
+#exitGame {
+    position: absolute;
+    transform: translateY(50%);
+    display: none;
+    flex-direction: column;
+    width: 340px;
+    height: 324px;
+    background: white;
+    border-radius: 16px;
+    letter-spacing: 1px;
+    z-index: 3;
+}
+
+#exitGame p {
+    font-family: 'futura-pt-bold';
+    font-size: 32px;
+    color: black;
+    margin-top: 1em;
+}
+
+#exitGame span {
+    font-family: 'futura-pt';
+    font-size: 20px;
+    color: black;
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+	letter-spacing: 1px;
+}
+
+#exitGame button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 260px;
+    height: 56px;
+    font-family: 'futura-pt';
+    font-size: 20px;
+    color: #F89740;
+    margin: 0 auto;
+    border: 2px solid #F89740;
+    background: white;
+    border-radius: 16px;
+    margin-bottom: 0.5em;
+}
+
+#exitGame button:last-child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 260px;
+    height: 56px;
+    font-family: 'futura-pt';
+    font-size: 20px;
+    color: white;
+    border: none;
+    padding: 1em;
+    margin: 0 auto;
+    background: linear-gradient(180deg, #6649C4 0%, #4A2BAE 98.44%);
+    border-radius: 16px;
+}
+
+#sombra {
+    position: absolute;
+    top: 0;
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    background: black;
+    opacity: .5;
+    z-index: 2;
+}
+
+.disabled{
+    pointer-events: none;
+}
+
+@media (orientation: landscape) {
+    
+    body{
+        padding: 1em;
+        flex-direction: row;
+        gap: 1em;
+    }
+
+    .fix{
+        flex-direction: column;
+    }
+
+    header{
+        margin-top: 0;
+    }
+
+    .choose{
+        width: fit-content;
+        height: fit-content;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .choose img, .choose p{
+        margin-top: 0;
+    }
+
+    #exitGame{
+        transform: translateY(1%);
+    }
+    
+
+    .mostrarGanador{
+        display: flex !important;
+    }
+
+    #ganador{
+        align-items: center;
+        flex-direction: row-reverse;
+        margin: 0 auto;
+        width: 78%;
+        transform: translateY(56%);
+    }
+
+    .card{
+        width: 280px;
+        height: 280px;
+    }
+
+    #ganador img{
+        width: 149px;
+        height: 150px;
+    }
+
+    #ganador button{
+        width: 184px;
+        height: 56px;
+    }
+
+    #restartGame{
+        margin-right: 1em;
+    }
+
+    .restartIcon{
+        margin-left: 0;
+        margin-right: 10px;
+    }
+
+}
