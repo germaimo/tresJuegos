@@ -61,4 +61,4 @@ const faltanPerfiles = () => {
 
 }
 
-document.addEventListener('load', OnDeviceReady, false);
+window.addEventListener('load', OnDeviceReady, false);
